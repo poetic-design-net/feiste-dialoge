@@ -11,11 +11,15 @@ services:
   - Script-Doctoring
 status: veröffentlicht
 featured: true
+highlight: true
 order: 30
-description: |
-  Ein Dokumentarfilm über das Verstummen — in Familien, in Gesellschaften, in Geschichte. Die dramaturgische Aufgabe: aus 80 Stunden Interview-Material eine Erzählung zu formen, die trägt, ohne zu dramatisieren.
+heroImage: /uploads/high_bewusstsein.jpg
+description: >
+  Ein Dokumentarfilm über das Verstummen — in Familien, in Gesellschaften, in
+  Geschichte. Die dramaturgische Aufgabe: aus 80 Stunden Interview-Material eine
+  Erzählung zu formen, die trägt, ohne zu dramatisieren.
 postit:
-  text: "Stille ist kein Mangel an Ton. Stille ist ein Ton für sich."
+  text: Stille ist kein Mangel an Ton. Stille ist ein Ton für sich.
 seoDescription: Dramaturgie von Florian Feiste für den Dokumentarfilm "Echo der Stille" (2024).
 ---
 
