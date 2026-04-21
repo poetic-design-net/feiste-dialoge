@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Nachricht gesendet" description="Danke für Ihre Nachricht — ich melde mich in Kürze." noindex>
+  <div class="container-main py-24 md:py-32 text-center max-w-2xl">
+    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-fixed mb-8">
+      <span class="material-symbols-outlined text-primary text-5xl">check_circle</span>
+    </div>
+    <h1 class="font-headline text-5xl md:text-6xl font-bold tracking-tight mb-6">
+      Nachricht angekommen.
+    </h1>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10">
+      Vielen Dank für Ihre Anfrage. Ich melde mich in der Regel innerhalb von zwei Werktagen per E-Mail zurück.
+    </p>
+    <a href="/" class="btn-secondary">
+      <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      Zurück zur Startseite
+    </a>
+  </div>
+</BaseLayout>

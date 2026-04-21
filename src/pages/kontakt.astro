@@ -1,0 +1,176 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const availability = [
+  { period: 'Q2 2026', status: 'Ausgebucht', tone: 'busy' },
+  { period: 'Q3 2026', status: 'Teilweise verfügbar', tone: 'partial' },
+  { period: 'Q4 2026', status: 'Annahme offen', tone: 'open' },
+];
+
+const toneClass: Record<string, string> = {
+  busy: 'bg-error-container text-on-error-container',
+  partial: 'bg-secondary-container text-on-secondary-container',
+  open: 'bg-primary-fixed text-on-primary-fixed',
+};
+---
+
+<BaseLayout
+  title="Kontakt & Verfügbarkeit"
+  description="Projekt anfragen, Verfügbarkeit prüfen, Kontakt aufnehmen — Florian Feiste, Dialogbuchautor und Dramaturg."
+  active="contact"
+>
+  <div class="container-main py-16 md:py-24">
+    <!-- Hero -->
+    <section class="mb-16 md:mb-20 max-w-3xl">
+      <span class="font-headline text-sm uppercase tracking-widest text-primary">Kontakt</span>
+      <h1 class="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mt-4">
+        Schreiben Sie mir.
+      </h1>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mt-6">
+        Ob konkrete Projektanfrage, Stoffberatung oder unverbindliches Gespräch — ich melde mich in der Regel innerhalb von zwei Werktagen.
+      </p>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start">
+      <!-- Form -->
+      <section class="lg:col-span-7">
+        <form
+          class="bg-surface-container-low rounded-xl p-8 md:p-10 space-y-6"
+          name="kontakt"
+          method="POST"
+          action="/kontakt-danke/"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="kontakt" />
+          <p class="hidden">
+            <label>Bitte leer lassen: <input name="bot-field" /></label>
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="name" class="block font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                class="w-full bg-surface-container-lowest border-b-2 border-outline/40 focus:border-primary focus:outline-none px-4 py-3 rounded-t text-on-surface transition-colors"
+                placeholder="Ihr Name"
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="email" class="block font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">
+                E-Mail
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                class="w-full bg-surface-container-lowest border-b-2 border-outline/40 focus:border-primary focus:outline-none px-4 py-3 rounded-t text-on-surface transition-colors"
+                placeholder="ihre@email.de"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="topic" class="block font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">
+              Thema
+            </label>
+            <select
+              id="topic"
+              name="topic"
+              class="w-full bg-surface-container-lowest border-b-2 border-outline/40 focus:border-primary focus:outline-none px-4 py-3 rounded-t text-on-surface transition-colors"
+            >
+              <option>Projektanfrage</option>
+              <option>Stoffberatung / Script-Doctoring</option>
+              <option>Dialogbuch / Synchron</option>
+              <option>Sonstiges</option>
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label for="message" class="block font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">
+              Nachricht
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              class="w-full bg-surface-container-lowest border-b-2 border-outline/40 focus:border-primary focus:outline-none px-4 py-3 rounded-t text-on-surface transition-colors resize-none"
+              placeholder="Erzählen Sie mir kurz vom Projekt oder der Idee…"
+            ></textarea>
+          </div>
+
+          <div class="flex items-start gap-3 pt-2">
+            <input
+              id="privacy"
+              name="privacy"
+              type="checkbox"
+              required
+              class="mt-1 w-4 h-4 rounded border-outline text-primary focus:ring-primary"
+            />
+            <label for="privacy" class="text-sm text-on-surface-variant leading-relaxed">
+              Ich habe die <a href="/datenschutz/" class="text-primary hover:underline">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zu.
+            </label>
+          </div>
+
+          <button type="submit" class="btn-gradient w-full justify-center py-4">
+            Nachricht senden
+            <span class="material-symbols-outlined">send</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Sidebar: Availability + Direct contact -->
+      <aside class="lg:col-span-5 space-y-8">
+        <!-- Post-it Status -->
+        <div class="relative">
+          <div class="bg-postit-yellow p-8 shadow-postit-lg relative" style="transform: rotate(-1.5deg);">
+            <div class="absolute top-0 left-0 right-0 h-6 bg-on-surface/[0.03]"></div>
+            <p class="font-handwriting text-xl md:text-2xl leading-snug text-on-surface mb-4">
+              Aktueller Status:
+            </p>
+            <p class="font-handwriting text-lg md:text-xl text-on-surface leading-relaxed">
+              Neue Projekte für <strong>Q3 2026</strong> werden gerade angenommen — Einzelheiten gern im Gespräch.
+            </p>
+          </div>
+        </div>
+
+        <!-- Availability calendar -->
+        <section class="bg-surface-container-low rounded-lg p-8">
+          <h2 class="font-headline text-xl text-primary mb-6">Verfügbarkeit</h2>
+          <ul class="space-y-4">
+            {availability.map((a) => (
+              <li class="flex items-center justify-between gap-4">
+                <span class="font-headline text-lg">{a.period}</span>
+                <span class={`px-3 py-1 rounded-full text-xs font-semibold tracking-wide ${toneClass[a.tone]}`}>
+                  {a.status}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Direct contact -->
+        <section class="bg-matcha-gradient rounded-lg p-8 text-on-primary">
+          <p class="font-headline text-sm uppercase tracking-widest text-on-primary/80 mb-4">Direktkontakt</p>
+          <div class="space-y-3">
+            <a href="mailto:kontakt@feiste-dialoge.de" class="flex items-center gap-3 hover:underline">
+              <span class="material-symbols-outlined">mail</span>
+              kontakt@feiste-dialoge.de
+            </a>
+            <a href="tel:+49301234567" class="flex items-center gap-3 hover:underline">
+              <span class="material-symbols-outlined">call</span>
+              +49 30 123 45 67
+            </a>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

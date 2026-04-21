@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  href?: string;
+}
+
+const {
+  title,
+  subtitle,
+  imageSrc,
+  imageAlt = '',
+  href = '#',
+} = Astro.props;
+---
+
+<a href={href} class="group block">
+  <div class="bg-surface-container-low rounded-lg p-6 flex flex-col items-center transition-all duration-500 hover:bg-surface-container-highest">
+    <div class="relative w-full aspect-[4/3] bg-on-surface rounded-lg overflow-hidden border-8 border-on-surface/5 flex items-center justify-center p-4">
+      {imageSrc ? (
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          class="w-full h-full object-cover opacity-60 mix-blend-screen group-hover:opacity-80 transition-opacity"
+          loading="lazy"
+        />
+      ) : (
+        <div class="w-full h-full flex items-center justify-center text-inverse-on-surface/40 font-headline text-xs uppercase tracking-widest">
+          Kein Bild
+        </div>
+      )}
+      {/* CRT scan lines overlay */}
+      <div
+        class="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay"
+        style="background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.3) 0px, rgba(0,0,0,0.3) 1px, transparent 1px, transparent 3px);"
+      ></div>
+    </div>
+    <div class="mt-6 text-center">
+      <h3 class="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+        {title}
+      </h3>
+      <p class="text-on-surface-variant text-sm mt-2 font-medium tracking-wide">
+        {subtitle}
+      </p>
+    </div>
+  </div>
+</a>

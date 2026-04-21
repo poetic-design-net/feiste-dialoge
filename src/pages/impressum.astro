@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Impressum" description="Impressum und Anbieterkennzeichnung nach § 5 TMG." noindex>
+  <div class="container-main py-16 md:py-24 max-w-3xl">
+    <h1 class="font-headline text-4xl md:text-5xl font-bold mb-10">Impressum</h1>
+
+    <div class="prose prose-stone max-w-none font-body">
+      <h2>Angaben gemäß § 5 TMG</h2>
+      <p>
+        Florian Feiste<br/>
+        Musterstraße 1<br/>
+        10115 Berlin
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        Telefon: +49 30 123 45 67<br/>
+        E-Mail: <a href="mailto:kontakt@feiste-dialoge.de">kontakt@feiste-dialoge.de</a>
+      </p>
+
+      <h2>Verantwortlich für den Inhalt</h2>
+      <p>Florian Feiste (Anschrift wie oben)</p>
+
+      <p class="italic text-sm text-on-surface-variant">
+        Hinweis: Dies ist ein Platzhalter-Impressum. Bitte mit korrekten Angaben versehen.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

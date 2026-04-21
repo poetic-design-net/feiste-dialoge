@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface text-on-surface font-body antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  ::selection {
+    @apply bg-primary-fixed text-on-primary-fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply max-w-[1200px] mx-auto px-6 md:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3
+           rounded font-semibold text-sm tracking-wide
+           hover:bg-primary-container transition-all duration-300
+           active:scale-95;
+  }
+
+  .btn-gradient {
+    @apply inline-flex items-center gap-2 bg-matcha-gradient text-on-primary px-6 py-3
+           rounded font-semibold text-sm tracking-wide
+           hover:opacity-90 transition-all duration-300
+           active:scale-95 shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container
+           px-6 py-3 rounded font-semibold text-sm tracking-wide
+           hover:bg-secondary-fixed transition-all duration-300 active:scale-95;
+  }
+
+  .btn-tertiary {
+    @apply inline-flex items-center gap-2 text-primary font-headline font-bold
+           px-4 py-2 rounded hover:bg-surface-container-high transition-colors;
+  }
+
+  .post-it {
+    @apply bg-postit-yellow p-6 shadow-postit;
+    transform: rotate(-3deg);
+    transition: transform 0.4s ease;
+  }
+
+  .post-it:hover {
+    transform: rotate(0deg);
+  }
+
+  .nav-link {
+    @apply text-on-surface-variant font-medium text-sm tracking-wide
+           hover:text-primary transition-all duration-300;
+  }
+
+  .nav-link-active {
+    @apply text-on-surface font-bold relative
+           after:content-[''] after:absolute after:-bottom-2
+           after:left-1/2 after:-translate-x-1/2
+           after:w-1.5 after:h-1.5 after:bg-primary after:rounded-full;
+  }
+
+  .chip {
+    @apply inline-flex items-center bg-primary/10 text-primary
+           px-3 py-1 rounded-full text-xs font-semibold tracking-wide;
+  }
+
+  .section-title {
+    @apply font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tight;
+  }
+}
+
+@layer utilities {
+  .typewriter-texture {
+    background-image: radial-gradient(#d1d1d1 0.5px, transparent 0.5px);
+    background-size: 11px 11px;
+  }
+
+  .waveform-mask {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}

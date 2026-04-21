@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /uploads/
+
+Sitemap: https://feiste-dialoge.de/sitemap-index.xml

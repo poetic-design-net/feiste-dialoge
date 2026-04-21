@@ -1,0 +1,81 @@
+---
+interface Props {
+  active?: 'home' | 'portfolio' | 'about' | 'contact';
+}
+
+const { active = 'home' } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Home', key: 'home' },
+  { href: '/portfolio/', label: 'Portfolio', key: 'portfolio' },
+  { href: '/ueber-mich/', label: 'Über Mich', key: 'about' },
+  { href: '/kontakt/', label: 'Kontakt', key: 'contact' },
+] as const;
+---
+
+<nav class="w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-glass shadow-ambient">
+  <div class="container-main flex justify-between items-center py-5 md:py-6">
+    <a href="/" class="font-headline text-xl md:text-2xl font-bold tracking-tight text-on-background">
+      Feiste Dialoge
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            active === link.key ? 'nav-link-active' : 'nav-link',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <a href="/kontakt/" class="hidden md:inline-flex btn-gradient">
+      Projekt anfragen
+    </a>
+
+    <button
+      id="mobile-nav-toggle"
+      class="md:hidden w-10 h-10 flex items-center justify-center text-on-surface"
+      aria-label="Navigation öffnen"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+
+  <div
+    id="mobile-nav"
+    class="md:hidden hidden border-t border-outline-variant/20 bg-surface"
+  >
+    <div class="container-main py-6 flex flex-col gap-4">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'py-2 font-medium',
+            active === link.key ? 'text-primary font-bold' : 'text-on-surface-variant',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="/kontakt/" class="btn-gradient mt-4 justify-center">
+        Projekt anfragen
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const menu = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>

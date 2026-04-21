@@ -1,0 +1,234 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Waveform from '@components/Waveform.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const data = project.data;
+
+const metaRows: Array<[string, string | undefined]> = [
+  ['Jahr', data.year],
+  ['Genre', data.genre],
+  ['Studio', data.studio],
+  ['Sprachfassung', data.language],
+  ['Synchron-Art', data.syncType],
+];
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.seoDescription ?? data.description.slice(0, 160)}
+  active="portfolio"
+>
+  <div class="container-main py-8 md:py-12">
+    <div class="sticky top-[88px] z-40 bg-surface/90 backdrop-blur-sm py-2 -mx-2 px-2 rounded-lg mb-6">
+      <a
+        href="/portfolio/"
+        class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium text-sm group font-headline"
+      >
+        <span class="material-symbols-outlined text-lg transition-transform group-hover:-translate-x-1">arrow_back</span>
+        Zurück zur Übersicht
+      </a>
+    </div>
+
+    {/* Hero */}
+    <header class="mb-12 md:mb-16">
+      <div class="relative w-full min-h-[320px] md:h-[450px] rounded-xl overflow-hidden bg-matcha-gradient">
+        {data.heroImage && (
+          <img
+            src={data.heroImage.src}
+            alt={data.heroImageAlt ?? data.title}
+            class="w-full h-full object-cover absolute inset-0"
+            loading="eager"
+          />
+        )}
+        <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/30 to-transparent"></div>
+        <div class="relative z-10 flex flex-col justify-end h-full p-8 md:p-12 min-h-[320px] md:min-h-[450px]">
+          <span class="font-headline text-sm uppercase tracking-widest text-primary-fixed-dim mb-3 inline-block">
+            {data.role} · {data.year}
+          </span>
+          <h1 class="font-headline text-4xl md:text-5xl font-bold text-inverse-on-surface mb-3 tracking-tight">
+            {data.title}
+          </h1>
+          {data.subtitle && (
+            <p class="text-inverse-on-surface/90 text-lg md:text-xl font-light tracking-wide max-w-2xl">
+              {data.subtitle}
+            </p>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
+      {/* Sidebar: Meta + Description */}
+      <aside class="lg:col-span-4 space-y-8 lg:sticky lg:top-32">
+        <section class="bg-surface-container-low p-8 rounded-lg">
+          <h2 class="font-headline text-2xl text-primary mb-6">Details</h2>
+          <dl class="space-y-5">
+            {metaRows.filter(([, v]) => v).map(([label, value], i, arr) => (
+              <div class:list={[
+                'flex flex-col gap-1',
+                i < arr.length - 1 || data.services.length > 0 ? 'border-b border-outline-variant/30 pb-4' : '',
+              ]}>
+                <dt class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">
+                  {label}
+                </dt>
+                <dd class="text-base md:text-lg font-medium">{value}</dd>
+              </div>
+            ))}
+            {data.services.length > 0 && (
+              <div class="flex flex-col gap-2">
+                <dt class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Leistung</dt>
+                <dd class="flex flex-wrap gap-2 mt-1">
+                  {data.services.map((s) => <span class="chip">{s}</span>)}
+                </dd>
+              </div>
+            )}
+          </dl>
+        </section>
+
+        <section class="bg-surface-container-highest p-8 rounded-lg">
+          <h3 class="font-headline text-xl text-on-background mb-4">Projektbeschreibung</h3>
+          <div class="text-on-surface-variant leading-relaxed text-sm space-y-4 whitespace-pre-line">
+            {data.description}
+          </div>
+        </section>
+
+        <section class="bg-matcha-gradient p-8 rounded-lg text-on-primary">
+          <p class="font-headline text-lg font-bold mb-6 leading-tight">
+            Sollen wir auch für Ihr nächstes Projekt die richtigen Worte finden?
+          </p>
+          <a
+            href="/kontakt/"
+            class="inline-flex items-center justify-center gap-2 w-full bg-surface-container-lowest text-primary hover:bg-surface-container-high transition-colors px-6 py-3 rounded font-headline text-sm font-bold"
+          >
+            Dialog starten
+            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+          </a>
+        </section>
+      </aside>
+
+      {/* Main: Script Excerpt */}
+      <section class="lg:col-span-8 lg:ml-4">
+        {data.scriptSnippet ? (
+          <div class="relative bg-surface-container-lowest rounded-sm flex flex-col overflow-hidden shadow-manuscript mb-4 min-h-[900px]">
+            <div class="absolute inset-0 typewriter-texture opacity-20 pointer-events-none"></div>
+
+            <div class="p-8 md:p-16 pb-0 flex justify-between items-start font-headline text-on-surface-variant/60 text-xs relative z-10">
+              <div>{data.scriptSnippet.header ?? data.title.toUpperCase()}</div>
+              <div>{data.scriptSnippet.page ?? 'SEITE 01'}</div>
+            </div>
+
+            <article class="p-8 md:p-16 lg:p-24 pt-24 md:pt-32 pb-24 md:pb-48 flex-grow font-headline leading-relaxed text-on-surface relative z-10">
+              <div class="text-center mb-16 md:mb-24 italic border-y border-outline-variant/40 py-4 uppercase tracking-[0.2em] text-sm">
+                Skript-Auszug
+              </div>
+              <div class="space-y-12 md:space-y-16 max-w-2xl mx-auto">
+                {data.scriptSnippet.dialogues.map((d) => (
+                  <div class="space-y-4 md:space-y-6">
+                    <p class="uppercase text-center font-bold">{d.character}</p>
+                    <p class="md:px-12 text-center">
+                      {d.direction && (
+                        <>
+                          ({d.direction})<br/>
+                        </>
+                      )}
+                      {d.line}
+                    </p>
+                  </div>
+                ))}
+                {data.scriptSnippet.actionNote && (
+                  <div class="pt-16 md:pt-24 text-center text-on-surface-variant/60 italic">
+                    {data.scriptSnippet.actionNote}
+                  </div>
+                )}
+              </div>
+            </article>
+
+            {data.postit && (
+              <div
+                class="absolute bottom-8 right-4 md:bottom-[180px] md:right-8 w-[240px] md:w-[320px] bg-postit-yellow shadow-postit-lg p-6 md:p-10 flex items-center justify-center text-center z-20"
+                style="transform: rotate(4deg);"
+              >
+                <div class="absolute top-0 left-0 right-0 h-6 bg-on-surface/[0.03] border-b border-on-surface/[0.02]"></div>
+                <p class="font-handwriting text-xl md:text-2xl leading-relaxed text-on-surface font-medium">
+                  {data.postit.text}
+                </p>
+              </div>
+            )}
+          </div>
+        ) : (
+          /* Fallback: content body */
+          <div class="bg-surface-container-lowest rounded-lg p-8 md:p-12 prose prose-stone max-w-none font-body">
+            <Content />
+          </div>
+        )}
+
+        {/* Body content (markdown) below script */}
+        {data.scriptSnippet && (
+          <div class="bg-surface-container-low rounded-lg p-8 md:p-12 mt-8">
+            <div class="prose prose-stone max-w-none font-body prose-headings:font-headline prose-headings:text-on-surface">
+              <Content />
+            </div>
+          </div>
+        )}
+      </section>
+    </div>
+
+    {/* Waveform divider */}
+    <div class="my-16 md:my-24">
+      <Waveform animate />
+    </div>
+
+    {/* Videos */}
+    {data.videos.length > 0 && (
+      <section class="mb-24">
+        <header class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+          <div class="space-y-2">
+            <p class="font-headline text-sm uppercase tracking-widest text-primary">Arbeitsbeispiel</p>
+            <h2 class="font-headline text-3xl md:text-4xl text-on-surface font-bold">
+              Arbeitsbeispiele ansehen
+            </h2>
+          </div>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {data.videos.map((video) => (
+            <article class="group cursor-pointer">
+              <div class="aspect-video bg-surface-container-highest rounded-xl overflow-hidden relative mb-5 shadow-sm">
+                {video.thumbnail && (
+                  <img
+                    src={video.thumbnail.src}
+                    alt={video.thumbnailAlt ?? video.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 group-hover:brightness-50"
+                  />
+                )}
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-16 h-16 md:w-20 md:h-20 bg-primary/90 text-on-primary rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  </div>
+                </div>
+              </div>
+              <h3 class="font-headline text-xl font-bold">{video.title}</h3>
+              {video.subtitle && (
+                <p class="text-sm mt-1 tracking-wide text-on-surface-variant">{video.subtitle}</p>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>
