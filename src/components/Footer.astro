@@ -1,7 +1,15 @@
 ---
 import Waveform from './Waveform.astro';
+import { getEntry } from 'astro:content';
 
+const site = await getEntry('settings', 'site');
 const year = new Date().getFullYear();
+
+const siteName = site?.data.siteName ?? 'Feiste Dialoge';
+const tagline = site?.data.footerTagline ?? 'Präzise Dramaturgie und lebendige Dialoge für Film, Fernsehen und Literatur.';
+const subline = site?.data.footerSubline ?? 'Dialogbuch · Dramaturgie · Synchronregie';
+const copyright = site?.data.copyright ?? 'Crafted with intentionality.';
+const email = site?.data.contactEmail;
 ---
 
 <footer class="relative mt-32 bg-inverse-surface text-inverse-on-surface rounded-t-xl overflow-hidden">
@@ -10,10 +18,8 @@ const year = new Date().getFullYear();
   <div class="container-main pt-32 pb-16 relative">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
       <div class="md:col-span-5 space-y-6">
-        <p class="font-headline text-3xl font-bold tracking-tight">Feiste Dialoge</p>
-        <p class="text-inverse-on-surface/70 text-body-lg max-w-md leading-relaxed">
-          Präzise Dramaturgie und lebendige Dialoge für Film, Fernsehen und Literatur.
-        </p>
+        <p class="font-headline text-3xl font-bold tracking-tight">{siteName}</p>
+        <p class="text-inverse-on-surface/70 text-body-lg max-w-md leading-relaxed">{tagline}</p>
         <a href="/kontakt/" class="inline-flex items-center gap-2 text-primary-fixed-dim hover:text-primary-fixed font-headline font-bold group">
           Dialog starten
           <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
@@ -35,17 +41,19 @@ const year = new Date().getFullYear();
         <ul class="space-y-3">
           <li><a href="/impressum/" class="hover:text-primary-fixed-dim transition-colors">Impressum</a></li>
           <li><a href="/datenschutz/" class="hover:text-primary-fixed-dim transition-colors">Datenschutz</a></li>
-          <li><a href="mailto:kontakt@feiste-dialoge.de" class="hover:text-primary-fixed-dim transition-colors">kontakt@feiste-dialoge.de</a></li>
+          {email && (
+            <li><a href={`mailto:${email}`} class="hover:text-primary-fixed-dim transition-colors">{email}</a></li>
+          )}
         </ul>
       </div>
     </div>
 
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-inverse-on-surface/10">
       <p class="font-label text-xs uppercase tracking-widest text-inverse-on-surface/50">
-        © {year} Feiste Dialoge. Crafted with intentionality.
+        © {year} {siteName}. {copyright}
       </p>
       <p class="font-headline text-xs text-inverse-on-surface/40">
-        Dialogbuch · Dramaturgie · Synchronregie
+        {subline}
       </p>
     </div>
   </div>

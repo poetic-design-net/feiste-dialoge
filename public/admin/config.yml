@@ -9,12 +9,13 @@ publish_mode: editorial_workflow
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-site_url: https://feiste-dialoge.de
-display_url: https://feiste-dialoge.de
+site_url: https://feiste-dialoge2.vercel.app
+display_url: https://feiste-dialoge2.vercel.app
 logo_url: /favicon.svg
 locale: de
 
 collections:
+  # ─── PROJEKTE ─────────────────────────────────────────────────────────────
   - name: projects
     label: "Projekte"
     label_singular: "Projekt"
@@ -60,7 +61,6 @@ collections:
       - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false, choose_url: false }
       - { label: "Thumbnail Alt-Text", name: "thumbnailAlt", widget: "string", required: false }
       - { label: "Kurzbeschreibung", name: "description", widget: "text", hint: "1-3 Absätze für die Sidebar" }
-
       - label: "Skript-Auszug (optional)"
         name: "scriptSnippet"
         widget: "object"
@@ -78,7 +78,6 @@ collections:
               - { label: "Regieanweisung", name: "direction", widget: "string", required: false }
               - { label: "Text", name: "line", widget: "text" }
           - { label: "Schluss-Regieanweisung", name: "actionNote", widget: "string", required: false }
-
       - label: "Post-it Notiz (optional)"
         name: "postit"
         widget: "object"
@@ -87,7 +86,6 @@ collections:
         fields:
           - { label: "Text", name: "text", widget: "text" }
           - { label: "Autor", name: "author", widget: "string", required: false }
-
       - label: "Videos (optional)"
         name: "videos"
         widget: "list"
@@ -101,6 +99,143 @@ collections:
           - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
           - { label: "Thumbnail Alt", name: "thumbnailAlt", widget: "string", required: false }
           - { label: "URL (YouTube/Vimeo)", name: "url", widget: "string", required: false }
-
-      - { label: "SEO-Beschreibung (optional)", name: "seoDescription", widget: "text", required: false, pattern: ['.{1,160}', 'max. 160 Zeichen'] }
+      - { label: "SEO-Beschreibung (optional)", name: "seoDescription", widget: "text", required: false }
       - { label: "Haupttext / Zusatzinhalt", name: "body", widget: "markdown" }
+
+  # ─── SEITEN-INHALTE ───────────────────────────────────────────────────────
+  - name: pages
+    label: "Seiten"
+    label_singular: "Seite"
+    editor:
+      preview: false
+    files:
+      - name: home
+        label: "Startseite"
+        file: "src/content/pages/home.yml"
+        fields:
+          - label: "Hero-Bereich"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Vorzeile (Eyebrow)", name: eyebrow, widget: string, required: false, hint: "Kleine Zeile über dem Titel" }
+              - { label: "Titel", name: title, widget: string }
+              - { label: "Titel-Akzent (zweite Zeile)", name: titleAccent, widget: string, required: false, hint: "Wird grün dargestellt" }
+              - { label: "Untertitel", name: subtitle, widget: text, required: false }
+              - { label: "Portrait-Bild", name: image, widget: image, required: false }
+              - { label: "Portrait Alt-Text", name: imageAlt, widget: string, required: false }
+              - { label: "Post-it Spruch", name: postit, widget: text, required: false, hint: "Handgeschriebene Notiz neben dem Portrait" }
+          - label: "Leistungen (3 Spalten)"
+            name: services
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { label: "Icon (Material Symbols Name)", name: icon, widget: string, hint: "z. B. edit_note, forum, architecture — siehe fonts.google.com/icons" }
+              - { label: "Titel", name: title, widget: string }
+              - { label: "Beschreibung", name: description, widget: text }
+              - label: "Aufzählungspunkte"
+                name: items
+                widget: list
+                field: { label: "Punkt", name: item, widget: string }
+          - label: "Call-to-Action unten"
+            name: cta
+            widget: object
+            required: false
+            fields:
+              - { label: "Titel", name: title, widget: string }
+              - { label: "Text", name: text, widget: text, required: false }
+              - { label: "Button-Beschriftung", name: buttonText, widget: string, required: false }
+
+      - name: about
+        label: "Über Mich"
+        file: "src/content/pages/about.yml"
+        fields:
+          - label: "Hero-Bereich"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Vorzeile", name: eyebrow, widget: string, required: false }
+              - { label: "Titel", name: title, widget: string }
+              - { label: "Titel-Akzent", name: titleAccent, widget: string, required: false }
+              - label: "Einleitungstext (mehrere Absätze)"
+                name: intro
+                widget: list
+                field: { label: "Absatz", name: paragraph, widget: text }
+              - { label: "Portrait-Bild", name: image, widget: image, required: false }
+              - { label: "Portrait Alt-Text", name: imageAlt, widget: string, required: false }
+              - { label: "Standort-Notiz", name: location, widget: text, required: false, hint: "z. B. 'Berlin & Hamburg'" }
+          - label: "Grundüberzeugungen"
+            name: principles
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { label: "Icon", name: icon, widget: string }
+              - { label: "Titel", name: title, widget: string }
+              - { label: "Beschreibung", name: description, widget: text }
+          - label: "Werdegang / Timeline"
+            name: timeline
+            widget: list
+            summary: "{{year}} — {{title}}"
+            fields:
+              - { label: "Jahr / Zeitraum", name: year, widget: string }
+              - { label: "Titel", name: title, widget: string }
+              - { label: "Beschreibung", name: description, widget: text }
+          - label: "Call-to-Action unten"
+            name: cta
+            widget: object
+            required: false
+            fields:
+              - { label: "Titel", name: title, widget: string }
+              - { label: "Text", name: text, widget: text, required: false }
+              - { label: "Button-Beschriftung", name: buttonText, widget: string, required: false }
+
+      - name: contact
+        label: "Kontakt"
+        file: "src/content/pages/contact.yml"
+        fields:
+          - label: "Hero-Bereich"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Vorzeile", name: eyebrow, widget: string, required: false }
+              - { label: "Titel", name: title, widget: string }
+              - { label: "Untertitel", name: subtitle, widget: text, required: false }
+          - { label: "Post-it Status", name: postit, widget: text, required: false, hint: "Handgeschriebene Notiz zur aktuellen Verfügbarkeit" }
+          - label: "Verfügbarkeit (Quartale)"
+            name: availability
+            widget: list
+            summary: "{{period}} — {{status}}"
+            fields:
+              - { label: "Zeitraum", name: period, widget: string, hint: "z. B. Q3 2026" }
+              - { label: "Status-Text", name: status, widget: string }
+              - label: "Farbe"
+                name: tone
+                widget: select
+                options: ["busy", "partial", "open"]
+                default: open
+                hint: "busy = rot · partial = gelb · open = grün"
+          - label: "Direktkontakt"
+            name: contact
+            widget: object
+            required: false
+            fields:
+              - { label: "E-Mail", name: email, widget: string, required: false }
+              - { label: "Telefon", name: phone, widget: string, required: false }
+
+  # ─── GLOBALE EINSTELLUNGEN ────────────────────────────────────────────────
+  - name: settings
+    label: "Einstellungen"
+    editor:
+      preview: false
+    files:
+      - name: site
+        label: "Seite & Footer"
+        file: "src/content/settings/site.yml"
+        fields:
+          - { label: "Seitenname", name: siteName, widget: string, default: "Feiste Dialoge" }
+          - { label: "Haupt-Tagline", name: tagline, widget: string, required: false, hint: "Wird im <title>-Tag verwendet" }
+          - { label: "SEO-Beschreibung", name: description, widget: text, required: false }
+          - { label: "Footer-Tagline", name: footerTagline, widget: text, required: false }
+          - { label: "Footer-Unterzeile", name: footerSubline, widget: string, required: false, hint: "z. B. 'Dialogbuch · Dramaturgie · Synchronregie'" }
+          - { label: "Copyright-Zusatz", name: copyright, widget: string, required: false, hint: "Erscheint hinter dem © {Jahr}" }
+          - { label: "Kontakt-E-Mail", name: contactEmail, widget: string, required: false }
+          - { label: "Kontakt-Telefon", name: contactPhone, widget: string, required: false }

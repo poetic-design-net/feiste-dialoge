@@ -49,7 +49,7 @@ const metaRows: Array<[string, string | undefined]> = [
       <div class="relative w-full min-h-[320px] md:h-[450px] rounded-xl overflow-hidden bg-matcha-gradient">
         {data.heroImage && (
           <img
-            src={data.heroImage.src}
+            src={data.heroImage}
             alt={data.heroImageAlt ?? data.title}
             class="w-full h-full object-cover absolute inset-0"
             loading="eager"
@@ -210,7 +210,7 @@ const metaRows: Array<[string, string | undefined]> = [
               <div class="aspect-video bg-surface-container-highest rounded-xl overflow-hidden relative mb-5 shadow-sm">
                 {video.thumbnail && (
                   <img
-                    src={video.thumbnail.src}
+                    src={video.thumbnail}
                     alt={video.thumbnailAlt ?? video.title}
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 group-hover:brightness-50"
                   />

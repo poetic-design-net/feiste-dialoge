@@ -3,83 +3,86 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import RetroTVCard from '@components/RetroTVCard.astro';
 import ServiceCard from '@components/ServiceCard.astro';
 import Waveform from '@components/Waveform.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+const home = await getEntry('pages', 'home');
+const site = await getEntry('settings', 'site');
 
 const featured = (await getCollection('projects', ({ data }) => data.highlight))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 
-const services = [
-  {
-    icon: 'edit_note',
-    title: 'Drehbuch & Skript',
-    description:
-      'Entwicklung von Originalstoffen, Adaptionen und seriellen Formaten mit Fokus auf atmosphärische Dichte und Struktur.',
-    items: ['Exposé & Treatment', 'Szenische Ausarbeitung'],
-  },
-  {
-    icon: 'forum',
-    title: 'Dialogbuch',
-    description:
-      'Schärfung der Stimmen, Rhythmus-Optimierung und sprachliche Charakterisierung für eine authentische Figurensprache.',
-    items: ['Synchron-Dialogbuch', 'Sprachliche Überarbeitung'],
-  },
-  {
-    icon: 'architecture',
-    title: 'Dramaturgie',
-    description:
-      'Strukturelle Analyse, Beratung bei Plot-Points und emotionale Führung des Zuschauers durch professionelle Stoffberatung.',
-    items: ['Stoffberatung', 'Script-Doctoring'],
-  },
-];
+const hero = home?.data.hero;
+const services = home?.data.services ?? [];
+const cta = home?.data.cta;
 ---
 
 <BaseLayout
-  title="Feiste Dialoge — Worte, die wirken & bleiben"
-  description="Dialogbuch, Dramaturgie und Drehbuch von Florian Feiste. Präzise Stimmen für Film, Fernsehen und Literatur."
+  title={`${site?.data.siteName ?? 'Feiste Dialoge'} — ${site?.data.tagline ?? ''}`}
+  description={site?.data.description}
   active="home"
 >
   <div class="container-main overflow-hidden">
-    <!-- Hero Section -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center py-16 md:py-24">
-      <div class="space-y-8 order-2 md:order-1">
-        <p class="font-headline text-sm uppercase tracking-widest text-primary">
-          Dialogbuch · Dramaturgie · Regie
-        </p>
-        <h1 class="font-headline text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-on-surface">
-          Worte, die wirken<br/><span class="text-primary">&amp; bleiben.</span>
-        </h1>
-        <p class="text-lg md:text-xl text-on-surface-variant max-w-md leading-relaxed">
-          Präzise Dramaturgie und lebendige Dialoge für Film, Fernsehen und Literatur. Florian Feiste entwickelt Narrative mit Tiefgang.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/kontakt/" class="btn-gradient">
-            Projekt anfragen
-            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-          </a>
-          <a href="/portfolio/" class="btn-secondary">
-            Portfolio ansehen
-          </a>
-        </div>
-      </div>
-
-      <div class="relative group order-1 md:order-2">
-        <div class="rounded-xl overflow-hidden aspect-[4/5] bg-surface-container-high relative">
-          <div class="w-full h-full flex items-center justify-center bg-matcha-gradient/10">
-            <span class="material-symbols-outlined text-on-surface-variant/30" style="font-size: 120px;">person</span>
+    {hero && (
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center py-16 md:py-24">
+        <div class="space-y-8 order-2 md:order-1">
+          {hero.eyebrow && (
+            <p class="font-headline text-sm uppercase tracking-widest text-primary">
+              {hero.eyebrow}
+            </p>
+          )}
+          <h1 class="font-headline text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-on-surface">
+            {hero.title}
+            {hero.titleAccent && (
+              <>
+                <br/><span class="text-primary">{hero.titleAccent}</span>
+              </>
+            )}
+          </h1>
+          {hero.subtitle && (
+            <p class="text-lg md:text-xl text-on-surface-variant max-w-md leading-relaxed">
+              {hero.subtitle}
+            </p>
+          )}
+          <div class="flex flex-wrap gap-4">
+            <a href="/kontakt/" class="btn-gradient">
+              Projekt anfragen
+              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            </a>
+            <a href="/portfolio/" class="btn-secondary">
+              Portfolio ansehen
+            </a>
           </div>
         </div>
-        <div class="absolute bottom-12 -left-4 md:-left-8 post-it w-52 md:w-56 text-center">
-          <p class="font-marker text-base md:text-lg text-on-surface leading-tight">
-            Subtext ist die Seele jeder glaubwürdigen Figur.
-          </p>
+
+        <div class="relative group order-1 md:order-2">
+          <div class="rounded-xl overflow-hidden aspect-[4/5] bg-surface-container-high relative">
+            {hero.image ? (
+              <img
+                src={hero.image}
+                alt={hero.imageAlt ?? 'Portrait'}
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center bg-matcha-gradient/10">
+                <span class="material-symbols-outlined text-on-surface-variant/30" style="font-size: 120px;">person</span>
+              </div>
+            )}
+          </div>
+          {hero.postit && (
+            <div class="absolute bottom-12 -left-4 md:-left-8 post-it w-52 md:w-56 text-center">
+              <p class="font-marker text-base md:text-lg text-on-surface leading-tight">
+                {hero.postit}
+              </p>
+            </div>
+          )}
         </div>
-      </div>
-    </section>
+      </section>
+    )}
 
     <Waveform className="my-12" animate />
 
-    <!-- Featured Projects / Retro TV -->
     <section class="py-16 md:py-24">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-6">
         <div class="space-y-3">
@@ -97,40 +100,44 @@ const services = [
           <RetroTVCard
             title={project.data.title}
             subtitle={`${project.data.role} · ${project.data.year}`}
+            imageSrc={project.data.thumbnail ?? project.data.heroImage}
+            imageAlt={project.data.thumbnailAlt ?? project.data.title}
             href={`/portfolio/${project.slug}/`}
           />
         ))}
       </div>
     </section>
 
-    <!-- Services -->
-    <section class="py-16 md:py-24 bg-surface-container-low rounded-xl px-8 md:px-12 my-12">
-      <div class="text-center mb-16 space-y-3">
-        <p class="font-headline text-sm uppercase tracking-widest text-primary">Leistungsspektrum</p>
-        <h2 class="section-title">Was ich kann.</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-        {services.map((service) => <ServiceCard {...service} />)}
-      </div>
-    </section>
-
-    <!-- CTA Banner -->
-    <section class="py-16 md:py-24">
-      <div class="bg-matcha-gradient rounded-xl p-10 md:p-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative overflow-hidden">
-        <div class="relative z-10 max-w-xl">
-          <h2 class="font-headline text-3xl md:text-5xl font-bold text-on-primary leading-tight">
-            Bereit für den nächsten Dialog?
-          </h2>
-          <p class="text-on-primary/80 mt-6 text-base md:text-lg">
-            Lassen Sie uns gemeinsam Geschichten entwickeln, die eine Resonanz erzeugen.
-          </p>
+    {services.length > 0 && (
+      <section class="py-16 md:py-24 bg-surface-container-low rounded-xl px-8 md:px-12 my-12">
+        <div class="text-center mb-16 space-y-3">
+          <p class="font-headline text-sm uppercase tracking-widest text-primary">Leistungsspektrum</p>
+          <h2 class="section-title">Was ich kann.</h2>
         </div>
-        <a href="/kontakt/" class="relative z-10 bg-surface-container-lowest text-primary px-8 md:px-10 py-4 md:py-5 rounded font-headline font-bold text-lg md:text-xl hover:bg-surface-container-high transition-all inline-flex items-center gap-2 shrink-0">
-          Kontakt aufnehmen
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </a>
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-surface/10 to-transparent pointer-events-none"></div>
-      </div>
-    </section>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+          {services.map((service) => <ServiceCard {...service} />)}
+        </div>
+      </section>
+    )}
+
+    {cta && (
+      <section class="py-16 md:py-24">
+        <div class="bg-matcha-gradient rounded-xl p-10 md:p-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative overflow-hidden">
+          <div class="relative z-10 max-w-xl">
+            <h2 class="font-headline text-3xl md:text-5xl font-bold text-on-primary leading-tight">
+              {cta.title}
+            </h2>
+            {cta.text && (
+              <p class="text-on-primary/80 mt-6 text-base md:text-lg">{cta.text}</p>
+            )}
+          </div>
+          <a href="/kontakt/" class="relative z-10 bg-surface-container-lowest text-primary px-8 md:px-10 py-4 md:py-5 rounded font-headline font-bold text-lg md:text-xl hover:bg-surface-container-high transition-all inline-flex items-center gap-2 shrink-0">
+            {cta.buttonText ?? 'Kontakt aufnehmen'}
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+          <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-surface/10 to-transparent pointer-events-none"></div>
+        </div>
+      </section>
+    )}
   </div>
 </BaseLayout>
