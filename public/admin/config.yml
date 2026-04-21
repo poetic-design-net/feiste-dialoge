@@ -2,8 +2,8 @@ backend:
   name: github
   repo: poetic-design-net/feiste-dialoge
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
+  base_url: https://feiste-dialoge2.vercel.app
+  auth_endpoint: api/auth
 
 publish_mode: editorial_workflow
 media_folder: "public/uploads"
