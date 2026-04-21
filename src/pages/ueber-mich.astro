@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import Icon from '@components/Icon.astro';
 import { getEntry } from 'astro:content';
 
 const about = await getEntry('pages', 'about');
@@ -7,12 +8,14 @@ const hero = about?.data.hero;
 const principles = about?.data.principles ?? [];
 const timeline = about?.data.timeline ?? [];
 const cta = about?.data.cta;
+const seo = about?.data.seo;
 ---
 
 <BaseLayout
   title="Über mich"
   description="Florian Feiste — Dialogbuchautor, Dramaturg und Drehbuchautor. Hintergrund, Ansatz und Werdegang."
   active="about"
+  seo={seo}
 >
   <div class="container-main py-16 md:py-24">
     {hero && (
@@ -46,7 +49,7 @@ const cta = about?.data.cta;
               />
             ) : (
               <div class="w-full h-full flex items-center justify-center bg-primary/10">
-                <span class="material-symbols-outlined text-on-surface-variant/30" style="font-size: 120px;">person</span>
+                <Icon name="person" size={120} class="text-on-surface-variant/30" stroke={1.2} />
               </div>
             )}
           </div>
@@ -70,7 +73,7 @@ const cta = about?.data.cta;
           {principles.map((p) => (
             <div class="bg-surface-container-low rounded-lg p-8 space-y-5">
               <div class="w-14 h-14 bg-primary-fixed flex items-center justify-center rounded-full">
-                <span class="material-symbols-outlined text-primary text-3xl">{p.icon}</span>
+                <Icon name={p.icon} size={28} class="text-primary" />
               </div>
               <h3 class="font-headline text-2xl font-bold text-on-surface leading-tight">{p.title}</h3>
               <p class="text-on-surface-variant leading-relaxed">{p.description}</p>
@@ -118,7 +121,7 @@ const cta = about?.data.cta;
         )}
         <a href="/kontakt/" class="btn-gradient">
           {cta.buttonText ?? 'Kontakt aufnehmen'}
-          <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+          <Icon name="arrow_forward" size={20} />
         </a>
       </section>
     )}

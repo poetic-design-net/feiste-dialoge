@@ -1,5 +1,6 @@
 ---
 import Waveform from './Waveform.astro';
+import Icon from './Icon.astro';
 import { getEntry } from 'astro:content';
 
 const site = await getEntry('settings', 'site');
@@ -24,7 +25,7 @@ const email = site?.data.contactEmail;
         <p class="text-inverse-on-surface/70 text-body-lg max-w-md leading-relaxed">{tagline}</p>
         <a href="/kontakt/" class="inline-flex items-center gap-2 text-primary-fixed-dim hover:text-primary-fixed font-headline font-bold group">
           Dialog starten
-          <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+          <Icon name="arrow_forward" size={20} class="transition-transform group-hover:translate-x-1" />
         </a>
       </div>
 

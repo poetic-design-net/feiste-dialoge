@@ -1,5 +1,14 @@
 import { defineCollection, z } from 'astro:content';
 
+const seoSchema = z
+  .object({
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    ogImage: z.string().optional(),
+    noindex: z.boolean().default(false),
+  })
+  .optional();
+
 const projects = defineCollection({
   type: 'content',
   schema: z.object({
@@ -53,6 +62,7 @@ const projects = defineCollection({
       )
       .default([]),
     seoDescription: z.string().optional(),
+    seo: seoSchema,
   }),
 });
 
@@ -123,6 +133,7 @@ const pages = defineCollection({
         phone: z.string().optional(),
       })
       .optional(),
+    seo: seoSchema,
   }),
 });
 
@@ -137,6 +148,11 @@ const settings = defineCollection({
     copyright: z.string().optional(),
     contactEmail: z.string().optional(),
     contactPhone: z.string().optional(),
+    defaultOgImage: z.string().optional(),
+    googleSiteVerification: z.string().optional(),
+    personName: z.string().optional(),
+    personJobTitle: z.string().optional(),
+    sameAs: z.array(z.string()).default([]),
   }),
 });
 

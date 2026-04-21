@@ -99,7 +99,18 @@ collections:
           - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
           - { label: "Thumbnail Alt", name: "thumbnailAlt", widget: "string", required: false }
           - { label: "URL (YouTube/Vimeo)", name: "url", widget: "string", required: false }
-      - { label: "SEO-Beschreibung (optional)", name: "seoDescription", widget: "text", required: false }
+      - label: "SEO & Social Sharing"
+        name: seo
+        widget: object
+        required: false
+        collapsed: true
+        summary: "{{metaTitle}}"
+        fields:
+          - { label: "Meta-Titel", name: metaTitle, widget: string, required: false, hint: "50–60 Zeichen. Fallback: Projekt-Titel." }
+          - { label: "Meta-Beschreibung", name: metaDescription, widget: text, required: false, hint: "150–160 Zeichen. Fallback: Kurzbeschreibung." }
+          - { label: "Teilen-Bild (Open Graph)", name: ogImage, widget: image, required: false, hint: "1200×630 px empfohlen." }
+          - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false }
+      - { label: "Alte SEO-Beschreibung (deprecated)", name: "seoDescription", widget: "text", required: false, hint: "Nicht mehr nötig — benutze das SEO-Panel oben." }
       - { label: "Haupttext / Zusatzinhalt", name: "body", widget: "markdown" }
 
   # ─── SEITEN-INHALTE ───────────────────────────────────────────────────────
@@ -144,6 +155,17 @@ collections:
               - { label: "Titel", name: title, widget: string }
               - { label: "Text", name: text, widget: text, required: false }
               - { label: "Button-Beschriftung", name: buttonText, widget: string, required: false }
+          - label: "SEO & Social Sharing"
+            name: seo
+            widget: object
+            required: false
+            collapsed: true
+            summary: "{{metaTitle}}"
+            fields:
+              - { label: "Meta-Titel", name: metaTitle, widget: string, required: false, hint: "50–60 Zeichen. Fallback: Seitentitel." }
+              - { label: "Meta-Beschreibung", name: metaDescription, widget: text, required: false, hint: "150–160 Zeichen." }
+              - { label: "Teilen-Bild (Open Graph)", name: ogImage, widget: image, required: false, hint: "1200×630 px empfohlen." }
+              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false }
 
       - name: about
         label: "Über Mich"
@@ -187,6 +209,17 @@ collections:
               - { label: "Titel", name: title, widget: string }
               - { label: "Text", name: text, widget: text, required: false }
               - { label: "Button-Beschriftung", name: buttonText, widget: string, required: false }
+          - label: "SEO & Social Sharing"
+            name: seo
+            widget: object
+            required: false
+            collapsed: true
+            summary: "{{metaTitle}}"
+            fields:
+              - { label: "Meta-Titel", name: metaTitle, widget: string, required: false }
+              - { label: "Meta-Beschreibung", name: metaDescription, widget: text, required: false }
+              - { label: "Teilen-Bild (Open Graph)", name: ogImage, widget: image, required: false }
+              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false }
 
       - name: contact
         label: "Kontakt"
@@ -220,6 +253,17 @@ collections:
             fields:
               - { label: "E-Mail", name: email, widget: string, required: false }
               - { label: "Telefon", name: phone, widget: string, required: false }
+          - label: "SEO & Social Sharing"
+            name: seo
+            widget: object
+            required: false
+            collapsed: true
+            summary: "{{metaTitle}}"
+            fields:
+              - { label: "Meta-Titel", name: metaTitle, widget: string, required: false }
+              - { label: "Meta-Beschreibung", name: metaDescription, widget: text, required: false }
+              - { label: "Teilen-Bild (Open Graph)", name: ogImage, widget: image, required: false }
+              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false }
 
   # ─── NACHRICHTEN (vom Kontakt-Formular) ──────────────────────────────────
   - name: submissions
@@ -259,3 +303,14 @@ collections:
           - { label: "Copyright-Zusatz", name: copyright, widget: string, required: false, hint: "Erscheint hinter dem © {Jahr}" }
           - { label: "Kontakt-E-Mail", name: contactEmail, widget: string, required: false }
           - { label: "Kontakt-Telefon", name: contactPhone, widget: string, required: false }
+          - { label: "Default Teilen-Bild (Open Graph)", name: defaultOgImage, widget: image, required: false, hint: "Wird benutzt, wenn eine Seite kein eigenes Teilen-Bild hat. 1200×630 px empfohlen." }
+          - { label: "Google Search Console Verification-Code", name: googleSiteVerification, widget: string, required: false, hint: "Nur den Wert aus dem 'content'-Attribut einfügen." }
+          - { label: "Name (für strukturierte Daten)", name: personName, widget: string, required: false, default: "Florian Feiste", hint: "Wird in JSON-LD Person-Schema verwendet." }
+          - { label: "Jobtitel (für strukturierte Daten)", name: personJobTitle, widget: string, required: false, default: "Dialogbuchautor & Dramaturg" }
+          - label: "Profil-Links (JSON-LD sameAs)"
+            name: sameAs
+            widget: list
+            required: false
+            default: []
+            hint: "z. B. LinkedIn, IMDb, Xing — jeweils volle URL."
+            field: { label: "URL", name: url, widget: string }

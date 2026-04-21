@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import Icon from '@components/Icon.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = (await getCollection('projects')).sort(
@@ -84,9 +85,7 @@ const statusLabel: Record<string, string> = {
                 <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">
                   {project.data.role}
                 </span>
-                <span class="material-symbols-outlined text-primary transition-transform group-hover:translate-x-1">
-                  arrow_forward
-                </span>
+                <Icon name="arrow_forward" size={20} class="text-primary transition-transform group-hover:translate-x-1" />
               </div>
             </a>
           ))}

@@ -3,6 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import RetroTVCard from '@components/RetroTVCard.astro';
 import ServiceCard from '@components/ServiceCard.astro';
 import Waveform from '@components/Waveform.astro';
+import Icon from '@components/Icon.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 const home = await getEntry('pages', 'home');
@@ -15,12 +16,14 @@ const featured = (await getCollection('projects', ({ data }) => data.highlight))
 const hero = home?.data.hero;
 const services = home?.data.services ?? [];
 const cta = home?.data.cta;
+const seo = home?.data.seo;
 ---
 
 <BaseLayout
   title={`${site?.data.siteName ?? 'Feiste Dialoge'} — ${site?.data.tagline ?? ''}`}
   description={site?.data.description}
   active="home"
+  seo={seo}
 >
   <div class="container-main overflow-hidden">
     {hero && (
@@ -47,7 +50,7 @@ const cta = home?.data.cta;
           <div class="flex flex-wrap gap-4">
             <a href="/kontakt/" class="btn-gradient">
               Projekt anfragen
-              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+              <Icon name="arrow_forward" size={20} />
             </a>
             <a href="/portfolio/" class="btn-secondary">
               Portfolio ansehen
@@ -66,7 +69,7 @@ const cta = home?.data.cta;
               />
             ) : (
               <div class="w-full h-full flex items-center justify-center bg-primary/10">
-                <span class="material-symbols-outlined text-on-surface-variant/30" style="font-size: 120px;">person</span>
+                <Icon name="person" size={120} class="text-on-surface-variant/30" stroke={1.2} />
               </div>
             )}
           </div>
@@ -91,7 +94,7 @@ const cta = home?.data.cta;
         </div>
         <a href="/portfolio/" class="btn-tertiary group">
           Alle Werke ansehen
-          <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">north_east</span>
+          <Icon name="north_east" size={20} class="transition-transform group-hover:translate-x-1" />
         </a>
       </div>
 
@@ -133,7 +136,7 @@ const cta = home?.data.cta;
           </div>
           <a href="/kontakt/" class="relative z-10 bg-surface-container-lowest text-primary px-8 md:px-10 py-4 md:py-5 rounded font-headline font-bold text-lg md:text-xl hover:bg-surface-container-high transition-all inline-flex items-center gap-2 shrink-0">
             {cta.buttonText ?? 'Kontakt aufnehmen'}
-            <span class="material-symbols-outlined">arrow_forward</span>
+            <Icon name="arrow_forward" size={22} />
           </a>
           <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-surface/10 to-transparent pointer-events-none"></div>
         </div>

@@ -2,7 +2,15 @@
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
+import { getEntry } from 'astro:content';
 import '@/styles/global.css';
+
+interface SEO {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
 
 interface Props {
   title: string;
@@ -10,19 +18,73 @@ interface Props {
   image?: string;
   active?: 'home' | 'portfolio' | 'about' | 'contact';
   noindex?: boolean;
+  seo?: SEO | null;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
-  description = 'Dialogbuch, Dramaturgie und Synchronregie von Florian Feiste. Worte, die wirken und bleiben.',
-  image = '/og-image.png',
+  description,
+  image,
   active,
   noindex = false,
+  seo,
+  jsonLd,
 } = Astro.props;
 
-const pageTitle = title.includes('Feiste Dialoge') ? title : `${title} | Feiste Dialoge`;
+const site = await getEntry('settings', 'site');
+const siteName = site?.data.siteName ?? 'Feiste Dialoge';
+const siteDescription =
+  site?.data.description ??
+  'Dialogbuch, Dramaturgie und Synchronregie von Florian Feiste.';
+const defaultOgImage = site?.data.defaultOgImage ?? '/og-image.png';
+
+// Resolve final SEO values (per-page seo overrides props, props override site defaults)
+const finalTitle = seo?.metaTitle ?? title;
+const finalDescription = seo?.metaDescription ?? description ?? siteDescription;
+const finalImage = seo?.ogImage ?? image ?? defaultOgImage;
+const finalNoindex = seo?.noindex ?? noindex;
+
+const pageTitle = finalTitle.includes(siteName)
+  ? finalTitle
+  : `${finalTitle} | ${siteName}`;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(image, Astro.site).toString();
+const ogImageUrl = finalImage.startsWith('http')
+  ? finalImage
+  : new URL(finalImage, Astro.site).toString();
+
+// Default structured data (WebSite + Person from settings)
+const baseJsonLd: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteName,
+    url: Astro.site?.toString(),
+    description: siteDescription,
+  },
+];
+
+if (site?.data.personName) {
+  baseJsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: site.data.personName,
+    jobTitle: site.data.personJobTitle ?? undefined,
+    url: Astro.site?.toString(),
+    email: site.data.contactEmail ?? undefined,
+    telephone: site.data.contactPhone ?? undefined,
+    sameAs: site.data.sameAs.length > 0 ? site.data.sameAs : undefined,
+  });
+}
+
+const pageJsonLd = jsonLd
+  ? Array.isArray(jsonLd)
+    ? jsonLd
+    : [jsonLd]
+  : [];
+
+const allJsonLd = [...baseJsonLd, ...pageJsonLd];
 ---
 
 <!doctype html>
@@ -33,21 +95,28 @@ const ogImage = new URL(image, Astro.site).toString();
     <meta name="generator" content={Astro.generator} />
 
     <title>{pageTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={finalDescription} />
     <link rel="canonical" href={canonicalURL} />
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {finalNoindex && <meta name="robots" content="noindex,nofollow" />}
+    {site?.data.googleSiteVerification && (
+      <meta
+        name="google-site-verification"
+        content={site.data.googleSiteVerification}
+      />
+    )}
 
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={finalDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:locale" content="de_DE" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:description" content={finalDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -57,10 +126,13 @@ const ogImage = new URL(image, Astro.site).toString();
       href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=Permanent+Marker&family=Caveat:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
-      rel="stylesheet"
-    />
+
+    {allJsonLd.map((schema) => (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(schema, (_, v) => (v === undefined ? undefined : v))}
+      />
+    ))}
 
     <ClientRouter />
   </head>
@@ -77,12 +149,10 @@ const ogImage = new URL(image, Astro.site).toString();
         const initReveal = () => {
           const els = document.querySelectorAll('.reveal, .reveal-stagger');
           if (!els.length) return;
-
           if (!('IntersectionObserver' in window)) {
             els.forEach((el) => el.classList.add('is-visible'));
             return;
           }
-
           const io = new IntersectionObserver(
             (entries) => {
               entries.forEach((entry) => {
@@ -94,10 +164,8 @@ const ogImage = new URL(image, Astro.site).toString();
             },
             { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
           );
-
           els.forEach((el) => io.observe(el));
         };
-
         initReveal();
         document.addEventListener('astro:page-load', initReveal);
       })();

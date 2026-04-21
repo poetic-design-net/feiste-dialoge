@@ -1,4 +1,6 @@
 ---
+import Icon from '@components/Icon.astro';
+
 interface Props {
   active?: 'home' | 'portfolio' | 'about' | 'contact';
 }
@@ -61,7 +63,7 @@ const links = [
 
     <a href="/kontakt/" class="hidden md:inline-flex cta-btn items-center gap-2 bg-primary text-on-primary px-5 py-2.5 rounded-full font-semibold text-sm shadow-sm">
       <span>Projekt anfragen</span>
-      <span class="material-symbols-outlined cta-arrow text-[18px] transition-transform duration-500">arrow_forward</span>
+      <Icon name="arrow_forward" size={18} class="cta-arrow transition-transform duration-500" />
     </a>
 
     <button
@@ -122,7 +124,7 @@ const links = [
     <div class="px-8 pb-12 mobile-nav-cta">
       <a href="/kontakt/" class="btn-gradient w-full justify-center py-4">
         Projekt anfragen
-        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+        <Icon name="arrow_forward" size={20} />
       </a>
       <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60 mt-6 text-center">
         Dialogbuch · Dramaturgie · Synchronregie

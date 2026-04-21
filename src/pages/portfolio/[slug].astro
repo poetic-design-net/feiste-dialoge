@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Waveform from '@components/Waveform.astro';
+import Icon from '@components/Icon.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -26,12 +27,34 @@ const metaRows: Array<[string, string | undefined]> = [
   ['Sprachfassung', data.language],
   ['Synchron-Art', data.syncType],
 ];
+
+const projectJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: data.title,
+  headline: data.subtitle,
+  description: data.description,
+  dateCreated: data.year,
+  genre: data.genre,
+  inLanguage: 'de',
+  creator: {
+    '@type': 'Person',
+    name: 'Florian Feiste',
+  },
+  ...(data.studio && {
+    producer: { '@type': 'Organization', name: data.studio },
+  }),
+  ...(data.heroImage && { image: data.heroImage }),
+};
 ---
 
 <BaseLayout
   title={data.title}
-  description={data.seoDescription ?? data.description.slice(0, 160)}
+  description={data.seo?.metaDescription ?? data.seoDescription ?? data.description.slice(0, 160)}
+  image={data.heroImage}
   active="portfolio"
+  seo={data.seo}
+  jsonLd={projectJsonLd}
 >
   <div class="container-main py-8 md:py-12">
     <div class="sticky top-[88px] z-40 bg-surface/90 backdrop-blur-sm py-2 -mx-2 px-2 rounded-lg mb-6">
@@ -39,7 +62,7 @@ const metaRows: Array<[string, string | undefined]> = [
         href="/portfolio/"
         class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium text-sm group font-headline"
       >
-        <span class="material-symbols-outlined text-lg transition-transform group-hover:-translate-x-1">arrow_back</span>
+        <Icon name="arrow_back" size={18} class="transition-transform group-hover:-translate-x-1" />
         Zurück zur Übersicht
       </a>
     </div>
@@ -116,7 +139,7 @@ const metaRows: Array<[string, string | undefined]> = [
             class="inline-flex items-center justify-center gap-2 w-full bg-surface-container-lowest text-primary hover:bg-surface-container-high transition-colors px-6 py-3 rounded font-headline text-sm font-bold"
           >
             Dialog starten
-            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            <Icon name="arrow_forward" size={20} />
           </a>
         </section>
       </aside>
@@ -217,7 +240,7 @@ const metaRows: Array<[string, string | undefined]> = [
                 )}
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-16 h-16 md:w-20 md:h-20 bg-primary/90 text-on-primary rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    <Icon name="play_arrow" size={36} />
                   </div>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import Icon from '@components/Icon.astro';
 import { getEntry } from 'astro:content';
 
 const contact = await getEntry('pages', 'contact');
@@ -7,6 +8,7 @@ const hero = contact?.data.hero;
 const postitText = contact?.data.postit;
 const availability = contact?.data.availability ?? [];
 const directContact = contact?.data.contact;
+const seo = contact?.data.seo;
 
 const toneClass: Record<string, string> = {
   busy: 'bg-error-container text-on-error-container',
@@ -19,6 +21,7 @@ const toneClass: Record<string, string> = {
   title="Kontakt & Verfügbarkeit"
   description="Projekt anfragen, Verfügbarkeit prüfen, Kontakt aufnehmen — Florian Feiste, Dialogbuchautor und Dramaturg."
   active="contact"
+  seo={seo}
 >
   <div class="container-main py-16 md:py-24">
     {hero && (
@@ -86,7 +89,7 @@ const toneClass: Record<string, string> = {
           <button type="submit" id="contact-submit" class="btn-gradient w-full justify-center py-4 disabled:opacity-70 disabled:cursor-not-allowed">
             <span class="submit-label">Nachricht senden</span>
             <span class="submit-loading hidden">Wird gesendet…</span>
-            <span class="material-symbols-outlined submit-icon">send</span>
+            <Icon name="send" size={20} class="submit-icon" />
           </button>
         </form>
 
@@ -95,7 +98,7 @@ const toneClass: Record<string, string> = {
           class="hidden bg-surface-container-low rounded-xl p-10 md:p-12 text-center"
         >
           <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-fixed mb-6">
-            <span class="material-symbols-outlined text-primary text-4xl">check_circle</span>
+            <Icon name="check_circle" size={40} class="text-primary" />
           </div>
           <h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-4">
             Angekommen.
@@ -193,13 +196,13 @@ const toneClass: Record<string, string> = {
             <div class="space-y-3">
               {directContact.email && (
                 <a href={`mailto:${directContact.email}`} class="flex items-center gap-3 hover:underline">
-                  <span class="material-symbols-outlined">mail</span>
+                  <Icon name="mail" size={20} />
                   {directContact.email}
                 </a>
               )}
               {directContact.phone && (
                 <a href={`tel:${directContact.phone.replace(/\s/g, '')}`} class="flex items-center gap-3 hover:underline">
-                  <span class="material-symbols-outlined">call</span>
+                  <Icon name="call" size={20} />
                   {directContact.phone}
                 </a>
               )}
