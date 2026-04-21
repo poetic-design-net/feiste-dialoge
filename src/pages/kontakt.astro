@@ -110,7 +110,20 @@ const toneClass: Record<string, string> = {
 
         <script is:inline>
           (function () {
-            const init = () => {
+            async function fetchToken() {
+              try {
+                const res = await fetch('/api/form-token?form=contact', {
+                  cache: 'no-store',
+                });
+                if (!res.ok) return null;
+                const j = await res.json();
+                return j.token ?? null;
+              } catch {
+                return null;
+              }
+            }
+
+            const init = async () => {
               const form = document.getElementById('contact-form');
               const success = document.getElementById('contact-success');
               const errorBox = document.getElementById('contact-error');
@@ -118,6 +131,9 @@ const toneClass: Record<string, string> = {
               if (!form || !success || !errorBox || !submitBtn) return;
               if (form.dataset.bound === '1') return;
               form.dataset.bound = '1';
+
+              // Fetch token on load (layer 2+3 of spam protection)
+              let token = await fetchToken();
 
               const setLoading = (loading) => {
                 submitBtn.disabled = loading;
@@ -132,6 +148,7 @@ const toneClass: Record<string, string> = {
 
                 const data = Object.fromEntries(new FormData(form).entries());
                 data.privacy = form.querySelector('#privacy').checked;
+                data.token = token;
 
                 setLoading(true);
                 try {
@@ -141,12 +158,15 @@ const toneClass: Record<string, string> = {
                     body: JSON.stringify(data),
                   });
                   const json = await res.json().catch(() => ({}));
-                  if (!res.ok || !json.ok) {
+                  if (!res.ok) {
                     throw new Error(json.error || 'Senden fehlgeschlagen. Bitte später erneut versuchen.');
                   }
+                  // Even if flagged as spam, we show success to not reveal detection
                   form.classList.add('hidden');
                   success.classList.remove('hidden');
                   success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  // Refresh token for potential re-send
+                  token = await fetchToken();
                 } catch (err) {
                   errorBox.textContent = err?.message || 'Unerwarteter Fehler.';
                   errorBox.classList.remove('hidden');

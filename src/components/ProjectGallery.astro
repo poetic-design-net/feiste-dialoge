@@ -1,0 +1,173 @@
+---
+import SmartImage from './SmartImage.astro';
+import Icon from './Icon.astro';
+
+interface GalleryItem {
+  image: string;
+  alt?: string;
+  caption?: string;
+}
+
+interface Props {
+  items: GalleryItem[];
+  title?: string;
+}
+
+const { items, title = 'Bilder aus dem Prozess' } = Astro.props;
+
+if (items.length === 0) return null;
+---
+
+<section class="project-gallery mb-24">
+  <header class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+    <div class="space-y-2">
+      <p class="font-headline text-sm uppercase tracking-widest text-primary">Galerie</p>
+      <h2 class="font-headline text-3xl md:text-4xl text-on-surface font-bold">{title}</h2>
+    </div>
+    <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant">
+      {items.length} {items.length === 1 ? 'Bild' : 'Bilder'}
+    </p>
+  </header>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    {items.map((item, i) => (
+      <button
+        type="button"
+        class="gallery-item group relative overflow-hidden rounded-lg aspect-square bg-surface-container-low"
+        data-gallery-index={i}
+        aria-label={`Bild ${i + 1} vergrößern`}
+      >
+        <SmartImage
+          src={item.image}
+          alt={item.alt ?? ''}
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(min-width: 768px) 30vw, 50vw"
+          width={600}
+          height={600}
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-on-surface/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <span class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/90 text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <Icon name="north_east" size={16} />
+        </span>
+        {item.caption && (
+          <span class="sr-only">{item.caption}</span>
+        )}
+      </button>
+    ))}
+  </div>
+</section>
+
+<div
+  id="lightbox"
+  class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-10 bg-on-surface/85 backdrop-blur-md"
+  aria-modal="true"
+  role="dialog"
+  aria-label="Bild-Galerie"
+>
+  <button
+    type="button"
+    class="lightbox-close absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 rounded-full bg-surface-container-lowest/90 text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors"
+    aria-label="Galerie schließen"
+  >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <button
+    type="button"
+    class="lightbox-prev absolute left-2 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-surface-container-lowest/90 text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors"
+    aria-label="Vorheriges Bild"
+  >
+    <Icon name="arrow_back" size={22} />
+  </button>
+  <button
+    type="button"
+    class="lightbox-next absolute right-2 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-surface-container-lowest/90 text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors"
+    aria-label="Nächstes Bild"
+  >
+    <Icon name="arrow_forward" size={22} />
+  </button>
+
+  <figure class="max-w-[min(90vw,1200px)] max-h-[85vh] flex flex-col items-center gap-4">
+    <img
+      id="lightbox-img"
+      src=""
+      alt=""
+      class="max-w-full max-h-[80vh] object-contain rounded-sm shadow-manuscript"
+    />
+    <figcaption
+      id="lightbox-caption"
+      class="font-headline text-inverse-on-surface text-sm text-center max-w-2xl"
+    ></figcaption>
+  </figure>
+
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 font-headline text-xs uppercase tracking-widest text-inverse-on-surface/70">
+    <span id="lightbox-index">1</span> / <span id="lightbox-total">{items.length}</span>
+  </div>
+</div>
+
+<script is:inline define:vars={{ items }}>
+  (function () {
+    const init = () => {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const caption = document.getElementById('lightbox-caption');
+      const indexLabel = document.getElementById('lightbox-index');
+      const closeBtn = lightbox?.querySelector('.lightbox-close');
+      const prevBtn = lightbox?.querySelector('.lightbox-prev');
+      const nextBtn = lightbox?.querySelector('.lightbox-next');
+      const triggers = document.querySelectorAll('[data-gallery-index]');
+      if (!lightbox || !img || !triggers.length) return;
+      if (lightbox.dataset.bound === '1') return;
+      lightbox.dataset.bound = '1';
+
+      let current = 0;
+
+      const show = (i) => {
+        if (!items.length) return;
+        current = (i + items.length) % items.length;
+        const item = items[current];
+        img.src = item.image;
+        img.alt = item.alt ?? '';
+        caption.textContent = item.caption ?? '';
+        caption.style.display = item.caption ? 'block' : 'none';
+        indexLabel.textContent = String(current + 1);
+      };
+
+      const open = (i) => {
+        show(i);
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const close = () => {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+        document.body.style.overflow = '';
+      };
+
+      triggers.forEach((el) => {
+        el.addEventListener('click', () => {
+          open(Number(el.dataset.galleryIndex));
+        });
+      });
+      closeBtn?.addEventListener('click', close);
+      prevBtn?.addEventListener('click', () => show(current - 1));
+      nextBtn?.addEventListener('click', () => show(current + 1));
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') show(current + 1);
+        if (e.key === 'ArrowLeft') show(current - 1);
+      });
+    };
+
+    init();
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>

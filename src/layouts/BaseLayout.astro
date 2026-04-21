@@ -42,7 +42,6 @@ const defaultOgImage = site?.data.defaultOgImage ?? '/og-image.png';
 // Resolve final SEO values (per-page seo overrides props, props override site defaults)
 const finalTitle = seo?.metaTitle ?? title;
 const finalDescription = seo?.metaDescription ?? description ?? siteDescription;
-const finalImage = seo?.ogImage ?? image ?? defaultOgImage;
 const finalNoindex = seo?.noindex ?? noindex;
 
 const pageTitle = finalTitle.includes(siteName)
@@ -50,6 +49,16 @@ const pageTitle = finalTitle.includes(siteName)
   : `${finalTitle} | ${siteName}`;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Image fallback: explicit seo.ogImage > passed image > default OG > dynamic /api/og
+const explicitImage = seo?.ogImage ?? image ?? site?.data.defaultOgImage;
+const dynamicOgParams = new URLSearchParams({
+  title: finalTitle,
+  subtitle: finalDescription.slice(0, 140),
+});
+const dynamicOg = `/api/og?${dynamicOgParams.toString()}`;
+
+const finalImage = explicitImage ?? dynamicOg;
 const ogImageUrl = finalImage.startsWith('http')
   ? finalImage
   : new URL(finalImage, Astro.site).toString();

@@ -4,6 +4,7 @@ import Waveform from '@components/Waveform.astro';
 import Icon from '@components/Icon.astro';
 import SmartImage from '@components/SmartImage.astro';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
+import ProjectGallery from '@components/ProjectGallery.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -48,12 +49,22 @@ const projectJsonLd = {
   }),
   ...(data.heroImage && { image: data.heroImage }),
 };
+
+// Dynamic OG fallback if no explicit image set
+const ogParams = new URLSearchParams({
+  eyebrow: `${data.role} · ${data.year}`,
+  title: data.title,
+  subtitle: data.subtitle ?? data.description.slice(0, 140),
+  meta: data.genre ?? '',
+});
+const dynamicProjectOg = `/api/og?${ogParams.toString()}`;
+const heroOgImage = data.seo?.ogImage ?? data.heroImage ?? dynamicProjectOg;
 ---
 
 <BaseLayout
   title={data.title}
   description={data.seo?.metaDescription ?? data.seoDescription ?? data.description.slice(0, 160)}
-  image={data.heroImage}
+  image={heroOgImage}
   active="portfolio"
   seo={data.seo}
   jsonLd={projectJsonLd}
@@ -219,6 +230,11 @@ const projectJsonLd = {
     <div class="my-16 md:my-24">
       <Waveform animate />
     </div>
+
+    {/* Gallery */}
+    {data.gallery.length > 0 && (
+      <ProjectGallery items={data.gallery} />
+    )}
 
     {/* Videos */}
     {data.videos.length > 0 && (

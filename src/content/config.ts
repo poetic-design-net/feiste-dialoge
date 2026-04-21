@@ -61,6 +61,15 @@ const projects = defineCollection({
         })
       )
       .default([]),
+    gallery: z
+      .array(
+        z.object({
+          image: z.string(),
+          alt: z.string().optional(),
+          caption: z.string().optional(),
+        })
+      )
+      .default([]),
     seoDescription: z.string().optional(),
     seo: seoSchema,
   }),

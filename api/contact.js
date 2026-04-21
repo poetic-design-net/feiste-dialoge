@@ -1,3 +1,5 @@
+import { verifyToken } from './form-token.js';
+
 function escapeHtml(value) {
   return String(value ?? '').replace(/[<>&"']/g, (c) => ({
     '<': '&lt;',
@@ -92,10 +94,23 @@ export default async function handler(req, res) {
     message = '',
     privacy,
     'bot-field': botField,
+    token,
   } = body;
 
+  // Layer 1: honeypot
   if (botField) return res.status(200).json({ ok: true });
 
+  // Layer 2 + 3: HMAC token (signed, time-bound, minimum 1.5s old)
+  const tokenCheck = verifyToken(token, 'contact');
+  if (!tokenCheck.ok) {
+    return res.status(200).json({
+      ok: true,
+      spam: true,
+      reason: tokenCheck.reason,
+    });
+  }
+
+  // Basic content validation
   if (!name.trim() || !email.trim() || !message.trim() || !privacy) {
     return res.status(400).json({
       error: 'Bitte alle Felder ausfüllen und die Datenschutzerklärung bestätigen.',
@@ -103,6 +118,14 @@ export default async function handler(req, res) {
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Bitte gültige E-Mail-Adresse angeben.' });
+  }
+  if (message.length > 5000 || name.length > 200) {
+    return res.status(400).json({ error: 'Eingabe zu lang.' });
+  }
+  // Crude link-spam heuristic
+  const linkCount = (message.match(/https?:\/\//gi) ?? []).length;
+  if (linkCount > 3) {
+    return res.status(200).json({ ok: true, spam: true, reason: 'too-many-links' });
   }
 
   const errors = [];

@@ -99,6 +99,18 @@ collections:
           - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
           - { label: "Thumbnail Alt", name: "thumbnailAlt", widget: "string", required: false }
           - { label: "URL (YouTube/Vimeo)", name: "url", widget: "string", required: false }
+      - label: "Bilder-Galerie (optional)"
+        name: "gallery"
+        widget: "list"
+        required: false
+        default: []
+        collapsed: true
+        summary: "{{alt}}"
+        hint: "Zusätzliche Bilder zum Projekt (Behind-the-Scenes, Skript-Scans, Set-Fotos). Werden in einer Galerie mit Lightbox angezeigt."
+        fields:
+          - { label: "Bild", name: image, widget: image }
+          - { label: "Alt-Text (für Screenreader)", name: alt, widget: string, required: false }
+          - { label: "Bildunterschrift", name: caption, widget: string, required: false }
       - label: "SEO & Social Sharing"
         name: seo
         widget: object
