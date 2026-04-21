@@ -86,54 +86,48 @@
     @apply max-w-[1200px] mx-auto px-6 md:px-8;
   }
 
-  .btn-primary {
+  .btn-primary,
+  .btn-gradient {
     @apply inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3
-           rounded font-semibold text-sm tracking-wide
-           transition-all duration-500
-           active:scale-95;
+           rounded-full font-semibold text-sm tracking-wide
+           transition-all duration-500 active:scale-[0.98];
     transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
   }
-  .btn-primary:hover {
+  .btn-primary:hover,
+  .btn-gradient:hover {
     background-color: #94a864;
     transform: translateY(-1px);
-    box-shadow: 0 12px 24px -10px rgba(83, 101, 41, 0.35);
+    box-shadow: 0 10px 22px -10px rgba(83, 101, 41, 0.35);
   }
-  .btn-primary .material-symbols-outlined {
-    transition: transform 0.4s ease;
-  }
-  .btn-primary:hover .material-symbols-outlined {
-    transform: translateX(3px);
-  }
-
-  .btn-gradient {
-    @apply inline-flex items-center gap-2 bg-matcha-gradient text-on-primary px-6 py-3
-           rounded font-semibold text-sm tracking-wide
-           transition-all duration-500 active:scale-95 shadow-sm;
-    transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
-    background-size: 200% 100%;
-    background-position: 0% 50%;
-  }
-  .btn-gradient:hover {
-    background-position: 100% 50%;
-    transform: translateY(-1px);
-    box-shadow: 0 16px 32px -10px rgba(83, 101, 41, 0.4);
-  }
+  .btn-primary .material-symbols-outlined,
   .btn-gradient .material-symbols-outlined {
     transition: transform 0.4s ease;
   }
+  .btn-primary:hover .material-symbols-outlined,
   .btn-gradient:hover .material-symbols-outlined {
-    transform: translateX(4px);
+    transform: translateX(3px);
   }
 
   .btn-secondary {
     @apply inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container
-           px-6 py-3 rounded font-semibold text-sm tracking-wide
-           hover:bg-secondary-fixed transition-all duration-300 active:scale-95;
+           px-6 py-3 rounded-full font-semibold text-sm tracking-wide
+           transition-all duration-500 active:scale-[0.98];
+    transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .btn-secondary:hover {
+    background-color: #dee6c3;
+    transform: translateY(-1px);
   }
 
   .btn-tertiary {
     @apply inline-flex items-center gap-2 text-primary font-headline font-bold
-           px-4 py-2 rounded hover:bg-surface-container-high transition-colors;
+           px-4 py-2 rounded-full hover:bg-surface-container-high transition-colors;
+  }
+  .btn-tertiary .material-symbols-outlined {
+    transition: transform 0.4s ease;
+  }
+  .btn-tertiary:hover .material-symbols-outlined {
+    transform: translateX(3px);
   }
 
   .post-it {

@@ -59,7 +59,7 @@ const links = [
       ))}
     </ul>
 
-    <a href="/kontakt/" class="hidden md:inline-flex cta-btn items-center gap-2 bg-matcha-gradient text-on-primary px-5 py-2.5 rounded-full font-semibold text-sm shadow-sm">
+    <a href="/kontakt/" class="hidden md:inline-flex cta-btn items-center gap-2 bg-primary text-on-primary px-5 py-2.5 rounded-full font-semibold text-sm shadow-sm">
       <span>Projekt anfragen</span>
       <span class="material-symbols-outlined cta-arrow text-[18px] transition-transform duration-500">arrow_forward</span>
     </a>
@@ -151,11 +151,12 @@ const links = [
   }
 
   .cta-btn {
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), box-shadow 0.5s ease;
+    transition: background-color 0.4s ease, transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), box-shadow 0.5s ease;
   }
   .cta-btn:hover {
+    background-color: #94a864;
     transform: translateY(-1px);
-    box-shadow: 0 12px 28px -8px rgba(83, 101, 41, 0.35);
+    box-shadow: 0 10px 22px -10px rgba(83, 101, 41, 0.35);
   }
   .cta-btn:hover .cta-arrow {
     transform: translateX(3px);
