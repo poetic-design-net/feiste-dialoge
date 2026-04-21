@@ -13,69 +13,264 @@ const links = [
 ] as const;
 ---
 
-<nav class="w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-glass shadow-ambient">
-  <div class="container-main flex justify-between items-center py-5 md:py-6">
-    <a href="/" class="font-headline text-xl md:text-2xl font-bold tracking-tight text-on-background">
-      Feiste Dialoge
+<header
+  id="site-header"
+  class="fixed top-0 inset-x-0 z-50 transition-all duration-500"
+  data-scrolled="false"
+  transition:persist
+>
+  <div class="site-header-bg absolute inset-0 backdrop-blur-glass transition-all duration-500"></div>
+
+  <nav class="relative container-main flex justify-between items-center py-4 md:py-5">
+    <a
+      href="/"
+      class="logo group inline-flex items-baseline gap-1 font-headline font-bold text-lg md:text-xl tracking-tight text-on-background"
+    >
+      <span class="transition-transform duration-500 group-hover:-translate-y-px">Feiste</span>
+      <span class="text-primary transition-transform duration-500 group-hover:translate-y-px">Dialoge</span>
+      <span
+        class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container ml-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        aria-hidden="true"
+      ></span>
     </a>
 
-    <div class="hidden md:flex items-center gap-8">
+    <ul class="desktop-nav hidden md:flex items-center gap-1 relative p-1 rounded-full bg-surface-container-low/40">
       {links.map((link) => (
-        <a
-          href={link.href}
-          class:list={[
-            active === link.key ? 'nav-link-active' : 'nav-link',
-          ]}
-        >
-          {link.label}
-        </a>
+        <li>
+          <a
+            href={link.href}
+            data-nav-key={link.key}
+            class:list={[
+              'nav-pill relative inline-flex items-center px-4 py-2 rounded-full font-body text-sm tracking-wide transition-colors duration-300',
+              active === link.key
+                ? 'text-on-surface font-semibold'
+                : 'text-on-surface-variant hover:text-on-surface',
+            ]}
+          >
+            {active === link.key && (
+              <span
+                class="absolute inset-0 rounded-full bg-surface-container-lowest shadow-[0_2px_8px_rgba(27,28,23,0.06)]"
+                aria-hidden="true"
+                transition:name="nav-pill"
+              ></span>
+            )}
+            <span class="relative z-10">{link.label}</span>
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
 
-    <a href="/kontakt/" class="hidden md:inline-flex btn-gradient">
-      Projekt anfragen
+    <a href="/kontakt/" class="hidden md:inline-flex cta-btn items-center gap-2 bg-matcha-gradient text-on-primary px-5 py-2.5 rounded-full font-semibold text-sm shadow-sm">
+      <span>Projekt anfragen</span>
+      <span class="material-symbols-outlined cta-arrow text-[18px] transition-transform duration-500">arrow_forward</span>
     </a>
 
     <button
       id="mobile-nav-toggle"
-      class="md:hidden w-10 h-10 flex items-center justify-center text-on-surface"
+      class="md:hidden relative z-[60] w-10 h-10 flex items-center justify-center text-on-surface"
       aria-label="Navigation öffnen"
       aria-expanded="false"
-      aria-controls="mobile-nav"
+      aria-controls="mobile-nav-panel"
     >
-      <span class="material-symbols-outlined">menu</span>
+      <span class="hamburger-icon relative block w-6 h-5" aria-hidden="true">
+        <span class="hamburger-bar top-0"></span>
+        <span class="hamburger-bar top-1/2 -translate-y-1/2"></span>
+        <span class="hamburger-bar bottom-0"></span>
+      </span>
     </button>
-  </div>
+  </nav>
+</header>
 
-  <div
-    id="mobile-nav"
-    class="md:hidden hidden border-t border-outline-variant/20 bg-surface"
-  >
-    <div class="container-main py-6 flex flex-col gap-4">
-      {links.map((link) => (
-        <a
-          href={link.href}
-          class:list={[
-            'py-2 font-medium',
-            active === link.key ? 'text-primary font-bold' : 'text-on-surface-variant',
-          ]}
-        >
-          {link.label}
-        </a>
-      ))}
-      <a href="/kontakt/" class="btn-gradient mt-4 justify-center">
+<div
+  id="mobile-nav-panel"
+  class="mobile-nav-panel fixed inset-0 z-40 md:hidden pointer-events-none"
+  aria-hidden="true"
+>
+  <div class="mobile-nav-backdrop absolute inset-0 bg-inverse-surface/60 backdrop-blur-md opacity-0 transition-opacity duration-500"></div>
+
+  <div class="mobile-nav-sheet absolute inset-y-0 right-0 w-full max-w-md bg-surface-container-low translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col">
+    <div class="flex-1 px-8 pt-24 pb-10 flex flex-col justify-center">
+      <p class="font-headline text-xs uppercase tracking-[0.3em] text-primary mb-6 mobile-nav-label">
+        Navigation
+      </p>
+      <ul class="space-y-1">
+        {links.map((link, i) => (
+          <li class="mobile-nav-item" style={`--i: ${i}`}>
+            <a
+              href={link.href}
+              class:list={[
+                'group block py-3 font-headline text-4xl md:text-5xl tracking-tight transition-colors duration-300',
+                active === link.key ? 'text-primary' : 'text-on-surface hover:text-primary',
+              ]}
+            >
+              <span class="inline-flex items-baseline gap-3">
+                <span class="font-label text-xs tracking-widest text-on-surface-variant/60">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span class="relative">
+                  {link.label}
+                  {active === link.key && (
+                    <span class="absolute -right-6 top-1 w-2 h-2 rounded-full bg-primary-container"></span>
+                  )}
+                </span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="px-8 pb-12 mobile-nav-cta">
+      <a href="/kontakt/" class="btn-gradient w-full justify-center py-4">
         Projekt anfragen
+        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
       </a>
+      <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60 mt-6 text-center">
+        Dialogbuch · Dramaturgie · Synchronregie
+      </p>
     </div>
   </div>
-</nav>
+</div>
+
+<style>
+  .site-header-bg {
+    background: rgba(251, 250, 241, 0);
+    border-bottom: 1px solid transparent;
+  }
+  #site-header[data-scrolled="true"] .site-header-bg {
+    background: rgba(251, 250, 241, 0.78);
+    border-bottom-color: rgba(27, 28, 23, 0.06);
+    box-shadow: 0 8px 32px -12px rgba(27, 28, 23, 0.08);
+  }
+
+  .logo {
+    letter-spacing: -0.01em;
+  }
+
+  .nav-pill:hover > span:first-child:not(.relative) {
+    background: rgba(251, 250, 241, 0.5);
+  }
+
+  .cta-btn {
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), box-shadow 0.5s ease;
+  }
+  .cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -8px rgba(83, 101, 41, 0.35);
+  }
+  .cta-btn:hover .cta-arrow {
+    transform: translateX(3px);
+  }
+
+  .hamburger-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 1px;
+    transform-origin: center;
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), top 0.3s ease, opacity 0.3s ease;
+  }
+
+  body.nav-open .hamburger-bar:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  body.nav-open .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  body.nav-open .hamburger-bar:nth-child(3) {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+  .mobile-nav-panel {
+    visibility: hidden;
+    transition: visibility 0.6s;
+  }
+  body.nav-open .mobile-nav-panel {
+    visibility: visible;
+    pointer-events: auto;
+  }
+  body.nav-open .mobile-nav-backdrop {
+    opacity: 1;
+  }
+  body.nav-open .mobile-nav-sheet {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-item,
+  .mobile-nav-label,
+  .mobile-nav-cta {
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body.nav-open .mobile-nav-label {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.2s;
+  }
+  body.nav-open .mobile-nav-item {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: calc(0.3s + var(--i) * 0.07s);
+  }
+  body.nav-open .mobile-nav-cta {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.65s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #site-header *,
+    .mobile-nav-panel *,
+    .hamburger-bar {
+      transition-duration: 0.1ms !important;
+    }
+  }
+</style>
 
 <script>
-  const toggle = document.getElementById('mobile-nav-toggle');
-  const menu = document.getElementById('mobile-nav');
-  toggle?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden');
-    toggle.setAttribute('aria-expanded', String(!isOpen));
-  });
+  const initHeader = () => {
+    const header = document.getElementById('site-header');
+    const toggle = document.getElementById('mobile-nav-toggle');
+    const panel = document.getElementById('mobile-nav-panel');
+    if (!header || !toggle || !panel) return;
+
+    const onScroll = () => {
+      header.dataset.scrolled = window.scrollY > 8 ? 'true' : 'false';
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const setOpen = (open: boolean) => {
+      document.body.classList.toggle('nav-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(!document.body.classList.contains('nav-open'));
+    });
+
+    panel.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a') || target.classList.contains('mobile-nav-backdrop')) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+        setOpen(false);
+      }
+    });
+  };
+
+  initHeader();
+  document.addEventListener('astro:page-load', initHeader);
 </script>

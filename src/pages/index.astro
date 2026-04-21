@@ -25,7 +25,7 @@ const cta = home?.data.cta;
   <div class="container-main overflow-hidden">
     {hero && (
       <section class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center py-16 md:py-24">
-        <div class="space-y-8 order-2 md:order-1">
+        <div class="space-y-8 order-2 md:order-1 hero-rise">
           {hero.eyebrow && (
             <p class="font-headline text-sm uppercase tracking-widest text-primary">
               {hero.eyebrow}
@@ -84,7 +84,7 @@ const cta = home?.data.cta;
     <Waveform className="my-12" animate />
 
     <section class="py-16 md:py-24">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-6 reveal">
         <div class="space-y-3">
           <p class="font-headline text-sm uppercase tracking-widest text-primary">Portfolio</p>
           <h2 class="section-title">Ausgewählte Projekte</h2>
@@ -95,7 +95,7 @@ const cta = home?.data.cta;
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-stagger">
         {featured.map((project) => (
           <RetroTVCard
             title={project.data.title}
@@ -110,18 +110,18 @@ const cta = home?.data.cta;
 
     {services.length > 0 && (
       <section class="py-16 md:py-24 bg-surface-container-low rounded-xl px-8 md:px-12 my-12">
-        <div class="text-center mb-16 space-y-3">
+        <div class="text-center mb-16 space-y-3 reveal">
           <p class="font-headline text-sm uppercase tracking-widest text-primary">Leistungsspektrum</p>
           <h2 class="section-title">Was ich kann.</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 reveal-stagger">
           {services.map((service) => <ServiceCard {...service} />)}
         </div>
       </section>
     )}
 
     {cta && (
-      <section class="py-16 md:py-24">
+      <section class="py-16 md:py-24 reveal">
         <div class="bg-matcha-gradient rounded-xl p-10 md:p-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative overflow-hidden">
           <div class="relative z-10 max-w-xl">
             <h2 class="font-headline text-3xl md:text-5xl font-bold text-on-primary leading-tight">

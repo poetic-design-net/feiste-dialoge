@@ -49,7 +49,7 @@ const statusLabel: Record<string, string> = {
     {/* Highlights */}
     {highlights.length > 0 && (
       <section class="mb-16 md:mb-20">
-        <div class="flex items-end justify-between mb-8">
+        <div class="flex items-end justify-between mb-8 reveal">
           <h2 class="font-headline text-2xl md:text-3xl font-bold text-on-surface">
             Highlights
           </h2>
@@ -57,7 +57,7 @@ const statusLabel: Record<string, string> = {
             {highlights.length} ausgewählte Arbeiten
           </span>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-stagger">
           {highlights.map((project) => (
             <a
               href={`/portfolio/${project.slug}/`}
@@ -95,7 +95,7 @@ const statusLabel: Record<string, string> = {
     )}
 
     {/* Filmography Table */}
-    <section class="mb-16">
+    <section class="mb-16 reveal">
       <div class="flex items-end justify-between mb-8">
         <h2 class="font-headline text-2xl md:text-3xl font-bold text-on-surface">
           Vollständige Filmografie
