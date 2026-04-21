@@ -17,7 +17,6 @@ const links = [
   id="site-header"
   class="fixed top-0 inset-x-0 z-50 transition-all duration-500"
   data-scrolled="false"
-  transition:persist
 >
   <div class="site-header-bg absolute inset-0 backdrop-blur-glass transition-all duration-500"></div>
 
@@ -233,44 +232,63 @@ const links = [
   }
 </style>
 
-<script>
-  const initHeader = () => {
-    const header = document.getElementById('site-header');
-    const toggle = document.getElementById('mobile-nav-toggle');
-    const panel = document.getElementById('mobile-nav-panel');
-    if (!header || !toggle || !panel) return;
+<script is:inline>
+  (function () {
+    function init() {
+      var header = document.getElementById('site-header');
+      var toggle = document.getElementById('mobile-nav-toggle');
+      var panel = document.getElementById('mobile-nav-panel');
+      if (!header || !toggle || !panel) return;
+      if (header.dataset.bound === '1') return;
+      header.dataset.bound = '1';
 
-    const onScroll = () => {
-      header.dataset.scrolled = window.scrollY > 8 ? 'true' : 'false';
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    const setOpen = (open: boolean) => {
-      document.body.classList.toggle('nav-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      panel.setAttribute('aria-hidden', String(!open));
-      document.body.style.overflow = open ? 'hidden' : '';
-    };
-
-    toggle.addEventListener('click', () => {
-      setOpen(!document.body.classList.contains('nav-open'));
-    });
-
-    panel.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      if (target.closest('a') || target.classList.contains('mobile-nav-backdrop')) {
-        setOpen(false);
+      function onScroll() {
+        header.dataset.scrolled = window.scrollY > 8 ? 'true' : 'false';
       }
-    });
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
-        setOpen(false);
+      function setOpen(open) {
+        document.body.classList.toggle('nav-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        panel.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
       }
-    });
-  };
 
-  initHeader();
-  document.addEventListener('astro:page-load', initHeader);
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        setOpen(!document.body.classList.contains('nav-open'));
+      });
+
+      panel.addEventListener('click', function (e) {
+        var target = e.target;
+        if (target && (target.closest('a') || target.classList.contains('mobile-nav-backdrop'))) {
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+          setOpen(false);
+        }
+      });
+    }
+
+    function reset() {
+      // allow re-binding after view transition swaps the DOM
+      var header = document.getElementById('site-header');
+      if (header) delete header.dataset.bound;
+      document.body.classList.remove('nav-open');
+      document.body.style.overflow = '';
+      init();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    document.addEventListener('astro:after-swap', reset);
+    document.addEventListener('astro:page-load', init);
+  })();
 </script>
