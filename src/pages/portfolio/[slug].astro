@@ -2,6 +2,8 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Waveform from '@components/Waveform.astro';
 import Icon from '@components/Icon.astro';
+import SmartImage from '@components/SmartImage.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -57,25 +59,27 @@ const projectJsonLd = {
   jsonLd={projectJsonLd}
 >
   <div class="container-main py-8 md:py-12">
-    <div class="sticky top-[88px] z-40 bg-surface/90 backdrop-blur-sm py-2 -mx-2 px-2 rounded-lg mb-6">
-      <a
-        href="/portfolio/"
-        class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium text-sm group font-headline"
-      >
-        <Icon name="arrow_back" size={18} class="transition-transform group-hover:-translate-x-1" />
-        Zurück zur Übersicht
-      </a>
-    </div>
+    <Breadcrumbs
+      class="mb-8"
+      items={[
+        { label: 'Start', href: '/' },
+        { label: 'Portfolio', href: '/portfolio/' },
+        { label: data.title },
+      ]}
+    />
 
     {/* Hero */}
     <header class="mb-12 md:mb-16">
       <div class="relative w-full min-h-[320px] md:h-[450px] rounded-xl overflow-hidden bg-primary">
         {data.heroImage && (
-          <img
+          <SmartImage
             src={data.heroImage}
             alt={data.heroImageAlt ?? data.title}
             class="w-full h-full object-cover absolute inset-0"
-            loading="eager"
+            sizes="(min-width: 1200px) 1200px, 100vw"
+            width={1600}
+            height={900}
+            priority
           />
         )}
         <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/30 to-transparent"></div>
@@ -232,10 +236,13 @@ const projectJsonLd = {
             <article class="group cursor-pointer">
               <div class="aspect-video bg-surface-container-highest rounded-xl overflow-hidden relative mb-5 shadow-sm">
                 {video.thumbnail && (
-                  <img
+                  <SmartImage
                     src={video.thumbnail}
                     alt={video.thumbnailAlt ?? video.title}
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 group-hover:brightness-50"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    width={800}
+                    height={450}
                   />
                 )}
                 <div class="absolute inset-0 flex items-center justify-center">

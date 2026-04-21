@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Icon from '@components/Icon.astro';
+---
+
+<BaseLayout
+  title="Szene nicht gefunden"
+  description="Diese Seite existiert nicht — oder wurde aus dem Manuskript gestrichen."
+  noindex
+>
+  <div class="container-main py-20 md:py-32">
+    <div class="max-w-3xl mx-auto">
+      <div class="relative bg-surface-container-lowest rounded-sm overflow-hidden shadow-manuscript min-h-[520px]">
+        <div class="absolute inset-0 typewriter-texture opacity-20 pointer-events-none"></div>
+
+        <div class="relative p-10 md:p-16 pb-0 flex justify-between items-start font-headline text-on-surface-variant/60 text-xs">
+          <div>SZENE 404 — "DAS FEHLENDE BLATT"</div>
+          <div>SEITE ?</div>
+        </div>
+
+        <article class="relative p-10 md:p-16 lg:p-20 pt-20 md:pt-28 pb-20 md:pb-32 font-headline text-on-surface">
+          <div class="text-center mb-12 italic border-y border-outline-variant/40 py-3 uppercase tracking-[0.2em] text-xs md:text-sm">
+            Fehlermeldung
+          </div>
+
+          <div class="max-w-xl mx-auto space-y-10 text-center">
+            <h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tight leading-none">
+              404
+            </h1>
+
+            <div class="space-y-6">
+              <p class="uppercase text-center font-bold text-sm tracking-[0.2em]">
+                NARRATOR
+              </p>
+              <p class="leading-relaxed md:px-8">
+                (nachdenklich)<br/>
+                Diese Seite scheint im Schnittraum geblieben zu sein.<br/>
+                Entweder existierte sie nie — oder sie wurde aus guten Gründen gestrichen.
+              </p>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="/" class="btn-primary">
+                <Icon name="arrow_back" size={20} />
+                Zurück zum Anfang
+              </a>
+              <a href="/portfolio/" class="btn-secondary">
+                Zum Portfolio
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <div
+          class="absolute bottom-6 right-4 md:bottom-12 md:right-12 w-[200px] md:w-[260px] bg-postit-yellow shadow-postit-lg p-6 md:p-8 text-center"
+          style="transform: rotate(3deg);"
+        >
+          <div class="absolute top-0 left-0 right-0 h-5 bg-on-surface/[0.03]"></div>
+          <p class="font-handwriting text-lg md:text-xl leading-snug text-on-surface">
+            "Jede gestrichene Szene ist eine, die wir nicht brauchen."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

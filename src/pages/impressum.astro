@@ -1,30 +1,103 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const site = await getEntry('settings', 'site');
+const email = site?.data.contactEmail ?? 'kontakt@feiste-dialoge.de';
+const phone = site?.data.contactPhone;
 ---
 
-<BaseLayout title="Impressum" description="Impressum und Anbieterkennzeichnung nach § 5 TMG." noindex>
+<BaseLayout
+  title="Impressum"
+  description="Impressum und Anbieterkennzeichnung nach § 5 TMG."
+  noindex
+>
   <div class="container-main py-16 md:py-24 max-w-3xl">
-    <h1 class="font-headline text-4xl md:text-5xl font-bold mb-10">Impressum</h1>
+    <p class="font-headline text-sm uppercase tracking-widest text-primary mb-3">Rechtliches</p>
+    <h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-10">Impressum</h1>
 
-    <div class="prose prose-stone max-w-none font-body">
+    <div class="prose prose-stone max-w-none font-body prose-headings:font-headline prose-headings:text-on-surface prose-a:text-primary">
+      <p class="italic text-sm text-on-surface-variant border-l-2 border-primary/50 pl-4">
+        Dieses Impressum ist eine Vorlage. Bitte Straße, Hausnummer, PLZ/Ort und ggf. Umsatzsteuer-ID durch korrekte Angaben ersetzen, bevor die Seite öffentlich geht.
+      </p>
+
       <h2>Angaben gemäß § 5 TMG</h2>
       <p>
         Florian Feiste<br/>
-        Musterstraße 1<br/>
-        10115 Berlin
+        <em>[Straße und Hausnummer]</em><br/>
+        <em>[PLZ und Ort]</em><br/>
+        Deutschland
       </p>
 
       <h2>Kontakt</h2>
       <p>
-        Telefon: +49 30 123 45 67<br/>
-        E-Mail: <a href="mailto:kontakt@feiste-dialoge.de">kontakt@feiste-dialoge.de</a>
+        E-Mail: <a href={`mailto:${email}`}>{email}</a>
+        {phone && <><br/>Telefon: {phone}</>}
       </p>
 
-      <h2>Verantwortlich für den Inhalt</h2>
-      <p>Florian Feiste (Anschrift wie oben)</p>
+      <h2>Umsatzsteuer-ID</h2>
+      <p>
+        Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br/>
+        <em>[USt-IdNr. oder: "Kleinunternehmer gemäß § 19 UStG"]</em>
+      </p>
 
-      <p class="italic text-sm text-on-surface-variant">
-        Hinweis: Dies ist ein Platzhalter-Impressum. Bitte mit korrekten Angaben versehen.
+      <h2>Berufsbezeichnung & berufsrechtliche Regelungen</h2>
+      <p>
+        Berufsbezeichnung: Dialogbuchautor, Dramaturg (verliehen in Deutschland)
+      </p>
+
+      <h2>Redaktionell verantwortlich</h2>
+      <p>
+        Florian Feiste (Anschrift wie oben)
+      </p>
+
+      <h2>EU-Streitschlichtung</h2>
+      <p>
+        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+        <a href="https://ec.europa.eu/consumers/odr/" rel="noopener noreferrer" target="_blank">https://ec.europa.eu/consumers/odr/</a>.<br/>
+        Unsere E-Mail-Adresse finden Sie oben im Impressum.
+      </p>
+
+      <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+      <p>
+        Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle teilzunehmen.
+      </p>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>
+        Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den
+        allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
+        verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
+        zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+      </p>
+      <p>
+        Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen
+        Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt
+        der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender
+        Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+      </p>
+
+      <h2>Haftung für Links</h2>
+      <p>
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss
+        haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte
+        der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+      </p>
+
+      <h2>Urheberrecht</h2>
+      <p>
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
+        deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
+        außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen
+        Autors bzw. Erstellers.
+      </p>
+      <p>
+        Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
+        Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte
+        Dritter beachtet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten
+        wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige
+        Inhalte umgehend entfernen.
       </p>
     </div>
   </div>

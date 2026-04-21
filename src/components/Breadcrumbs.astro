@@ -1,0 +1,54 @@
+---
+import Icon from './Icon.astro';
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+  class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.label,
+    ...(item.href && {
+      item: new URL(item.href, Astro.site).toString(),
+    }),
+  })),
+};
+---
+
+<nav aria-label="Brotkrumen-Navigation" class={`text-sm ${className}`}>
+  <ol class="flex flex-wrap items-center gap-1 text-on-surface-variant">
+    {items.map((item, i) => (
+      <li class="flex items-center gap-1">
+        {item.href && i < items.length - 1 ? (
+          <a
+            href={item.href}
+            class="hover:text-primary transition-colors font-headline tracking-wide"
+          >
+            {item.label}
+          </a>
+        ) : (
+          <span class="font-headline tracking-wide text-on-surface" aria-current="page">
+            {item.label}
+          </span>
+        )}
+        {i < items.length - 1 && (
+          <Icon name="arrow_forward" size={14} class="opacity-50 mx-1" />
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -1,4 +1,6 @@
 ---
+import SmartImage from './SmartImage.astro';
+
 interface Props {
   title: string;
   subtitle: string;
@@ -20,18 +22,19 @@ const {
   <div class="bg-surface-container-low rounded-lg p-6 flex flex-col items-center transition-all duration-500 hover:bg-surface-container-highest">
     <div class="relative w-full aspect-[4/3] bg-on-surface rounded-lg overflow-hidden border-8 border-on-surface/5 flex items-center justify-center p-4">
       {imageSrc ? (
-        <img
+        <SmartImage
           src={imageSrc}
           alt={imageAlt}
           class="w-full h-full object-cover opacity-60 mix-blend-screen group-hover:opacity-80 transition-opacity"
-          loading="lazy"
+          sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
+          width={480}
+          height={360}
         />
       ) : (
         <div class="w-full h-full flex items-center justify-center text-inverse-on-surface/40 font-headline text-xs uppercase tracking-widest">
           Kein Bild
         </div>
       )}
-      {/* CRT scan lines overlay */}
       <div
         class="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay"
         style="background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.3) 0px, rgba(0,0,0,0.3) 1px, transparent 1px, transparent 3px);"

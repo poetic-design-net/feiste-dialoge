@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Icon from '@components/Icon.astro';
+import SmartImage from '@components/SmartImage.astro';
 import { getEntry } from 'astro:content';
 
 const about = await getEntry('pages', 'about');
@@ -42,10 +43,14 @@ const seo = about?.data.seo;
         <div class="md:col-span-5 relative order-1 md:order-2">
           <div class="rounded-xl overflow-hidden aspect-[4/5] bg-surface-container-high relative">
             {hero.image ? (
-              <img
+              <SmartImage
                 src={hero.image}
                 alt={hero.imageAlt ?? 'Portrait'}
                 class="w-full h-full object-cover"
+                sizes="(min-width: 768px) 40vw, 100vw"
+                width={600}
+                height={750}
+                priority
               />
             ) : (
               <div class="w-full h-full flex items-center justify-center bg-primary/10">

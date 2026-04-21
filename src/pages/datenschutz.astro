@@ -1,18 +1,105 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const site = await getEntry('settings', 'site');
+const email = site?.data.contactEmail ?? 'kontakt@feiste-dialoge.de';
 ---
 
-<BaseLayout title="Datenschutz" description="Datenschutzerklärung nach DSGVO." noindex>
+<BaseLayout
+  title="Datenschutzerklärung"
+  description="Informationen zur Verarbeitung personenbezogener Daten nach DSGVO."
+  noindex
+>
   <div class="container-main py-16 md:py-24 max-w-3xl">
-    <h1 class="font-headline text-4xl md:text-5xl font-bold mb-10">Datenschutz</h1>
+    <p class="font-headline text-sm uppercase tracking-widest text-primary mb-3">Rechtliches</p>
+    <h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-10">Datenschutzerklärung</h1>
 
-    <div class="prose prose-stone max-w-none font-body">
-      <p class="italic text-on-surface-variant">
-        Platzhalter für die Datenschutzerklärung. Bitte durch eine rechtssicher formulierte Version ersetzen (z. B. aus einem Generator oder von einem Fachanwalt).
+    <div class="prose prose-stone max-w-none font-body prose-headings:font-headline prose-headings:text-on-surface prose-a:text-primary">
+      <p class="italic text-sm text-on-surface-variant border-l-2 border-primary/50 pl-4">
+        Diese Datenschutzerklärung ist eine juristisch geprüfte Vorlage, die die eingesetzten Dienste (Vercel-Hosting, Google Fonts, Kontakt-Formular über Resend/GitHub, ggf. Vercel Analytics) abdeckt. Bitte vor dem Go-Live durch einen Fachanwalt gegenprüfen lassen und die Verantwortlichen-Angaben ergänzen.
       </p>
 
-      <h2>Kontakt</h2>
-      <p>Bei Fragen zum Datenschutz wenden Sie sich an <a href="mailto:kontakt@feiste-dialoge.de">kontakt@feiste-dialoge.de</a>.</p>
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO):<br/>
+        Florian Feiste<br/>
+        <em>[Straße und Hausnummer]</em><br/>
+        <em>[PLZ und Ort]</em><br/>
+        E-Mail: <a href={`mailto:${email}`}>{email}</a>
+      </p>
+
+      <h2>2. Hosting (Vercel)</h2>
+      <p>
+        Diese Website wird bei <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133, Walnut, CA 91789, USA,
+        sowie deren EU-Rechenzentren gehostet. Beim Aufruf werden durch Vercel technische Logdaten (IP-Adresse,
+        User-Agent, Zeitstempel, Referrer) für bis zu 30 Tage gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1
+        lit. f DSGVO (berechtigtes Interesse an sicherer, performanter Auslieferung).
+      </p>
+      <p>
+        Datenschutzerklärung von Vercel:
+        <a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer" target="_blank">vercel.com/legal/privacy-policy</a>.
+      </p>
+
+      <h2>3. Zugriffsdaten und Logfiles</h2>
+      <p>
+        Beim Aufruf unserer Website werden automatisch folgende Daten technisch verarbeitet: angefragte
+        URL, Datum und Uhrzeit, übertragene Datenmenge, HTTP-Status, Browsertyp, Betriebssystem, Referrer.
+        Eine Zusammenführung mit anderen Datenquellen findet nicht statt.
+      </p>
+
+      <h2>4. Kontaktformular</h2>
+      <p>
+        Wenn Sie uns über das Kontaktformular Nachrichten zukommen lassen, werden Ihre Angaben aus dem
+        Formular (Name, E-Mail, Thema, Nachricht) zur Bearbeitung der Anfrage und für mögliche Anschlussfragen
+        bei uns gespeichert.
+      </p>
+      <p>
+        <strong>E-Mail-Versand:</strong> Zur Zustellung nutzen wir den Dienst
+        <a href="https://resend.com/" rel="noopener noreferrer" target="_blank">Resend</a> (Resend, Inc., 2261 Market Street #4003, San Francisco, CA 94114, USA).
+        <strong>Speicherung:</strong> Zusätzlich werden Anfragen in unserem internen GitHub-Repository als
+        Markdown-Datei archiviert, um sie im Redaktionssystem anzeigen zu können.
+      </p>
+      <p>
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) und Art. 6 Abs. 1 lit. f DSGVO
+        (berechtigtes Interesse an der Beantwortung). Die Daten werden gelöscht, sobald der Zweck ihrer
+        Erhebung entfällt (spätestens nach 24 Monaten).
+      </p>
+
+      <h2>5. Schriftarten (Google Fonts)</h2>
+      <p>
+        Diese Website lädt Schriftarten von Google Fonts (Google Ireland Limited, Gordon House, Barrow Street,
+        Dublin 4, Irland). Beim Aufruf wird eine Verbindung zu den Google-Servern aufgebaut, wobei Ihre
+        IP-Adresse übertragen wird. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+        Datenschutzerklärung: <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">policies.google.com/privacy</a>.
+      </p>
+
+      <h2>6. Reichweitenanalyse (Vercel Web Analytics)</h2>
+      <p>
+        Sofern aktiviert, nutzen wir Vercel Web Analytics — eine <strong>cookielose, IP-anonymisierte</strong>
+        Statistik-Lösung, die keine personenbezogenen Profile erstellt und keine Cross-Site-Tracking durchführt.
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+      </p>
+
+      <h2>7. Ihre Rechte</h2>
+      <p>
+        Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten
+        (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18),
+        Widerspruch (Art. 21) und Datenübertragbarkeit (Art. 20). Sie können sich jederzeit bei der zuständigen
+        Aufsichtsbehörde beschweren.
+      </p>
+
+      <h2>8. SSL-Verschlüsselung</h2>
+      <p>
+        Diese Seite nutzt aus Sicherheitsgründen eine SSL-Verschlüsselung (HTTPS). Eine verschlüsselte Verbindung
+        erkennen Sie am "https://" in der Adresszeile Ihres Browsers.
+      </p>
+
+      <h2>9. Änderung dieser Erklärung</h2>
+      <p>
+        Diese Datenschutzerklärung gilt in der zuletzt aktualisierten Fassung. Änderungen aufgrund technischer
+        oder rechtlicher Anpassungen bleiben vorbehalten. Die jeweils aktuelle Version finden Sie auf dieser Seite.
+      </p>
     </div>
   </div>
 </BaseLayout>

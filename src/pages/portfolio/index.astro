@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Icon from '@components/Icon.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = (await getCollection('projects')).sort(
@@ -28,6 +29,14 @@ const statusLabel: Record<string, string> = {
   active="portfolio"
 >
   <div class="container-main py-16 md:py-24">
+    <Breadcrumbs
+      class="mb-10"
+      items={[
+        { label: 'Start', href: '/' },
+        { label: 'Portfolio' },
+      ]}
+    />
+
     <!-- Hero -->
     <section class="mb-16 md:mb-20">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">

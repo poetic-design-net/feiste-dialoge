@@ -4,6 +4,7 @@ import RetroTVCard from '@components/RetroTVCard.astro';
 import ServiceCard from '@components/ServiceCard.astro';
 import Waveform from '@components/Waveform.astro';
 import Icon from '@components/Icon.astro';
+import SmartImage from '@components/SmartImage.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 const home = await getEntry('pages', 'home');
@@ -61,11 +62,14 @@ const seo = home?.data.seo;
         <div class="relative group order-1 md:order-2">
           <div class="rounded-xl overflow-hidden aspect-[4/5] bg-surface-container-high relative">
             {hero.image ? (
-              <img
+              <SmartImage
                 src={hero.image}
                 alt={hero.imageAlt ?? 'Portrait'}
                 class="w-full h-full object-cover"
-                loading="eager"
+                sizes="(min-width: 768px) 50vw, 100vw"
+                width={720}
+                height={900}
+                priority
               />
             ) : (
               <div class="w-full h-full flex items-center justify-center bg-primary/10">

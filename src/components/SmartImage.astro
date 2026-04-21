@@ -1,0 +1,54 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  sizes?: string;
+  priority?: boolean;
+  quality?: number;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  sizes = '100vw',
+  priority = false,
+  quality = 78,
+} = Astro.props;
+
+// Use Vercel image optimization for public/uploads and any same-origin path
+const isLocal = src.startsWith('/');
+const isRemote = src.startsWith('http');
+const shouldOptimize = isLocal || isRemote;
+
+const widths = [320, 640, 768, 1024, 1280, 1600, 1920];
+const targetWidths = width
+  ? widths.filter((w) => w <= width * 2)
+  : widths;
+
+const optimizedUrl = (w: number) =>
+  shouldOptimize
+    ? `/_vercel/image?url=${encodeURIComponent(src)}&w=${w}&q=${quality}`
+    : src;
+
+const srcSet = targetWidths.map((w) => `${optimizedUrl(w)} ${w}w`).join(', ');
+const defaultSrc = optimizedUrl(width ?? 1280);
+---
+
+<img
+  src={defaultSrc}
+  srcset={srcSet}
+  sizes={sizes}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : 'auto'}
+  decoding="async"
+  class={className}
+/>
