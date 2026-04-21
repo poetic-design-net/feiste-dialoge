@@ -1,31 +1,34 @@
 hero:
-  eyebrow: "Dialogbuch · Dramaturgie · Regie"
-  title: "Worte, die wirken"
+  eyebrow: Dialogbuch · Dramaturgie · Regie
+  title: Worte, die wirken
   titleAccent: "& bleiben."
-  subtitle: "Präzise Dramaturgie und lebendige Dialoge für Film, Fernsehen und Literatur. Florian Feiste entwickelt Narrative mit Tiefgang."
-  postit: "Subtext ist die Seele jeder glaubwürdigen Figur."
-
+  subtitle: Präzise Dramaturgie und lebendige Dialoge für Film, Fernsehen und
+    Literatur. Florian Feiste entwickelt Narrative mit Tiefgang.
+  postit: Subtext ist die Seele jeder glaubwürdigen Figur.
+  image: /uploads/high_bewusstsein.jpg
 services:
   - icon: edit_note
-    title: "Drehbuch & Skript"
-    description: "Entwicklung von Originalstoffen, Adaptionen und seriellen Formaten mit Fokus auf atmosphärische Dichte und Struktur."
+    title: Drehbuch & Skript
+    description: Entwicklung von Originalstoffen, Adaptionen und seriellen Formaten
+      mit Fokus auf atmosphärische Dichte und Struktur.
     items:
-      - "Exposé & Treatment"
-      - "Szenische Ausarbeitung"
+      - Exposé & Treatment
+      - Szenische Ausarbeitung
   - icon: forum
-    title: "Dialogbuch"
-    description: "Schärfung der Stimmen, Rhythmus-Optimierung und sprachliche Charakterisierung für eine authentische Figurensprache."
+    title: Dialogbuch
+    description: Schärfung der Stimmen, Rhythmus-Optimierung und sprachliche
+      Charakterisierung für eine authentische Figurensprache.
     items:
-      - "Synchron-Dialogbuch"
-      - "Sprachliche Überarbeitung"
+      - Synchron-Dialogbuch
+      - Sprachliche Überarbeitung
   - icon: architecture
-    title: "Dramaturgie"
-    description: "Strukturelle Analyse, Beratung bei Plot-Points und emotionale Führung des Zuschauers durch professionelle Stoffberatung."
+    title: Dramaturgie
+    description: Strukturelle Analyse, Beratung bei Plot-Points und emotionale
+      Führung des Zuschauers durch professionelle Stoffberatung.
     items:
-      - "Stoffberatung"
-      - "Script-Doctoring"
-
+      - Stoffberatung
+      - Script-Doctoring
 cta:
-  title: "Bereit für den nächsten Dialog?"
-  text: "Lassen Sie uns gemeinsam Geschichten entwickeln, die eine Resonanz erzeugen."
-  buttonText: "Kontakt aufnehmen"
+  title: Bereit für den nächsten Dialog?
+  text: Lassen Sie uns gemeinsam Geschichten entwickeln, die eine Resonanz erzeugen.
+  buttonText: Kontakt aufnehmen
