@@ -221,6 +221,26 @@ collections:
               - { label: "E-Mail", name: email, widget: string, required: false }
               - { label: "Telefon", name: phone, widget: string, required: false }
 
+  # ─── NACHRICHTEN (vom Kontakt-Formular) ──────────────────────────────────
+  - name: submissions
+    label: "Nachrichten"
+    label_singular: "Nachricht"
+    description: "Eingegangene Anfragen aus dem Kontakt-Formular. Können gelesen und gelöscht werden."
+    folder: "src/content/submissions"
+    create: false
+    delete: true
+    extension: md
+    format: frontmatter
+    summary: "{{fields.date}} — {{fields.name}} ({{fields.topic}})"
+    sortable_fields: ["date", "name"]
+    fields:
+      - { label: "Datum", name: date, widget: datetime }
+      - { label: "Name", name: name, widget: string }
+      - { label: "E-Mail", name: email, widget: string }
+      - { label: "Thema", name: topic, widget: string, required: false }
+      - { label: "User-Agent", name: userAgent, widget: string, required: false }
+      - { label: "Nachricht", name: body, widget: text }
+
   # ─── GLOBALE EINSTELLUNGEN ────────────────────────────────────────────────
   - name: settings
     label: "Einstellungen"

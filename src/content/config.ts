@@ -140,4 +140,15 @@ const settings = defineCollection({
   }),
 });
 
-export const collections = { projects, pages, settings };
+const submissions = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    email: z.string(),
+    topic: z.string().optional(),
+    date: z.string().or(z.date()),
+    userAgent: z.string().optional(),
+  }),
+});
+
+export const collections = { projects, pages, settings, submissions };
