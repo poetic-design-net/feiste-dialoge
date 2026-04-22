@@ -53,8 +53,8 @@ collections:
         widget: "select"
         default: "abgeschlossen"
         options: ["veröffentlicht", "in-produktion", "abgeschlossen"]
-      - { label: "Featured (auf Startseite)", name: "featured", widget: "boolean", default: false }
-      - { label: "Highlight (Portfolio-Galerie)", name: "highlight", widget: "boolean", default: false }
+      - { label: "Featured (auf Startseite)", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Highlight (Portfolio-Galerie)", name: "highlight", widget: "boolean", default: false, required: false }
       - { label: "Sortierung (kleinere Zahl = weiter oben)", name: "order", widget: "number", default: 0, value_type: "int" }
       - { label: "Hero-Bild", name: "heroImage", widget: "image", required: false, choose_url: false }
       - { label: "Hero-Bild Alt-Text", name: "heroImageAlt", widget: "string", required: false }
@@ -121,7 +121,7 @@ collections:
           - { label: "Meta-Titel", name: metaTitle, widget: string, required: false, hint: "50–60 Zeichen. Fallback: Projekt-Titel." }
           - { label: "Meta-Beschreibung", name: metaDescription, widget: text, required: false, hint: "150–160 Zeichen. Fallback: Kurzbeschreibung." }
           - { label: "Teilen-Bild (Open Graph)", name: ogImage, widget: image, required: false, hint: "1200×630 px empfohlen." }
-          - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false }
+          - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false, required: false }
       - { label: "Alte SEO-Beschreibung (deprecated)", name: "seoDescription", widget: "text", required: false, hint: "Nicht mehr nötig — benutze das SEO-Panel oben." }
       - { label: "Haupttext / Zusatzinhalt", name: "body", widget: "markdown" }
 
@@ -177,7 +177,7 @@ collections:
               - { label: "Meta-Titel", name: metaTitle, widget: string, required: false, hint: "50–60 Zeichen. Fallback: Seitentitel." }
               - { label: "Meta-Beschreibung", name: metaDescription, widget: text, required: false, hint: "150–160 Zeichen." }
               - { label: "Teilen-Bild (Open Graph)", name: ogImage, widget: image, required: false, hint: "1200×630 px empfohlen." }
-              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false }
+              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false, required: false }
 
       - name: about
         label: "Über Mich"
@@ -231,7 +231,7 @@ collections:
               - { label: "Meta-Titel", name: metaTitle, widget: string, required: false }
               - { label: "Meta-Beschreibung", name: metaDescription, widget: text, required: false }
               - { label: "Teilen-Bild (Open Graph)", name: ogImage, widget: image, required: false }
-              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false }
+              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false, required: false }
 
       - name: contact
         label: "Kontakt"
@@ -275,7 +275,7 @@ collections:
               - { label: "Meta-Titel", name: metaTitle, widget: string, required: false }
               - { label: "Meta-Beschreibung", name: metaDescription, widget: text, required: false }
               - { label: "Teilen-Bild (Open Graph)", name: ogImage, widget: image, required: false }
-              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false }
+              - { label: "Von Suchmaschinen ausschließen (noindex)", name: noindex, widget: boolean, default: false, required: false }
 
   # ─── NACHRICHTEN (vom Kontakt-Formular) ──────────────────────────────────
   - name: submissions
