@@ -74,16 +74,27 @@ const statusLabel: Record<string, string> = {
               href={`/portfolio/${project.slug}/`}
               class="group relative bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-ambient transition-all duration-500 flex flex-col overflow-hidden"
             >
-              <div class="aspect-[3/4] relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+              <div class="aspect-[3/4] relative overflow-hidden bg-surface-container-high">
                 {(project.data.thumbnail ?? project.data.heroImage) ? (
-                  <SmartImage
-                    src={project.data.thumbnail ?? project.data.heroImage!}
-                    alt={project.data.thumbnailAlt ?? project.data.heroImageAlt ?? project.data.title}
-                    class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    width={600}
-                    height={800}
-                  />
+                  <>
+                    <SmartImage
+                      src={project.data.thumbnail ?? project.data.heroImage!}
+                      alt=""
+                      class="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60"
+                      sizes="200px"
+                      width={200}
+                      height={267}
+                      quality={35}
+                    />
+                    <SmartImage
+                      src={project.data.thumbnail ?? project.data.heroImage!}
+                      alt={project.data.thumbnailAlt ?? project.data.heroImageAlt ?? project.data.title}
+                      class="relative w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      width={600}
+                      height={800}
+                    />
+                  </>
                 ) : (
                   <div class="w-full h-full flex items-center justify-center bg-primary/5">
                     <Icon name="person" size={48} class="text-on-surface-variant/30" stroke={1.2} />
