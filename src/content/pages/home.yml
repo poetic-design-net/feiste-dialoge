@@ -1,5 +1,5 @@
 hero:
-  eyebrow: Dialogbuch · Dramaturgie · Regie
+  eyebrow: Dialogbuch · Übersetzung · Synchroncut
   title: Worte, die wirken
   titleAccent: "& bleiben."
   subtitle: Präzise Dramaturgie und lebendige Dialoge für Film, Fernsehen und
@@ -8,21 +8,21 @@ hero:
   image: /uploads/high_bewusstsein.jpg
 services:
   - icon: edit_note
-    title: Drehbuch & Skript
+    title: Dialogbuch
     description: Entwicklung von Originalstoffen, Adaptionen und seriellen Formaten
       mit Fokus auf atmosphärische Dichte und Struktur.
     items:
       - Exposé & Treatment
       - Szenische Ausarbeitung
   - icon: forum
-    title: Dialogbuch
+    title: Übersetzung
     description: Schärfung der Stimmen, Rhythmus-Optimierung und sprachliche
       Charakterisierung für eine authentische Figurensprache.
     items:
       - Synchron-Dialogbuch
       - Sprachliche Überarbeitung
   - icon: architecture
-    title: Dramaturgie
+    title: Synchroncut
     description: Strukturelle Analyse, Beratung bei Plot-Points und emotionale
       Führung des Zuschauers durch professionelle Stoffberatung.
     items:
