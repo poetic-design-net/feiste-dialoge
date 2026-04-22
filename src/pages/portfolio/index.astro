@@ -74,12 +74,12 @@ const statusLabel: Record<string, string> = {
               href={`/portfolio/${project.slug}/`}
               class="group relative bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-ambient transition-all duration-500 flex flex-col overflow-hidden"
             >
-              <div class="aspect-[3/4] relative overflow-hidden bg-surface-container-high">
+              <div class="aspect-[3/4] relative overflow-hidden bg-surface-container-high flex items-center justify-center">
                 {(project.data.thumbnail ?? project.data.heroImage) ? (
                   <SmartImage
                     src={project.data.thumbnail ?? project.data.heroImage!}
                     alt={project.data.thumbnailAlt ?? project.data.heroImageAlt ?? project.data.title}
-                    class="w-full h-full object-cover image-zoom"
+                    class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                     sizes="(min-width: 768px) 33vw, 100vw"
                     width={600}
                     height={800}
