@@ -1,38 +1,49 @@
 hero:
-  eyebrow: "Über mich"
-  title: "Florian Feiste."
-  titleAccent: "Worte als Handwerk."
+  eyebrow: Über mich
+  title: Florian Feiste.
+  titleAccent: Worte als Handwerk.
   intro:
-    - "Seit über zehn Jahren arbeite ich an Dialogen, Drehbüchern und dramaturgischen Konzepten — für Kino, Fernsehen und Streaming."
-    - "Mein Ansatz: Genaues Hinhören. Figuren entstehen aus ihrer Sprache. Szenen entstehen aus Subtext. Und die besten Geschichten sind die, bei denen wir am Ende glauben, die Figuren seien uns schon lange bekannt."
-  location: "Berlin & Hamburg — Arbeiten europaweit."
-
+    - Seit über zehn Jahren arbeite ich an Dialogen, Drehbüchern und
+      dramaturgischen Konzepten — für Kino, Fernsehen und Streaming.
+    - "Mein Ansatz: Genaues Hinhören. Figuren entstehen aus ihrer Sprache.
+      Szenen entstehen aus Subtext. Und die besten Geschichten sind die, bei
+      denen wir am Ende glauben, die Figuren seien uns schon lange bekannt."
+  location: Berlin & Hamburg — Arbeiten europaweit.
+  image: /uploads/img_5453ed1.jpg
 principles:
   - icon: record_voice_over
-    title: "Jede Figur hat ihre eigene Stimme"
-    description: "Dialog ist mehr als Information. Dialog ist Charakter, Rhythmus, Subtext — und manchmal das, was nicht gesagt wird."
+    title: Jede Figur hat ihre eigene Stimme
+    description: Dialog ist mehr als Information. Dialog ist Charakter, Rhythmus,
+      Subtext — und manchmal das, was nicht gesagt wird.
   - icon: trending_flat
-    title: "Struktur vor Stil"
-    description: "Die beste Zeile trägt nichts, wenn der Bogen nicht stimmt. Ich denke immer in Szene, Akt und Gesamterzählung."
+    title: Struktur vor Stil
+    description: Die beste Zeile trägt nichts, wenn der Bogen nicht stimmt. Ich
+      denke immer in Szene, Akt und Gesamterzählung.
   - icon: handshake
-    title: "Kollaboration auf Augenhöhe"
-    description: "Regie, Produktion, Lektorat — gute Arbeit entsteht im Dialog. Ich höre zu, bevor ich schreibe."
-
+    title: Kollaboration auf Augenhöhe
+    description: Regie, Produktion, Lektorat — gute Arbeit entsteht im Dialog. Ich
+      höre zu, bevor ich schreibe.
 timeline:
   - year: "2024"
-    title: "Dramaturgie — \"Echo der Stille\""
-    description: "Preisgekrönter Dokumentarfilm. Strukturierung von 80h Interview-Material zu einer dreispurigen Erzählung."
+    title: Dramaturgie — "Echo der Stille"
+    description: Preisgekrönter Dokumentarfilm. Strukturierung von 80h
+      Interview-Material zu einer dreispurigen Erzählung.
   - year: "2023"
-    title: "Drehbuch — \"Schatten über Berlin\""
-    description: "Noir-Thriller im Berlin der späten 60er-Jahre. Zwei Jahre Entwicklungsarbeit in enger Abstimmung mit Regie und Fachberatung."
+    title: Drehbuch — "Schatten über Berlin"
+    description: Noir-Thriller im Berlin der späten 60er-Jahre. Zwei Jahre
+      Entwicklungsarbeit in enger Abstimmung mit Regie und Fachberatung.
   - year: "2022"
-    title: "Dialogbuch — \"Der letzte Tastenanschlag\""
-    description: "Lippensynchrone Adaption eines englischsprachigen Kammerspiels ins Deutsche."
-  - year: "2019 — 2022"
-    title: "Script-Doctoring & Stoffberatung"
-    description: "Beratung bei diversen Serien- und Spielfilmproduktionen (Krimi, Drama, Arthouse)."
-
+    title: Dialogbuch — "Der letzte Tastenanschlag"
+    description: Lippensynchrone Adaption eines englischsprachigen Kammerspiels ins
+      Deutsche.
+  - year: 2019 — 2022
+    title: Script-Doctoring & Stoffberatung
+    description: Beratung bei diversen Serien- und Spielfilmproduktionen (Krimi,
+      Drama, Arthouse).
 cta:
-  title: "Lust auf ein Gespräch?"
-  text: "Ob Stoffentwicklung, Synchron oder Dramaturgie — ich freue mich auf Ihre Nachricht."
-  buttonText: "Kontakt aufnehmen"
+  title: Lust auf ein Gespräch?
+  text: Ob Stoffentwicklung, Synchron oder Dramaturgie — ich freue mich auf Ihre
+    Nachricht.
+  buttonText: Kontakt aufnehmen
+seo:
+  noindex: true
