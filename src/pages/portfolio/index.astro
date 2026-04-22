@@ -74,7 +74,7 @@ const statusLabel: Record<string, string> = {
               href={`/portfolio/${project.slug}/`}
               class="group relative bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-ambient transition-all duration-500 flex flex-col overflow-hidden"
             >
-              <div class="aspect-[16/10] relative overflow-hidden bg-surface-container-high">
+              <div class="aspect-[3/4] relative overflow-hidden bg-surface-container-high">
                 {(project.data.thumbnail ?? project.data.heroImage) ? (
                   <SmartImage
                     src={project.data.thumbnail ?? project.data.heroImage!}
@@ -82,7 +82,7 @@ const statusLabel: Record<string, string> = {
                     class="w-full h-full object-cover image-zoom"
                     sizes="(min-width: 768px) 33vw, 100vw"
                     width={600}
-                    height={375}
+                    height={800}
                   />
                 ) : (
                   <div class="w-full h-full flex items-center justify-center bg-primary/5">
