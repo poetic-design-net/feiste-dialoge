@@ -13,8 +13,8 @@ services:
 status: abgeschlossen
 featured: true
 highlight: true
-order: 20
-heroImage: /uploads/high_bewusstsein.jpg
+order: 17
+heroImage: /uploads/bildschirmfoto-2026-04-22-um-14.18.41.png
 description: >
   Ein Kammerspiel über eine alternde Autorin, die sich mit dem Ende ihrer
   Schreibmaschine konfrontiert sieht. Die deutsche Fassung musste die lakonische
