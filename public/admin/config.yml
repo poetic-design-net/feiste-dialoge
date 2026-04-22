@@ -2,15 +2,15 @@ backend:
   name: github
   repo: poetic-design-net/feiste-dialoge
   branch: main
-  base_url: https://www.feiste-dialoge.de
+  base_url: https://feiste-dialoge.de
   auth_endpoint: api/auth
 
 publish_mode: editorial_workflow
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-site_url: https://www.feiste-dialoge.de
-display_url: https://www.feiste-dialoge.de
+site_url: https://feiste-dialoge.de
+display_url: https://feiste-dialoge.de
 logo_url: /favicon.svg
 locale: de
 
