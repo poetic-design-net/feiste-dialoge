@@ -3,7 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
 
 const site = await getEntry('settings', 'site');
-const email = site?.data.contactEmail ?? 'kontakt@feiste-dialoge.de';
+const email = site?.data.contactEmail ?? 'flo@feiste-dialoge.de';
 ---
 
 <BaseLayout
