@@ -14,24 +14,29 @@ services:
     description: Ich schreibe lippensynchrone Dialogbücher. Enge Deadlines, spätes
       Material, kurzfristige Bildänderungen – damit kenne ich mich aus.
     items:
-      - Exposé & Treatment
-      - Szenische Ausarbeitung
+      - Aufnahmebereites Buch
+      - Termingerechte Abgabe
   - icon: forum
     title: Synchroncut
     description: Wenn ich auch das Buch geschrieben habe, kenne ich jeden Take und
       kann Regisseur und Sprecher den Kontext geben, den kein fremder Cutter
       hat.
     items:
-      - Synchron-Dialogbuch
-      - Sprachliche Überarbeitung
+      - Hintergrundwissen zum Material
+      - Ansprechpartner vor Ort
   - icon: architecture
     title: Übersetzung
-    description: Englisch rein, sauberes Deutsch raus. Auch wenn Redewendungen und
-      kulturelle Referenzen wörtlich nicht funktionieren.
+    description: Ich übernehme die Rohübersetzung vom Englischen ins Deutsche und
+      schreibe darauf aufbauend das Buch.
     items:
-      - Stoffberatung
-      - Script-Doctoring
+      - Rohübersetzung + Dialogbuch aus einer Hand
+      - Kulturelle Referenzen inklusive
 cta:
-  title: Bereit für den nächsten Dialog?
-  text: Lassen Sie uns gemeinsam Geschichten entwickeln, die eine Resonanz erzeugen.
+  title: Lust auf ein gemeinsames Projekt?
+  text: Melden Sie sich – ich freue mich darauf, mit Ihnen zu schreiben.
   buttonText: Kontakt aufnehmen
+seo:
+  metaTitle: Florian Feist – Dialogbuch, Übersetzung & Synchroncut
+  metaDescription: Florian Feist schreibt lippensynchrone Dialogbücher für Film
+    und Serie. Übersetzung Englisch–Deutsch, Synchroncut, Atelier-Cut. Freier
+    Autor aus Berlin.
