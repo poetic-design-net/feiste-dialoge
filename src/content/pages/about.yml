@@ -3,12 +3,16 @@ hero:
   title: Florian Feist
   titleAccent: Worte als Handwerk.
   intro:
-    - Seit über zehn Jahren arbeite ich an Dialogen, Drehbüchern und
-      dramaturgischen Konzepten — für Kino, Fernsehen und Streaming.
-    - "Mein Ansatz: Genaues Hinhören. Figuren entstehen aus ihrer Sprache.
-      Szenen entstehen aus Subtext. Und die besten Geschichten sind die, bei
-      denen wir am Ende glauben, die Figuren seien uns schon lange bekannt."
-  location: Berlin & Hamburg — Arbeiten europaweit.
+    - "Angefangen hat alles in Hamburg mit Hip-Hop und der Liebe zu Texten, die
+      sitzen. Über die Jahre habe ich mich durch so ziemlich alles
+      durchgearbeitet, was mit Wort und Klang zu tun hat: vom Werbetexten über
+      die Musikproduktion und die Arbeit als Tonmeister bis hin zum Synchroncut.
+      Diese Stationen waren für mich wie eine lange Schule für das richtige
+      Timing und den passenden Tonfall. Heute bringe ich diese Erfahrung in
+      meine Dialogbücher ein. Mir geht es darum, dass Texte nicht nur übersetzt
+      wirken, sondern so klingen, wie echte Menschen eben sprechen – lebendig,
+      direkt und authentisch."
+  location: Berlin - schreiben weltweit
   image: /uploads/img_5453ed1.jpg
 principles:
   - icon: record_voice_over
@@ -23,23 +27,7 @@ principles:
     title: Kollaboration auf Augenhöhe
     description: Regie, Produktion, Lektorat — gute Arbeit entsteht im Dialog. Ich
       höre zu, bevor ich schreibe.
-timeline:
-  - year: "2024"
-    title: Dramaturgie — "Echo der Stille"
-    description: Preisgekrönter Dokumentarfilm. Strukturierung von 80h
-      Interview-Material zu einer dreispurigen Erzählung.
-  - year: "2023"
-    title: Drehbuch — "Schatten über Berlin"
-    description: Noir-Thriller im Berlin der späten 60er-Jahre. Zwei Jahre
-      Entwicklungsarbeit in enger Abstimmung mit Regie und Fachberatung.
-  - year: "2022"
-    title: Dialogbuch — "Der letzte Tastenanschlag"
-    description: Lippensynchrone Adaption eines englischsprachigen Kammerspiels ins
-      Deutsche.
-  - year: 2019 — 2022
-    title: Script-Doctoring & Stoffberatung
-    description: Beratung bei diversen Serien- und Spielfilmproduktionen (Krimi,
-      Drama, Arthouse).
+timeline: []
 cta:
   title: Lust auf ein Gespräch?
   text: Ob Stoffentwicklung, Synchron oder Dramaturgie — ich freue mich auf Ihre
@@ -47,3 +35,7 @@ cta:
   buttonText: Kontakt aufnehmen
 seo:
   noindex: true
+  metaTitle: Dialogbuchautor, Synchronautor, Synchron, Regie, Synchron Cut, Synchronstudio
+  metaDescription: Sie suchen Dialogbücher, die klingen wie echtes Leben? Als
+    ehemaliger Tonmeister und Werbetexter verbinde ich technisches
+    Präzisionshandwerk mit kreativem Wortwitz für Ihr Projekt.
