@@ -1,21 +1,21 @@
 hero:
-  eyebrow: "Kontakt"
-  title: "Schreiben Sie mir."
-  subtitle: "Ob konkrete Projektanfrage, Stoffberatung oder unverbindliches Gespräch — ich melde mich in der Regel innerhalb von zwei Werktagen."
-
-postit: "Aktueller Status: Neue Projekte für Q3 2026 werden gerade angenommen — Einzelheiten gern im Gespräch."
-
+  eyebrow: Geben wir den Bildern eine Stimme!
+  title: Schreiben Sie mir.
+  subtitle: Ob für die große Leinwand oder Streaming. Ob Koreanisch oder Spanisch.
+    Sorgen wir gemeinsam dafür, dass die Charaktere im Deutschen genau den
+    richtigen Ton treffen.
+postit: "Aktueller Status: Neue Projekte für Q3 2026 werden gerade angenommen —
+  Einzelheiten gern im Gespräch."
 availability:
-  - period: "Q2 2026"
-    status: "Ausgebucht"
+  - period: Q2 2026
+    status: Ausgebucht
     tone: busy
-  - period: "Q3 2026"
-    status: "Teilweise verfügbar"
+  - period: Q3 2026
+    status: Teilweise verfügbar
     tone: partial
-  - period: "Q4 2026"
-    status: "Annahme offen"
+  - period: Q4 2026
+    status: Annahme offen
     tone: open
-
 contact:
-  email: "flo@feiste-dialoge.de"
-  phone: "+49 30 123 45 67"
+  email: flo@feiste-dialoge.de
+  phone: +49 30 123 45 67
