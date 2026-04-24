@@ -12,6 +12,7 @@ featured: true
 highlight: true
 order: 10
 heroImage: /uploads/bildschirmfoto-2026-04-24-um-12.44.49.png
+thumbnail: /uploads/bildschirmfoto-2026-04-24-um-12.44.49.png
 description: School Spirits folgt der Teenagerin Maddie Nears, die nach ihrem
   Tod als Geist in ihrer Schule feststeckt und herausfinden muss, was passiert
   ist. In Staffel 3 kämpft sie sich zurück ins Leben, wird aber von verstörenden
