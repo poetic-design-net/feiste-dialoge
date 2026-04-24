@@ -8,7 +8,7 @@ studio: VSI Berlin / Netflix
 language: EN → DE
 syncType: Lippensynchron
 services: []
-status: abgeschlossen
+status: veröffentlicht
 featured: true
 highlight: true
 order: 17
