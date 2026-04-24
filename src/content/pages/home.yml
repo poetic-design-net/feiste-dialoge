@@ -26,11 +26,10 @@ services:
       - Ansprechpartner vor Ort
   - icon: architecture
     title: Übersetzung
-    description: Ich übernehme die Rohübersetzung vom Englischen ins Deutsche und
-      schreibe darauf aufbauend das Buch.
-    items:
-      - Rohübersetzung + Dialogbuch aus einer Hand
-      - Kulturelle Referenzen inklusive
+    description: Ich arbeite mit einem Netzwerk aus erfahrenen Übersetzern zusammen.
+      Vier Augen sehen mehr als zwei – und ein gutes Buch fängt mit einer guten
+      Vorlage an.
+    items: []
 cta:
   title: Lust auf ein gemeinsames Projekt?
   text: Melden Sie sich – ich freue mich darauf, mit Ihnen zu schreiben.
