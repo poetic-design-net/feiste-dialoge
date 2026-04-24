@@ -1,14 +1,12 @@
 ---
-title: School Spirits Staffel 3
-subtitle: Ein Noir-Thriller in den Straßen der geteilten Stadt.
-year: "2023"
-genre: Krimi / Thriller
-role: Drehbuch
-studio: Dreizehn Filmproduktion
-language: Deutsch (Original)
-services:
-  - Drehbuch
-  - Dramaturgie
+title: School Spirits (S 3)
+subtitle: ""
+year: "2026"
+genre: Drama / Thriller
+role: Dialogbuch
+studio: "Eurosync / Paramount "
+language: EN → DE
+services: []
 status: veröffentlicht
 featured: true
 highlight: true
