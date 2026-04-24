@@ -12,7 +12,7 @@ status: abgeschlossen
 featured: true
 highlight: true
 order: 17
-heroImage: /uploads/bildschirmfoto-2026-04-22-um-14.18.41.png
+heroImage: /uploads/boots-netflix-aufmacher.jpg
 heroImageAlt: ""
 thumbnail: /uploads/bildschirmfoto-2026-04-22-um-14.18.41.png
 description: Cameron weiß nicht wohin mit sich. Also meldet er sich impulsiv
