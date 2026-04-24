@@ -1,5 +1,5 @@
 ---
-title: Schatten über Berlin
+title: School Spirits Staffel 3
 subtitle: Ein Noir-Thriller in den Straßen der geteilten Stadt.
 year: "2023"
 genre: Krimi / Thriller
@@ -13,25 +13,32 @@ status: veröffentlicht
 featured: true
 highlight: true
 order: 10
-description: |
-  Eine dichte Erzählung über Loyalität, Schuld und den Preis der Wahrheit im Berlin der späten 60er-Jahre. Die Herausforderung lag in der Verdichtung von historischer Authentizität und zeitgenössischer Figurensprache — ohne in Nostalgie zu verfallen.
+description: >
+  Eine dichte Erzählung über Loyalität, Schuld und den Preis der Wahrheit im
+  Berlin der späten 60er-Jahre. Die Herausforderung lag in der Verdichtung von
+  historischer Authentizität und zeitgenössischer Figurensprache — ohne in
+  Nostalgie zu verfallen.
 scriptSnippet:
-  header: "FOLGE 01 — SZENE 07"
-  page: "SEITE 14"
+  header: FOLGE 01 — SZENE 07
+  page: SEITE 14
   dialogues:
     - character: ELIAS
       direction: heiser, fast flüsternd
-      line: "Wir hatten eine Abmachung, Victor. Die Schatten gehören mir, das Licht gehört dir."
+      line: Wir hatten eine Abmachung, Victor. Die Schatten gehören mir, das Licht
+        gehört dir.
     - character: VICTOR
       direction: lacht trocken
-      line: "In dieser Stadt gibt es kein Licht mehr, Elias. Nur noch verschiedene Schattierungen von Grau. Und deine ist die dunkelste."
+      line: In dieser Stadt gibt es kein Licht mehr, Elias. Nur noch verschiedene
+        Schattierungen von Grau. Und deine ist die dunkelste.
     - character: ELIAS
-      line: "Dann solltest du aufpassen, dass du nicht über deine eigenen Füße stolperst, wenn es Nacht wird."
+      line: Dann solltest du aufpassen, dass du nicht über deine eigenen Füße
+        stolperst, wenn es Nacht wird.
   actionNote: "[SZENE ENDET MIT DEM ZUSCHLAGEN EINER AUTOTÜR]"
 postit:
-  text: "Subtext ist die Seele jeder glaubwürdigen Figur — kein Wort ohne Unterton."
+  text: Subtext ist die Seele jeder glaubwürdigen Figur — kein Wort ohne Unterton.
   author: Florian
-seoDescription: Drehbuch von Florian Feiste für den Berliner Noir-Thriller "Schatten über Berlin" (2023).
+seoDescription: Drehbuch von Florian Feiste für den Berliner Noir-Thriller
+  "Schatten über Berlin" (2023).
 ---
 
 ## Über das Projekt
