@@ -11,7 +11,7 @@ status: veröffentlicht
 featured: true
 highlight: true
 order: 10
-heroImage: /uploads/bildschirmfoto-2026-04-24-um-12.44.49.png
+heroImage: /uploads/school-spirits-s3-feature-rhonda-and-quinn.webp
 thumbnail: /uploads/bildschirmfoto-2026-04-24-um-12.44.49.png
 description: School Spirits folgt der Teenagerin Maddie Nears, die nach ihrem
   Tod als Geist in ihrer Schule feststeckt und herausfinden muss, was passiert
