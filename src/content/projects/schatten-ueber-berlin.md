@@ -19,24 +19,13 @@ description: School Spirits folgt der Teenagerin Maddie Nears, die nach ihrem
   Visionen gequält. Ihr bester Freund Simon sitzt derweil im Jenseits fest und
   gräbt nach den dunklen Geheimnissen der Split River High.
 scriptSnippet:
-  header: FOLGE 01 — SZENE 07
-  page: SEITE 14
-  dialogues:
-    - character: ELIAS
-      direction: heiser, fast flüsternd
-      line: Wir hatten eine Abmachung, Victor. Die Schatten gehören mir, das Licht
-        gehört dir.
-    - character: VICTOR
-      direction: lacht trocken
-      line: In dieser Stadt gibt es kein Licht mehr, Elias. Nur noch verschiedene
-        Schattierungen von Grau. Und deine ist die dunkelste.
-    - character: ELIAS
-      line: Dann solltest du aufpassen, dass du nicht über deine eigenen Füße
-        stolperst, wenn es Nacht wird.
-  actionNote: "[SZENE ENDET MIT DEM ZUSCHLAGEN EINER AUTOTÜR]"
+  header: ""
+  page: ""
+  dialogues: []
+  actionNote: ""
 postit:
-  text: Subtext ist die Seele jeder glaubwürdigen Figur — kein Wort ohne Unterton.
-  author: Florian
+  text: (erschreckter ATMER)
+  author: ""
 seo:
   metaTitle: School Spirits Staffel 3 – Deutsche Synchronfassung
   metaDescription: School Spirits Staffel 3, Paramount+ 2026. Mystery,
