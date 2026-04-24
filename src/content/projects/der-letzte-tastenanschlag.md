@@ -21,19 +21,9 @@ description: Cameron weiß nicht wohin mit sich. Also meldet er sich impulsiv
   Eine Coming of Age Geschichte über Freundschaft, Identität und den Mut, man
   selbst zu sein, auch wenn die Umgebung das nicht zulässt.
 scriptSnippet:
-  header: KAPITEL 03 — SZENE 02
-  page: SEITE 21
-  dialogues:
-    - character: MARGARETHE
-      direction: nachdenklich, ihre Finger auf den Tasten
-      line: Jeder Anschlag ist eine kleine Entscheidung. Jeder Buchstabe eine
-        Konsequenz.
-    - character: EMIL
-      line: Und wenn du dich vertippst?
-    - character: MARGARETHE
-      direction: lächelt
-      line: Dann hat das Wort einfach nur seinen Platz gefunden — nur nicht dort, wo
-        ich ihn erwartet habe.
+  header: ""
+  page: ""
+  dialogues: []
 postit:
   text: "Labiale beachten: 'Abmachung' passt präzise auf den Rhythmus der
     Originalzeile."
