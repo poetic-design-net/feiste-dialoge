@@ -1,5 +1,5 @@
 ---
-title: Boots
+title: Boots (S1)
 subtitle: Growing up has its obstacles.
 year: "2025"
 genre: Drama / Coming Of Age
