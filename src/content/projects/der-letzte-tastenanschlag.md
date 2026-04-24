@@ -14,7 +14,7 @@ highlight: true
 order: 17
 heroImage: /uploads/bildschirmfoto-2026-04-22-um-14.18.41.png
 heroImageAlt: ""
-thumbnail: ""
+thumbnail: /uploads/bildschirmfoto-2026-04-22-um-14.18.41.png
 description: Cameron weiß nicht wohin mit sich. Also meldet er sich impulsiv
   beim US Marine Corps an – obwohl er schwul ist und das 1990 im Militär illegal
   war. Mit seinem besten Freund erlebt er den knallharten Alltag des Boot Camps.
