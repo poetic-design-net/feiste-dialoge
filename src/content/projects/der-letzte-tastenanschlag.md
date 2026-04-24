@@ -38,4 +38,4 @@ seoDescription: ""
 ---
 ## Herausforderungen beim Schreiben
 
-Die Sprache der 90er, Militärjargon und endlose Szenen, in denen sehr viel geschrien wird, stellen besondere Anforderungen an Lippensynchronität und Rhythmus. Jede Zeile musste sitzen, auch wenn der Ton laut wird.
+Die Sprache der 90er, Militärjargon und Szenen, in denen sehr viel geschrien wird, stellen besondere Anforderungen an Lippensynchronität und Rhythmus. Jede Zeile musste sitzen, auch wenn der Ton laut wird.
