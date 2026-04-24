@@ -25,9 +25,8 @@ scriptSnippet:
   page: ""
   dialogues: []
 postit:
-  text: "Labiale beachten: 'Abmachung' passt präzise auf den Rhythmus der
-    Originalzeile."
-  author: Florian
+  text: (OFF ins ON)
+  author: ""
 videos: []
 seo:
   noindex: false
