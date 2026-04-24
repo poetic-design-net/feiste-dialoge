@@ -1,21 +1,22 @@
 ---
-title: School Spirits (S 3)
+title: School Spirits (S3)
 subtitle: ""
 year: "2026"
 genre: Drama / Thriller
 role: Dialogbuch
-studio: "Eurosync / Paramount "
+studio: Eurosync / Paramount+
 language: EN → DE
 services: []
 status: veröffentlicht
 featured: true
 highlight: true
 order: 10
-description: >
-  Eine dichte Erzählung über Loyalität, Schuld und den Preis der Wahrheit im
-  Berlin der späten 60er-Jahre. Die Herausforderung lag in der Verdichtung von
-  historischer Authentizität und zeitgenössischer Figurensprache — ohne in
-  Nostalgie zu verfallen.
+heroImage: /uploads/bildschirmfoto-2026-04-24-um-12.44.49.png
+description: School Spirits folgt der Teenagerin Maddie Nears, die nach ihrem
+  Tod als Geist in ihrer Schule feststeckt und herausfinden muss, was passiert
+  ist. In Staffel 3 kämpft sie sich zurück ins Leben, wird aber von verstörenden
+  Visionen gequält. Ihr bester Freund Simon sitzt derweil im Jenseits fest und
+  gräbt nach den dunklen Geheimnissen der Split River High.
 scriptSnippet:
   header: FOLGE 01 — SZENE 07
   page: SEITE 14
@@ -35,12 +36,13 @@ scriptSnippet:
 postit:
   text: Subtext ist die Seele jeder glaubwürdigen Figur — kein Wort ohne Unterton.
   author: Florian
-seoDescription: Drehbuch von Florian Feiste für den Berliner Noir-Thriller
-  "Schatten über Berlin" (2023).
+seo:
+  metaTitle: School Spirits Staffel 3 – Deutsche Synchronfassung
+  metaDescription: School Spirits Staffel 3, Paramount+ 2026. Mystery,
+    Übernatürlich, Coming of Age, Teenager. Deutsche Synchronfassung, Dialogbuch
+    Florian Feist, Eurosync.
+seoDescription: ""
 ---
+## Herausforderungen beim Schreiben
 
-## Über das Projekt
-
-"Schatten über Berlin" verhandelt die Grauzonen zwischen Ost und West, zwischen Pflicht und Verrat. Der Stoff entstand über zwei Jahre in enger Zusammenarbeit mit der Regie und den historischen Beratern der Produktion.
-
-Die zentrale dramaturgische Entscheidung: Dialoge bleiben **knapp, implizit, subtextreich** — und lassen Raum für die Bilder, die Berlin selbst erzählt.
+School Spirits lebt von Zeitsprüngen und verschiedenen Realitätsebenen. Geister, die nur von bestimmten Personen gesehen werden, brauchen ein Medium um miteinander zu kommunizieren. Das macht jeden Dialog zu einer Frage des Kontexts: Wer spricht mit wem, wann und wo?
