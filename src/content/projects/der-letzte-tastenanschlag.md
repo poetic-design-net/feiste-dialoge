@@ -1,10 +1,10 @@
 ---
 title: Boots (S1)
-subtitle: Growing up has its obstacles.
+subtitle: ""
 year: "2025"
 genre: Drama / Coming Of Age
 role: Dialogbuch
-studio: VSI Berlin
+studio: VSI Berlin / Netflix
 language: EN → DE
 syncType: Lippensynchron
 services: []
