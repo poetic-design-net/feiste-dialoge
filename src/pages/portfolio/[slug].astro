@@ -160,13 +160,76 @@ const heroOgImage = data.seo?.ogImage ?? data.heroImage ?? dynamicProjectOg;
         </section>
       </aside>
 
-      {/* Main: Markdown content */}
-      <section class="lg:col-span-8 lg:ml-4">
+      {/* Main: Markdown content + Videos */}
+      <section class="lg:col-span-8 lg:ml-4 space-y-8">
         <div class="bg-surface-container-lowest rounded-lg p-8 md:p-12">
           <div class="prose prose-stone max-w-none font-body prose-headings:font-headline prose-headings:text-on-surface">
             <Content />
           </div>
         </div>
+
+        {data.videos.length > 0 && (
+          <div class="bg-surface-container-lowest rounded-lg p-8 md:p-12">
+            <header class="mb-8 space-y-2">
+              <p class="font-headline text-sm uppercase tracking-widest text-primary">Arbeitsbeispiele</p>
+              <h2 class="font-headline text-2xl md:text-3xl text-on-surface font-bold">
+                {data.videos.length === 1 ? 'Ausschnitt ansehen' : 'Ausschnitte ansehen'}
+              </h2>
+            </header>
+            <div class="flex flex-wrap gap-6">
+              {data.videos.map((video) => {
+                const isInstagram = video.url?.includes('instagram.com');
+                const isExternal = video.url?.startsWith('http');
+                const Wrapper = video.url ? 'a' : 'article';
+                return (
+                  <Wrapper
+                    href={video.url}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    class="group block flex-1 min-w-[220px] max-w-[280px]"
+                  >
+                    <div class="aspect-[4/5] bg-surface-container-highest rounded-xl overflow-hidden relative mb-4 shadow-sm">
+                      {video.thumbnail ? (
+                        <SmartImage
+                          src={video.thumbnail}
+                          alt={video.thumbnailAlt ?? video.title}
+                          class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 group-hover:brightness-75"
+                          sizes="280px"
+                          width={480}
+                          height={600}
+                        />
+                      ) : (
+                        <div class="w-full h-full bg-gradient-to-br from-primary/15 via-surface-container-high to-secondary-container/30"></div>
+                      )}
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-primary/95 text-on-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                          <Icon name="play_arrow" size={30} />
+                        </div>
+                      </div>
+                      {isInstagram && (
+                        <div class="absolute top-3 right-3 w-8 h-8 bg-on-surface/70 backdrop-blur-sm text-inverse-on-surface rounded-full flex items-center justify-center">
+                          <Icon name="instagram" size={16} />
+                        </div>
+                      )}
+                    </div>
+                    <h3 class="font-headline text-lg font-bold group-hover:text-primary transition-colors leading-tight">
+                      {video.title}
+                    </h3>
+                    {video.subtitle && (
+                      <p class="text-xs mt-1 tracking-wide text-on-surface-variant">{video.subtitle}</p>
+                    )}
+                    {isInstagram && (
+                      <p class="text-xs mt-2 font-label uppercase tracking-widest text-primary inline-flex items-center gap-1">
+                        Auf Instagram ansehen
+                        <Icon name="open_in_new" size={12} />
+                      </p>
+                    )}
+                  </Wrapper>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </section>
     </div>
 
@@ -178,72 +241,6 @@ const heroOgImage = data.seo?.ogImage ?? data.heroImage ?? dynamicProjectOg;
     {/* Gallery */}
     {data.gallery.length > 0 && (
       <ProjectGallery items={data.gallery} />
-    )}
-
-    {/* Videos */}
-    {data.videos.length > 0 && (
-      <section class="mb-24">
-        <header class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-          <div class="space-y-2">
-            <p class="font-headline text-sm uppercase tracking-widest text-primary">Arbeitsbeispiele</p>
-            <h2 class="font-headline text-3xl md:text-4xl text-on-surface font-bold">
-              {data.videos.length === 1 ? 'Ausschnitt ansehen' : 'Ausschnitte ansehen'}
-            </h2>
-          </div>
-        </header>
-        <div class="flex flex-wrap justify-center gap-6 md:gap-8">
-          {data.videos.map((video) => {
-            const isInstagram = video.url?.includes('instagram.com');
-            const isExternal = video.url?.startsWith('http');
-            const Wrapper = video.url ? 'a' : 'article';
-            return (
-              <Wrapper
-                href={video.url}
-                target={isExternal ? '_blank' : undefined}
-                rel={isExternal ? 'noopener noreferrer' : undefined}
-                class="group block flex-1 min-w-[260px] max-w-sm"
-              >
-                <div class="aspect-[4/5] bg-surface-container-highest rounded-xl overflow-hidden relative mb-5 shadow-sm">
-                  {video.thumbnail ? (
-                    <SmartImage
-                      src={video.thumbnail}
-                      alt={video.thumbnailAlt ?? video.title}
-                      class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 group-hover:brightness-75"
-                      sizes="(min-width: 768px) 33vw, 100vw"
-                      width={480}
-                      height={600}
-                    />
-                  ) : (
-                    <div class="w-full h-full bg-gradient-to-br from-primary/15 via-surface-container-high to-secondary-container/30"></div>
-                  )}
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-16 h-16 md:w-20 md:h-20 bg-primary/95 text-on-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                      <Icon name="play_arrow" size={36} />
-                    </div>
-                  </div>
-                  {isInstagram && (
-                    <div class="absolute top-3 right-3 w-9 h-9 bg-on-surface/70 backdrop-blur-sm text-inverse-on-surface rounded-full flex items-center justify-center">
-                      <Icon name="instagram" size={18} />
-                    </div>
-                  )}
-                </div>
-                <h3 class="font-headline text-xl font-bold group-hover:text-primary transition-colors">
-                  {video.title}
-                </h3>
-                {video.subtitle && (
-                  <p class="text-sm mt-1 tracking-wide text-on-surface-variant">{video.subtitle}</p>
-                )}
-                {isInstagram && (
-                  <p class="text-xs mt-2 font-label uppercase tracking-widest text-primary inline-flex items-center gap-1">
-                    Auf Instagram ansehen
-                    <Icon name="open_in_new" size={14} />
-                  </p>
-                )}
-              </Wrapper>
-            );
-          })}
-        </div>
-      </section>
     )}
   </div>
 </BaseLayout>
