@@ -39,7 +39,8 @@ collections:
       - { label: "Jahr", name: "year", widget: "string", hint: "z. B. 2024 oder 2023-2024" }
       - { label: "Genre", name: "genre", widget: "string", hint: "z. B. Krimi / Thriller" }
       - { label: "Rolle / Tätigkeit", name: "role", widget: "string", hint: "z. B. Drehbuch, Dialogbuch, Dramaturgie" }
-      - { label: "Studio / Produktion", name: "studio", widget: "string", required: false }
+      - { label: "Studio", name: "studio", widget: "string", required: false }
+      - { label: "Produktion", name: "production", widget: "string", required: false, hint: "z. B. Sender, Verleih, Streaming-Plattform" }
       - { label: "Sprachfassung", name: "language", widget: "string", required: false, hint: "z. B. EN → DE" }
       - { label: "Synchron-Art", name: "syncType", widget: "string", required: false, hint: "z. B. Lippensynchron, Voice-Over" }
       - label: "Leistungen"
@@ -61,31 +62,6 @@ collections:
       - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false, choose_url: false }
       - { label: "Thumbnail Alt-Text", name: "thumbnailAlt", widget: "string", required: false }
       - { label: "Kurzbeschreibung", name: "description", widget: "text", hint: "1-3 Absätze für die Sidebar" }
-      - label: "Skript-Auszug (optional)"
-        name: "scriptSnippet"
-        widget: "object"
-        required: false
-        collapsed: true
-        fields:
-          - { label: "Kopfzeile", name: "header", widget: "string", required: false, hint: "z. B. FOLGE 01 — SZENE 07" }
-          - { label: "Seitenzahl", name: "page", widget: "string", required: false, hint: "z. B. SEITE 42" }
-          - label: "Dialog-Blöcke"
-            name: "dialogues"
-            widget: "list"
-            summary: "{{character}} — {{line}}"
-            fields:
-              - { label: "Figur", name: "character", widget: "string" }
-              - { label: "Regieanweisung", name: "direction", widget: "string", required: false }
-              - { label: "Text", name: "line", widget: "text" }
-          - { label: "Schluss-Regieanweisung", name: "actionNote", widget: "string", required: false }
-      - label: "Post-it Notiz (optional)"
-        name: "postit"
-        widget: "object"
-        required: false
-        collapsed: true
-        fields:
-          - { label: "Text", name: "text", widget: "text" }
-          - { label: "Autor", name: "author", widget: "string", required: false }
       - label: "Videos (optional)"
         name: "videos"
         widget: "list"

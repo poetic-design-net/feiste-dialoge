@@ -18,14 +18,10 @@ description: School Spirits folgt der Teenagerin Maddie Nears, die nach ihrem
   ist. In Staffel 3 kämpft sie sich zurück ins Leben, wird aber von verstörenden
   Visionen gequält. Ihr bester Freund Simon sitzt derweil im Jenseits fest und
   gräbt nach den dunklen Geheimnissen der Split River High.
-scriptSnippet:
-  header: ""
-  page: ""
-  dialogues: []
-  actionNote: ""
-postit:
-  text: (erschreckter ATMER)
-  author: ""
+videos:
+  - title: School Spirits — Ausschnitt
+    subtitle: Reels-Auszug auf Instagram
+    url: https://www.instagram.com/p/DXmi3qhCBgm/
 seo:
   metaTitle: School Spirits Staffel 3 – Deutsche Synchronfassung
   metaDescription: School Spirits Staffel 3, Paramount+ 2026. Mystery,

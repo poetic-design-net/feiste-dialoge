@@ -27,6 +27,7 @@ const metaRows: Array<[string, string | undefined]> = [
   ['Jahr', data.year],
   ['Genre', data.genre],
   ['Studio', data.studio],
+  ['Produktion', data.production],
   ['Sprachfassung', data.language],
   ['Synchron-Art', data.syncType],
 ];
@@ -159,70 +160,13 @@ const heroOgImage = data.seo?.ogImage ?? data.heroImage ?? dynamicProjectOg;
         </section>
       </aside>
 
-      {/* Main: Script Excerpt */}
+      {/* Main: Markdown content */}
       <section class="lg:col-span-8 lg:ml-4">
-        {data.scriptSnippet ? (
-          <div class="relative bg-surface-container-lowest rounded-sm flex flex-col overflow-hidden shadow-manuscript mb-4 min-h-[900px]">
-            <div class="absolute inset-0 typewriter-texture opacity-20 pointer-events-none"></div>
-
-            <div class="p-8 md:p-16 pb-0 flex justify-between items-start font-headline text-on-surface-variant/60 text-xs relative z-10">
-              <div>{data.scriptSnippet.header ?? data.title.toUpperCase()}</div>
-              <div>{data.scriptSnippet.page ?? 'SEITE 01'}</div>
-            </div>
-
-            <article class="p-8 md:p-16 lg:p-24 pt-24 md:pt-32 pb-24 md:pb-48 flex-grow font-headline leading-relaxed text-on-surface relative z-10">
-              <div class="text-center mb-16 md:mb-24 italic border-y border-outline-variant/40 py-4 uppercase tracking-[0.2em] text-sm">
-                Skript-Auszug
-              </div>
-              <div class="space-y-12 md:space-y-16 max-w-2xl mx-auto">
-                {data.scriptSnippet.dialogues.map((d) => (
-                  <div class="space-y-4 md:space-y-6">
-                    <p class="uppercase text-center font-bold">{d.character}</p>
-                    <p class="md:px-12 text-center">
-                      {d.direction && (
-                        <>
-                          ({d.direction})<br/>
-                        </>
-                      )}
-                      {d.line}
-                    </p>
-                  </div>
-                ))}
-                {data.scriptSnippet.actionNote && (
-                  <div class="pt-16 md:pt-24 text-center text-on-surface-variant/60 italic">
-                    {data.scriptSnippet.actionNote}
-                  </div>
-                )}
-              </div>
-            </article>
-
-            {data.postit && (
-              <div
-                class="absolute bottom-8 right-4 md:bottom-[180px] md:right-8 w-[240px] md:w-[320px] bg-postit-yellow shadow-postit-lg p-6 md:p-10 flex items-center justify-center text-center z-20"
-                style="transform: rotate(4deg);"
-              >
-                <div class="absolute top-0 left-0 right-0 h-6 bg-on-surface/[0.03] border-b border-on-surface/[0.02]"></div>
-                <p class="font-handwriting text-xl md:text-2xl leading-relaxed text-on-surface font-medium">
-                  {data.postit.text}
-                </p>
-              </div>
-            )}
-          </div>
-        ) : (
-          /* Fallback: content body */
-          <div class="bg-surface-container-lowest rounded-lg p-8 md:p-12 prose prose-stone max-w-none font-body">
+        <div class="bg-surface-container-lowest rounded-lg p-8 md:p-12">
+          <div class="prose prose-stone max-w-none font-body prose-headings:font-headline prose-headings:text-on-surface">
             <Content />
           </div>
-        )}
-
-        {/* Body content (markdown) below script */}
-        {data.scriptSnippet && (
-          <div class="bg-surface-container-low rounded-lg p-8 md:p-12 mt-8">
-            <div class="prose prose-stone max-w-none font-body prose-headings:font-headline prose-headings:text-on-surface">
-              <Content />
-            </div>
-          </div>
-        )}
+        </div>
       </section>
     </div>
 
@@ -241,38 +185,63 @@ const heroOgImage = data.seo?.ogImage ?? data.heroImage ?? dynamicProjectOg;
       <section class="mb-24">
         <header class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div class="space-y-2">
-            <p class="font-headline text-sm uppercase tracking-widest text-primary">Arbeitsbeispiel</p>
+            <p class="font-headline text-sm uppercase tracking-widest text-primary">Arbeitsbeispiele</p>
             <h2 class="font-headline text-3xl md:text-4xl text-on-surface font-bold">
-              Arbeitsbeispiele ansehen
+              {data.videos.length === 1 ? 'Ausschnitt ansehen' : 'Ausschnitte ansehen'}
             </h2>
           </div>
         </header>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {data.videos.map((video) => (
-            <article class="group cursor-pointer">
-              <div class="aspect-video bg-surface-container-highest rounded-xl overflow-hidden relative mb-5 shadow-sm">
-                {video.thumbnail && (
-                  <SmartImage
-                    src={video.thumbnail}
-                    alt={video.thumbnailAlt ?? video.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 group-hover:brightness-50"
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    width={800}
-                    height={450}
-                  />
-                )}
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-16 h-16 md:w-20 md:h-20 bg-primary/90 text-on-primary rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
-                    <Icon name="play_arrow" size={36} />
+        <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+          {data.videos.map((video) => {
+            const isInstagram = video.url?.includes('instagram.com');
+            const isExternal = video.url?.startsWith('http');
+            const Wrapper = video.url ? 'a' : 'article';
+            return (
+              <Wrapper
+                href={video.url}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener noreferrer' : undefined}
+                class="group block flex-1 min-w-[260px] max-w-sm"
+              >
+                <div class="aspect-[4/5] bg-surface-container-highest rounded-xl overflow-hidden relative mb-5 shadow-sm">
+                  {video.thumbnail ? (
+                    <SmartImage
+                      src={video.thumbnail}
+                      alt={video.thumbnailAlt ?? video.title}
+                      class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 group-hover:brightness-75"
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      width={480}
+                      height={600}
+                    />
+                  ) : (
+                    <div class="w-full h-full bg-gradient-to-br from-primary/15 via-surface-container-high to-secondary-container/30"></div>
+                  )}
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-primary/95 text-on-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                      <Icon name="play_arrow" size={36} />
+                    </div>
                   </div>
+                  {isInstagram && (
+                    <div class="absolute top-3 right-3 w-9 h-9 bg-on-surface/70 backdrop-blur-sm text-inverse-on-surface rounded-full flex items-center justify-center">
+                      <Icon name="instagram" size={18} />
+                    </div>
+                  )}
                 </div>
-              </div>
-              <h3 class="font-headline text-xl font-bold">{video.title}</h3>
-              {video.subtitle && (
-                <p class="text-sm mt-1 tracking-wide text-on-surface-variant">{video.subtitle}</p>
-              )}
-            </article>
-          ))}
+                <h3 class="font-headline text-xl font-bold group-hover:text-primary transition-colors">
+                  {video.title}
+                </h3>
+                {video.subtitle && (
+                  <p class="text-sm mt-1 tracking-wide text-on-surface-variant">{video.subtitle}</p>
+                )}
+                {isInstagram && (
+                  <p class="text-xs mt-2 font-label uppercase tracking-widest text-primary inline-flex items-center gap-1">
+                    Auf Instagram ansehen
+                    <Icon name="open_in_new" size={14} />
+                  </p>
+                )}
+              </Wrapper>
+            );
+          })}
         </div>
       </section>
     )}

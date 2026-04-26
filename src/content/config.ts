@@ -18,6 +18,7 @@ const projects = defineCollection({
     genre: z.string(),
     role: z.string(),
     studio: z.string().optional(),
+    production: z.string().optional(),
     language: z.string().optional(),
     syncType: z.string().optional(),
     services: z.array(z.string()).default([]),
@@ -30,26 +31,6 @@ const projects = defineCollection({
     thumbnail: z.string().optional(),
     thumbnailAlt: z.string().optional(),
     description: z.string(),
-    scriptSnippet: z
-      .object({
-        header: z.string().optional(),
-        page: z.string().optional(),
-        dialogues: z.array(
-          z.object({
-            character: z.string(),
-            direction: z.string().optional(),
-            line: z.string(),
-          })
-        ),
-        actionNote: z.string().optional(),
-      })
-      .optional(),
-    postit: z
-      .object({
-        text: z.string(),
-        author: z.string().optional(),
-      })
-      .optional(),
     videos: z
       .array(
         z.object({
@@ -142,6 +123,17 @@ const pages = defineCollection({
         phone: z.string().optional(),
       })
       .optional(),
+    profileLinks: z
+      .array(
+        z.object({
+          icon: z.string(),
+          label: z.string(),
+          handle: z.string().optional(),
+          description: z.string().optional(),
+          url: z.string(),
+        })
+      )
+      .default([]),
     seo: seoSchema,
   }),
 });

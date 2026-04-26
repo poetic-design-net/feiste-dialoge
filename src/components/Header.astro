@@ -25,12 +25,21 @@ const links = [
   <nav class="relative container-main flex justify-between items-center py-4 md:py-5">
     <a
       href="/"
-      class="logo group inline-flex items-baseline gap-1 font-headline font-bold text-lg md:text-xl tracking-tight text-on-background"
+      class="logo inline-flex items-baseline gap-1 font-headline font-bold text-lg md:text-xl tracking-tight text-on-background"
+      aria-label="Feiste Dialoge"
     >
-      <span class="transition-transform duration-500 group-hover:-translate-y-px">Feiste</span>
-      <span class="text-primary transition-transform duration-500 group-hover:translate-y-px">Dialoge</span>
+      <span class="logo-word" aria-hidden="true">
+        {'Feiste'.split('').map((ch, i) => (
+          <span class="logo-letter" style={`--i:${i}`}>{ch}</span>
+        ))}
+      </span>
+      <span class="logo-word logo-word-accent text-primary" aria-hidden="true">
+        {'Dialoge'.split('').map((ch, i) => (
+          <span class="logo-letter" style={`--i:${i + 7}`}>{ch}</span>
+        ))}
+      </span>
       <span
-        class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container ml-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        class="logo-cursor inline-block w-[2px] h-[1em] bg-primary ml-0.5 self-center"
         aria-hidden="true"
       ></span>
     </a>
@@ -104,16 +113,11 @@ const links = [
                 active === link.key ? 'text-primary' : 'text-on-surface hover:text-primary',
               ]}
             >
-              <span class="inline-flex items-baseline gap-3">
-                <span class="font-label text-xs tracking-widest text-on-surface-variant/60">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span class="relative">
-                  {link.label}
-                  {active === link.key && (
-                    <span class="absolute -right-6 top-1 w-2 h-2 rounded-full bg-primary-container"></span>
-                  )}
-                </span>
+              <span class="relative inline-flex items-baseline">
+                {link.label}
+                {active === link.key && (
+                  <span class="absolute -right-6 top-1 w-2 h-2 rounded-full bg-primary-container"></span>
+                )}
               </span>
             </a>
           </li>
@@ -146,6 +150,46 @@ const links = [
 
   .logo {
     letter-spacing: -0.01em;
+  }
+  .logo-word {
+    display: inline-flex;
+  }
+  .logo-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(2px);
+    animation: logoType 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--i) * 55ms + 120ms);
+  }
+  .logo:hover .logo-letter,
+  .logo:focus-visible .logo-letter {
+    animation: none;
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  .logo.is-replaying .logo-letter {
+    animation: logoType 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--i) * 45ms);
+  }
+  .logo-cursor {
+    opacity: 0;
+    animation: logoCursorBlink 0.9s steps(2) infinite;
+    animation-delay: 1s;
+  }
+  @keyframes logoType {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes logoCursorBlink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-letter {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .logo-cursor { display: none; }
   }
 
   .nav-pill:hover > span:first-child:not(.relative) {
@@ -250,6 +294,15 @@ const links = [
       }
       onScroll();
       window.addEventListener('scroll', onScroll, { passive: true });
+
+      var logo = header.querySelector('.logo');
+      if (logo) {
+        logo.addEventListener('mouseenter', function () {
+          logo.classList.remove('is-replaying');
+          void logo.offsetWidth;
+          logo.classList.add('is-replaying');
+        });
+      }
 
       function setOpen(open) {
         document.body.classList.toggle('nav-open', open);

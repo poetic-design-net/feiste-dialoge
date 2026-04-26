@@ -20,13 +20,6 @@ description: Cameron weiß nicht wohin mit sich. Also meldet er sich impulsiv
   war. Mit seinem besten Freund erlebt er den knallharten Alltag des Boot Camps.
   Eine Coming of Age Geschichte über Freundschaft, Identität und den Mut, man
   selbst zu sein, auch wenn die Umgebung das nicht zulässt.
-scriptSnippet:
-  header: ""
-  page: ""
-  dialogues: []
-postit:
-  text: (OFF ins ON)
-  author: ""
 videos: []
 seo:
   noindex: false

@@ -28,6 +28,17 @@ principles:
     description: Regie, Produktion, Lektorat — gute Arbeit entsteht im Dialog. Ich
       höre zu, bevor ich schreibe.
 timeline: []
+profileLinks:
+  - icon: instagram
+    label: Instagram
+    handle: "@feiste_dialoge"
+    description: Werkstattblicke, kleine Notizen, Arbeit im Werden.
+    url: https://www.instagram.com/feiste_dialoge/
+  - icon: badge
+    label: Synchronkartei
+    handle: Florian Feiste
+    description: Vollständige Dialogbuch-Credits und Werkverzeichnis.
+    url: https://www.synchronkartei.de/person/JnWOyFOBZ/dialogbuch
 cta:
   title: Geben wir den Bildern eine Stimme!
   text: Ob für die große Leinwand oder Streaming. Ob Koreanisch oder Spanisch.

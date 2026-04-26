@@ -8,6 +8,7 @@ const about = await getEntry('pages', 'about');
 const hero = about?.data.hero;
 const principles = about?.data.principles ?? [];
 const timeline = about?.data.timeline ?? [];
+const profileLinks = about?.data.profileLinks ?? [];
 const cta = about?.data.cta;
 const seo = about?.data.seo;
 ---
@@ -83,6 +84,49 @@ const seo = about?.data.seo;
               <h3 class="font-headline text-2xl font-bold text-on-surface leading-tight">{p.title}</h3>
               <p class="text-on-surface-variant leading-relaxed">{p.description}</p>
             </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {profileLinks.length > 0 && (
+      <section class="mb-20 md:mb-32">
+        <div class="text-center mb-12 space-y-3 max-w-2xl mx-auto reveal">
+          <span class="font-headline text-sm uppercase tracking-widest text-primary">Profile</span>
+          <h2 class="section-title">Im Netz unterwegs.</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-stagger">
+          {profileLinks.map((link) => (
+            <a
+              href={link.url}
+              target={link.url.startsWith('http') ? '_blank' : undefined}
+              rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="group relative bg-surface-container-low hover:bg-surface-container rounded-xl p-8 md:p-10 flex items-center gap-6 transition-all duration-500 hover:shadow-ambient hover:-translate-y-0.5"
+            >
+              <div class="w-14 h-14 md:w-16 md:h-16 bg-primary-fixed flex items-center justify-center rounded-full shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors duration-500">
+                <Icon name={link.icon} size={28} class="text-primary group-hover:text-on-primary transition-colors duration-500" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="font-headline text-xs uppercase tracking-widest text-primary mb-1">
+                  {link.label}
+                </p>
+                {link.handle && (
+                  <p class="font-headline text-xl md:text-2xl font-bold text-on-surface group-hover:text-primary transition-colors leading-tight truncate">
+                    {link.handle}
+                  </p>
+                )}
+                {link.description && (
+                  <p class="text-sm text-on-surface-variant mt-2 leading-relaxed line-clamp-2">
+                    {link.description}
+                  </p>
+                )}
+              </div>
+              <Icon
+                name="open_in_new"
+                size={20}
+                class="text-on-surface-variant/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 shrink-0"
+              />
+            </a>
           ))}
         </div>
       </section>
