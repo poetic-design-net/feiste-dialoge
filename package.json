@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "prefetch:ig": "node scripts/prefetch-instagram-thumbnails.mjs",
+    "build": "npm run prefetch:ig && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

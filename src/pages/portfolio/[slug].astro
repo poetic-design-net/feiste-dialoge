@@ -5,6 +5,7 @@ import Icon from '@components/Icon.astro';
 import SmartImage from '@components/SmartImage.astro';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ProjectGallery from '@components/ProjectGallery.astro';
+import { resolveVideoThumbnails } from '@lib/instagramThumbnail';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -22,6 +23,7 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await project.render();
 const data = project.data;
+const videos = await resolveVideoThumbnails(data.videos);
 
 const metaRows: Array<[string, string | undefined]> = [
   ['Jahr', data.year],
@@ -168,16 +170,16 @@ const heroOgImage = data.seo?.ogImage ?? data.heroImage ?? dynamicProjectOg;
           </div>
         </div>
 
-        {data.videos.length > 0 && (
+        {videos.length > 0 && (
           <div class="bg-surface-container-lowest rounded-lg p-8 md:p-12">
             <header class="mb-8 space-y-2">
               <p class="font-headline text-sm uppercase tracking-widest text-primary">Arbeitsbeispiele</p>
               <h2 class="font-headline text-2xl md:text-3xl text-on-surface font-bold">
-                {data.videos.length === 1 ? 'Ausschnitt ansehen' : 'Ausschnitte ansehen'}
+                {videos.length === 1 ? 'Ausschnitt ansehen' : 'Ausschnitte ansehen'}
               </h2>
             </header>
             <div class="flex flex-wrap gap-6">
-              {data.videos.map((video) => {
+              {videos.map((video) => {
                 const isInstagram = video.url?.includes('instagram.com');
                 const isExternal = video.url?.startsWith('http');
                 const Wrapper = video.url ? 'a' : 'article';
