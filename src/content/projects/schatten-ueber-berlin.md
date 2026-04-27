@@ -2,6 +2,7 @@
 title: School Spirits (S3)
 subtitle: ""
 year: "2026"
+art: Serie
 genre: Drama / Thriller
 role: Dialogbuch
 studio: Eurosync
