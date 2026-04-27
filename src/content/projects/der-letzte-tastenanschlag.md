@@ -2,6 +2,7 @@
 title: Boots (S1)
 subtitle: ""
 year: "2025"
+art: Serie
 genre: Drama / Coming Of Age
 role: Dialogbuch
 studio: VSI Berlin
