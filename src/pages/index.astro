@@ -35,10 +35,10 @@ const seo = home?.data.seo;
               {hero.eyebrow}
             </p>
           )}
-          <h1 class="font-headline text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-on-surface text-balance">
-            <span class="block">{hero.title}</span>
+          <h1 class="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-on-surface">
+            <span class="block sm:whitespace-nowrap">{hero.title}</span>
             {hero.titleAccent && hero.titleAccent.split('\n').map((line) => (
-              <span class="block text-primary">{line}</span>
+              <span class="block sm:whitespace-nowrap text-primary">{line}</span>
             ))}
           </h1>
           {hero.subtitle && (

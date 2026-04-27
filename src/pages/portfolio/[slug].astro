@@ -27,6 +27,7 @@ const videos = await resolveVideoThumbnails(data.videos);
 
 const metaRows: Array<[string, string | undefined]> = [
   ['Jahr', data.year],
+  ['Art', data.art],
   ['Genre', data.genre],
   ['Studio', data.studio],
   ['Produktion', data.production],
@@ -203,10 +204,12 @@ const heroOgImage = data.seo?.ogImage ?? data.heroImage ?? dynamicProjectOg;
                       ) : (
                         <div class="w-full h-full bg-gradient-to-br from-primary/15 via-surface-container-high to-secondary-container/30"></div>
                       )}
-                      <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-primary/95 text-on-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                          <Icon name="play_arrow" size={30} />
-                        </div>
+                      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <Icon
+                          name="play_arrow"
+                          size={56}
+                          class="text-white/80 drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] group-hover:text-white group-hover:scale-110 transition-all duration-500"
+                        />
                       </div>
                       {isInstagram && (
                         <div class="absolute top-3 right-3 w-8 h-8 bg-on-surface/70 backdrop-blur-sm text-inverse-on-surface rounded-full flex items-center justify-center">

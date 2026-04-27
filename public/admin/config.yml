@@ -37,6 +37,12 @@ collections:
       - { label: "Titel", name: "title", widget: "string" }
       - { label: "Untertitel", name: "subtitle", widget: "string", required: false }
       - { label: "Jahr", name: "year", widget: "string", hint: "z. B. 2024 oder 2023-2024" }
+      - label: "Art"
+        name: "art"
+        widget: "select"
+        required: false
+        options: ["Spielfilm", "Serie", "Mini-Serie", "Dokumentarfilm", "Kurzfilm", "Anime"]
+        hint: "Spielfilm, Serie o. Ä."
       - { label: "Genre", name: "genre", widget: "string", hint: "z. B. Krimi / Thriller" }
       - { label: "Rolle / Tätigkeit", name: "role", widget: "string", hint: "z. B. Drehbuch, Dialogbuch, Dramaturgie" }
       - { label: "Studio", name: "studio", widget: "string", required: false }

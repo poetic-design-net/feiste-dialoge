@@ -15,6 +15,7 @@ const projects = defineCollection({
     title: z.string(),
     subtitle: z.string().optional(),
     year: z.string(),
+    art: z.string().optional(),
     genre: z.string(),
     role: z.string(),
     studio: z.string().optional(),
