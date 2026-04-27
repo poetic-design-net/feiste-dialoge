@@ -4,7 +4,8 @@ subtitle: ""
 year: "2026"
 genre: Drama / Thriller
 role: Dialogbuch
-studio: Eurosync / Paramount+
+studio: Eurosync
+production: Paramount+
 language: EN → DE
 services: []
 status: veröffentlicht
