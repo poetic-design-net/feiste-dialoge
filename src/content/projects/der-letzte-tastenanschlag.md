@@ -4,7 +4,8 @@ subtitle: ""
 year: "2025"
 genre: Drama / Coming Of Age
 role: Dialogbuch
-studio: VSI Berlin / Netflix
+studio: VSI Berlin
+production: Netflix
 language: EN → DE
 syncType: Lippensynchron
 services: []
