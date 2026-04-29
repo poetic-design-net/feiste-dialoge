@@ -4,6 +4,10 @@ import { getEntry } from 'astro:content';
 
 const site = await getEntry('settings', 'site');
 const email = site?.data.contactEmail ?? 'flo@feiste-dialoge.de';
+const legalName = site?.data.legalName ?? site?.data.personName ?? 'Florian Feist';
+const addressLine1 = site?.data.legalAddressLine1;
+const addressLine2 = site?.data.legalAddressLine2;
+const city = site?.data.legalCity;
 ---
 
 <BaseLayout
@@ -23,9 +27,10 @@ const email = site?.data.contactEmail ?? 'flo@feiste-dialoge.de';
       <h2>1. Verantwortlicher</h2>
       <p>
         Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO):<br/>
-        Florian Feiste<br/>
-        <em>[Straße und Hausnummer]</em><br/>
-        <em>[PLZ und Ort]</em><br/>
+        {legalName}<br/>
+        {addressLine1 && <>{addressLine1}<br/></>}
+        {addressLine2 && <>{addressLine2}<br/></>}
+        {city && <>{city}<br/></>}
         E-Mail: <a href={`mailto:${email}`}>{email}</a>
       </p>
 

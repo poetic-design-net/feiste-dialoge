@@ -5,6 +5,13 @@ import { getEntry } from 'astro:content';
 const site = await getEntry('settings', 'site');
 const email = site?.data.contactEmail ?? 'flo@feiste-dialoge.de';
 const phone = site?.data.contactPhone;
+const legalName = site?.data.legalName ?? site?.data.personName ?? 'Florian Feist';
+const addressLine1 = site?.data.legalAddressLine1;
+const addressLine2 = site?.data.legalAddressLine2;
+const city = site?.data.legalCity;
+const country = site?.data.legalCountry ?? 'Deutschland';
+const vatStatus = site?.data.vatStatus;
+const professionTitle = site?.data.professionTitle;
 ---
 
 <BaseLayout
@@ -19,11 +26,11 @@ const phone = site?.data.contactPhone;
     <div class="prose prose-stone max-w-none font-body prose-headings:font-headline prose-headings:text-on-surface prose-a:text-primary">
       <h2>Angaben gemäß § 5 TMG</h2>
       <p>
-        Florian Feist<br/>
-        c/o Online-Impressum #7870<br/>
-        Europaring 90<br/>
-        53757 Sankt Augustin<br/>
-        Deutschland
+        {legalName}<br/>
+        {addressLine1 && <>{addressLine1}<br/></>}
+        {addressLine2 && <>{addressLine2}<br/></>}
+        {city && <>{city}<br/></>}
+        {country}
       </p>
 
       <h2>Kontakt</h2>
@@ -32,20 +39,23 @@ const phone = site?.data.contactPhone;
         {phone && <><br/>Telefon: {phone}</>}
       </p>
 
-      <h2>Umsatzsteuer-ID</h2>
-      <p>
-        Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br/>
-        <em>[USt-IdNr. oder: "Kleinunternehmer gemäß § 19 UStG"]</em>
-      </p>
+      {vatStatus && (
+        <>
+          <h2>Umsatzsteuer</h2>
+          <p>{vatStatus}</p>
+        </>
+      )}
 
-      <h2>Berufsbezeichnung & berufsrechtliche Regelungen</h2>
-      <p>
-        Berufsbezeichnung: Dialogbuchautor, Dramaturg (verliehen in Deutschland)
-      </p>
+      {professionTitle && (
+        <>
+          <h2>Berufsbezeichnung</h2>
+          <p>Berufsbezeichnung: {professionTitle}</p>
+        </>
+      )}
 
       <h2>Redaktionell verantwortlich</h2>
       <p>
-        Florian Feist (Anschrift wie oben)
+        {legalName} (Anschrift wie oben)
       </p>
 
       <h2>EU-Streitschlichtung</h2>

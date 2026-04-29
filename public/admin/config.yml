@@ -308,3 +308,11 @@ collections:
             default: []
             hint: "z. B. LinkedIn, IMDb, Xing — jeweils volle URL."
             field: { label: "URL", name: url, widget: string }
+          - { label: "— Impressum & Datenschutz —", name: legalDivider, widget: hidden, required: false, hint: "Diese Felder erscheinen im Impressum und in der Datenschutzerklärung." }
+          - { label: "Name (Impressum)", name: legalName, widget: string, required: false, hint: "Vollständiger Name wie er rechtlich im Impressum stehen soll." }
+          - { label: "Adresszeile 1 (z. B. c/o Impressum-Service)", name: legalAddressLine1, widget: string, required: false }
+          - { label: "Adresszeile 2 (Straße & Hausnummer)", name: legalAddressLine2, widget: string, required: false }
+          - { label: "PLZ und Ort", name: legalCity, widget: string, required: false }
+          - { label: "Land", name: legalCountry, widget: string, required: false, default: "Deutschland" }
+          - { label: "Umsatzsteuer-Status", name: vatStatus, widget: string, required: false, hint: "Entweder USt-IdNr. (z. B. 'DE123456789') oder 'Kleinunternehmer gemäß § 19 UStG'. Leer lassen, um den Abschnitt zu verstecken." }
+          - { label: "Berufsbezeichnung (Impressum)", name: professionTitle, widget: string, required: false, hint: "Erscheint im Abschnitt 'Berufsbezeichnung' des Impressums. Leer lassen, um den Abschnitt zu verstecken." }

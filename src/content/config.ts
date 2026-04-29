@@ -155,6 +155,13 @@ const settings = defineCollection({
     personName: z.string().optional(),
     personJobTitle: z.string().optional(),
     sameAs: z.array(z.string()).default([]),
+    legalName: z.string().optional(),
+    legalAddressLine1: z.string().optional(),
+    legalAddressLine2: z.string().optional(),
+    legalCity: z.string().optional(),
+    legalCountry: z.string().default('Deutschland'),
+    vatStatus: z.string().optional(),
+    professionTitle: z.string().optional(),
   }),
 });
 
