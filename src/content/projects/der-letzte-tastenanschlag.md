@@ -26,7 +26,7 @@ videos:
   - thumbnail: ""
     title: Boots - Ausschnitt
     subtitle: Reels-Auszug auf Instagram
-    url: https://www.instagram.com/p/DXmi3qhCBgm/
+    url: https://www.instagram.com/p/DXuQTtDiI_S/
 seo:
   noindex: false
   metaTitle: Boots Netflix 2025 – Deutsche Synchronfassung
