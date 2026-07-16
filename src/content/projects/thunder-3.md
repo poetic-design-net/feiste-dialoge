@@ -1,5 +1,5 @@
 ---
-title: Thunder 3
+title: Thunder 3 (S1)
 year: "2026"
 art: Serie
 genre: Anime
