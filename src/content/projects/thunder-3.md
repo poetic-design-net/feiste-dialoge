@@ -2,7 +2,7 @@
 title: Thunder 3 (S1)
 year: "2026"
 art: Serie
-genre: Anime
+genre: Anime / Sci-Fi
 role: Dialogbuch
 studio: EVA Studios
 production: Netflix
@@ -10,9 +10,9 @@ language: JAP → DE
 syncType: Lippensynchron
 services: []
 status: veröffentlicht
-featured: false
-highlight: false
-order: 0
+featured: true
+highlight: true
+order: 30
 heroImage: /uploads/bildschirmfoto-2026-07-16-um-08.24.27.jpg
 thumbnail: /uploads/aaaabepflnzxzixetpkozb1fh9ctwbtlejvlcz8_tyepdtsq1ppq5zmffkdukt6a27geznccm-oe006r0q6jnlaoxb3pfk9egxgrczzc.jpg
 description: "Als die kleine Schwester von Pyontaro spurlos in einem
@@ -21,7 +21,10 @@ description: "Als die kleine Schwester von Pyontaro spurlos in einem
   einer fremden, hyperrealistischen Welt voller abgefahrener Gefahren und
   außerirdischer Bedrohungen. Der entscheidende Twist: In diesem fremden
   Universum verfügen die drei auf einmal über überragende Kräfte."
-videos: []
+videos:
+  - url: https://www.instagram.com/reel/Da2phlbo-Hs/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+    subtitle: Reels-Auszug auf Instagram
+    title: THUNDER 3 - Ausschnitt
 gallery: []
 seo:
   noindex: false
