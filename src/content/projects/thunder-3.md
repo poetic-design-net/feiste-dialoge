@@ -2,7 +2,7 @@
 title: Thunder 3 (S1)
 year: "2026"
 art: Serie
-genre: Anime
+genre: Anime / Sci-Fi
 role: Dialogbuch
 studio: EVA Studios
 production: Netflix
