@@ -10,11 +10,11 @@ availability:
     status: Ausgebucht
     tone: busy
   - period: Q3 2026
-    status: Teilweise verfügbar
-    tone: partial
+    status: Ausgebucht
+    tone: busy
   - period: Q4 2026
-    status: Annahme offen
-    tone: open
+    status: Frei ab Mitte Oktober
+    tone: partial
 contact:
   email: flo@feiste-dialoge.de
   phone: +49 177 8903426
