@@ -6,15 +6,15 @@ hero:
     richtigen Ton treffen.
 postit: "Aktueller Status: Verfügbar ab Mitte Oktober 2026"
 availability:
-  - period: Q2 2026
-    status: Ausgebucht
-    tone: busy
-  - period: Q3 2026
+  - period: "Q3 2026 "
     status: Ausgebucht
     tone: busy
   - period: Q4 2026
     status: teilweise frei
     tone: partial
+  - period: Q1 2027
+    status: frei
+    tone: open
 contact:
   email: flo@feiste-dialoge.de
   phone: +49 177 8903426
