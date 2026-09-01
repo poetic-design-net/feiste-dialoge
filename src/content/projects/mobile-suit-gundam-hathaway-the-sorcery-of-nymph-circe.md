@@ -10,7 +10,7 @@ language: JAP → DEU
 syncType: Lippensynchron
 services: []
 status: veröffentlicht
-featured: false
+featured: true
 highlight: false
 order: 0
 heroImage: /uploads/resized_rectangle-44491.png
