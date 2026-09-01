@@ -10,7 +10,7 @@ language: JAP → DE
 syncType: Lippensynchron
 services: []
 status: veröffentlicht
-featured: true
+featured: false
 highlight: true
 order: 30
 heroImage: /uploads/bildschirmfoto-2026-07-16-um-08.24.27.jpg
@@ -25,6 +25,7 @@ videos:
   - url: https://www.instagram.com/reel/Da2phlbo-Hs/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
     subtitle: Reels-Auszug auf Instagram
     title: THUNDER 3 - Ausschnitt
+    thumbnail: /uploads/aaaabepflnzxzixetpkozb1fh9ctwbtlejvlcz8_tyepdtsq1ppq5zmffkdukt6a27geznccm-oe006r0q6jnlaoxb3pfk9egxgrczzc.jpg
 gallery: []
 seo:
   noindex: false
