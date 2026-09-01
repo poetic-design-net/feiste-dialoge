@@ -10,7 +10,7 @@ language: JAP → DE
 syncType: Lippensynchron
 services: []
 status: veröffentlicht
-featured: true
+featured: false
 highlight: true
 order: 30
 heroImage: /uploads/bildschirmfoto-2026-07-16-um-08.24.27.jpg
