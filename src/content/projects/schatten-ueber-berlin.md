@@ -24,6 +24,7 @@ videos:
   - title: School Spirits — Ausschnitt
     subtitle: Reels-Auszug auf Instagram
     url: https://www.instagram.com/p/DXmi3qhCBgm/
+    thumbnail: /uploads/bildschirmfoto-2026-04-24-um-12.44.49.png
 seo:
   metaTitle: School Spirits Staffel 3 – Deutsche Synchronfassung
   metaDescription: School Spirits Staffel 3, Paramount+ 2026. Mystery,
