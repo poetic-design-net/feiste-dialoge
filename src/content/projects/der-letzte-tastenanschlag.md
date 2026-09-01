@@ -23,7 +23,7 @@ description: Cameron weiß nicht wohin mit sich. Also meldet er sich impulsiv
   Eine Coming of Age Geschichte über Freundschaft, Identität und den Mut, man
   selbst zu sein, auch wenn die Umgebung das nicht zulässt.
 videos:
-  - thumbnail: ""
+  - thumbnail: /uploads/bildschirmfoto-2026-04-22-um-14.18.41.png
     title: Boots - Ausschnitt
     subtitle: Reels-Auszug auf Instagram
     url: https://www.instagram.com/p/DXuQTtDiI_S/
