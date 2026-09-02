@@ -11,8 +11,8 @@ syncType: Lippensynchron
 services: []
 status: veröffentlicht
 featured: true
-highlight: false
-order: 0
+highlight: true
+order: 3
 heroImage: /uploads/resized_rectangle-44491.png
 heroImageAlt: ""
 thumbnail: /uploads/s-l1200.jpg
