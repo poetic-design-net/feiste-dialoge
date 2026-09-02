@@ -12,7 +12,7 @@ services: []
 status: veröffentlicht
 featured: true
 highlight: true
-order: 10
+order: 1
 heroImage: /uploads/school-spirits-s3-feature-rhonda-and-quinn.webp
 thumbnail: /uploads/bildschirmfoto-2026-04-24-um-12.44.49.png
 description: School Spirits folgt der Teenagerin Maddie Nears, die nach ihrem
