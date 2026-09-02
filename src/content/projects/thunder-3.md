@@ -12,7 +12,7 @@ services: []
 status: veröffentlicht
 featured: false
 highlight: true
-order: 30
+order: 4
 heroImage: /uploads/bildschirmfoto-2026-07-16-um-08.24.27.jpg
 thumbnail: /uploads/aaaabepflnzxzixetpkozb1fh9ctwbtlejvlcz8_tyepdtsq1ppq5zmffkdukt6a27geznccm-oe006r0q6jnlaoxb3pfk9egxgrczzc.jpg
 description: "Als die kleine Schwester von Pyontaro spurlos in einem
