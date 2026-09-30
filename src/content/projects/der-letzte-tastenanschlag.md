@@ -13,7 +13,7 @@ services: []
 status: veröffentlicht
 featured: true
 highlight: true
-order: 2
+order: 1
 heroImage: /uploads/boots-netflix-aufmacher.jpg
 heroImageAlt: ""
 thumbnail: /uploads/bildschirmfoto-2026-04-22-um-14.18.41.png
