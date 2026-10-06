@@ -6,13 +6,12 @@ import Waveform from '@components/Waveform.astro';
 import Icon from '@components/Icon.astro';
 import SmartImage from '@components/SmartImage.astro';
 import { getCollection, getEntry } from 'astro:content';
+import { selectHighlights } from '@lib/projectHighlights';
 
 const home = await getEntry('pages', 'home');
 const site = await getEntry('settings', 'site');
 
-const featured = (await getCollection('projects', ({ data }) => data.highlight))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3);
+const featured = selectHighlights(await getCollection('projects'));
 
 const hero = home?.data.hero;
 const services = home?.data.services ?? [];
