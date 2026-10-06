@@ -47,6 +47,21 @@ public/
 
 Redaktionelle Änderungen über `https://feiste-dialoge.de/admin/` (nach Deploy).
 
+- **Profil-Kacheln:** Unter **Seiten → Über Mich → Profil-Kacheln** lassen sich
+  Vorzeile, Überschrift/Name, Beschreibung und Link bearbeiten. Die Profil-Links
+  unter den globalen Einstellungen dienen ausschließlich den strukturierten Daten für Suchmaschinen.
+- **Drei Highlights:** In den gewünschten Projekten **Highlight (Startseite & Portfolio)**
+  aktivieren und unterschiedliche Sortierzahlen vergeben, z. B. 1, 2 und 3.
+  Angezeigt werden die drei aktivierten Projekte mit den kleinsten Zahlen, unabhängig
+  vom Jahr. Die vollständige Filmografie bleibt nach Jahr sortiert.
+- **Highlight-Text:** Ein ausgefüllter Untertitel hat Vorrang; bei leerem Untertitel
+  erscheint die Kurzbeschreibung.
+
+Änderungen im redaktionellen Workflow veröffentlichen; sie werden nach erfolgreichem Deploy sichtbar.
+
+Regressionstests für die Highlight-Auswahl und Beschreibung (Node.js 22.18+):
+`node --test tests/projectHighlights.test.mjs`.
+
 **Einmalige Einrichtung nach dem ersten Deploy auf Vercel:**
 
 1. GitHub OAuth-App erstellen (unter github.com/settings/developers)

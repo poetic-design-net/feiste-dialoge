@@ -4,12 +4,13 @@ import Icon from '@components/Icon.astro';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import SmartImage from '@components/SmartImage.astro';
 import { getCollection } from 'astro:content';
+import { selectHighlights, highlightDescription } from '@lib/projectHighlights';
 
 const allProjects = (await getCollection('projects')).sort(
   (a, b) => Number(b.data.year) - Number(a.data.year) || a.data.order - b.data.order
 );
 
-const highlights = allProjects.filter((p) => p.data.highlight).slice(0, 3);
+const highlights = selectHighlights(allProjects);
 
 const statusStyles: Record<string, string> = {
   'veröffentlicht': 'text-outline',
@@ -119,7 +120,7 @@ const statusLabel: Record<string, string> = {
                     {project.data.title}
                   </h3>
                   <p class="text-on-surface-variant text-sm leading-relaxed line-clamp-3">
-                    {project.data.subtitle ?? project.data.description.slice(0, 140) + '…'}
+                    {highlightDescription(project.data)}
                   </p>
                 </div>
                 <div class="relative flex items-center justify-between pt-4 border-t border-outline-variant/20">
